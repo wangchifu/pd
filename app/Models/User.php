@@ -36,8 +36,10 @@ class User extends Authenticatable
         'title',
         'edu_key',
         'uid',        
-        'power',
+        'admin',
+        'review',
         'login_type',
+        'disable',
     ];
 
     /**

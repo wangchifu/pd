@@ -121,6 +121,10 @@ class HomeController extends Controller
                 //}
             } else {
 
+                if($user->disable==1){
+                    return back()->withErrors(['errors' => ['此帳號被停用，無法登入！']]);
+                }
+
                 //有此使用者，即更新使用者資料
                 $att['name'] = $obj['name'];
                 $att['password'] = bcrypt($request->input('password'));
@@ -150,7 +154,7 @@ class HomeController extends Controller
     }
 
     public function auth(Request $request)
-    {
+    {        
         if ($request->input('chaptcha') != session('chaptcha')) {
             return back()->withErrors(['gsuite_error' => ['驗證碼錯誤！']]);
         }        
@@ -159,6 +163,7 @@ class HomeController extends Controller
             'username' => $request->input('username'),
             'password' => $request->input('password'),
             'login_type' => 'local',
+            'disable'=> null,
         ])) {                                
             //到本來的要求頁面
             if (empty($request->session()->get('url.intended'))) {
@@ -167,7 +172,7 @@ class HomeController extends Controller
                 return redirect($request->session()->get('url.intended'));
             }                
         }
-        return back()->withErrors(['errors' => ['帳號密碼錯誤']]);;
+        return back()->withErrors(['errors' => ['帳號密碼錯誤，或是此帳號被停用了！']]);;
     }
     
 

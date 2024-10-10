@@ -25,8 +25,10 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->text('edu_key')->nullable();
             $table->text('uid')->nullable();            
-            $table->string('power')->nullable();//admin管理者 review評審
+            $table->tinyInteger('admin')->nullable();//admin管理者
+            $table->tinyInteger('review')->nullable();//review評審
             $table->string('login_type')->nullable();//local為本機登入,gsuite為gsuite登入
+            $table->tinyInteger('disable')->nullable();//停用
             $table->timestamps();                        
         });
     }

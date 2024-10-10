@@ -1,0 +1,6 @@
+.btn-sm {
+    padding: 0.25rem 0.5rem;  /* 調整按鈕內邊距 */
+    font-size: 0.875rem;      /* 調整字體大小 */
+    line-height: 1.5;         /* 調整行高 */
+    border-radius: 0.2rem;    /* 調整圓角 */
+}
