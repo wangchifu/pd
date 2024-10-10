@@ -41,6 +41,7 @@
                                         <i class="fas fa-times text-danger"></i> 
                                     @endif
                                     {{ $user->name }} ({{ $user->username }})
+                                    <a class="btn btn-info btn-sm" href="{{ route('impersonate',$user->id) }}">模擬</a>
                                 </td>
                                 <td>
                                     {{ $user->school_name }}
@@ -53,7 +54,7 @@
                                         <span class="text-primary"><i class="fas fa-crown"></i> 系統管理者</span>
                                     @endif
                                     @if($user->review=="1")
-                                        <span class="text-success"><i class="fas fa-star"></i> 評審</span>
+                                        <span class="text-warning"><i class="fas fa-star"></i> 評審</span>
                                     @endif
                                     @if(empty($user->admin) and empty($user->review))
                                         一般使用者

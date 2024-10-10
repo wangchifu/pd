@@ -41,10 +41,12 @@ Route::get('/', [HomeController::class,'index'])->name('index');
 
 //使用者可用
 Route::group(['middleware' => 'auth'],function(){
+    Route::get('impersonate_leave', [HomeController::class,'impersonate_leave'])->name('impersonate_leave');    
 });
 
 //管理者可用
 Route::group(['middleware' => 'admin'],function(){
+    Route::get('impersonate/{user}', [HomeController::class,'impersonate'])->name('impersonate');   
     Route::get('user/index', [UserController::class,'index'])->name('user.index');
     Route::get('user/{user}/change_user', [UserController::class,'change_user'])->name('user.change_user');
     Route::get('user/{user}/{power}/add_user_power', [UserController::class,'add_user_power'])->name('user.add_user_power');

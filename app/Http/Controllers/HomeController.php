@@ -182,4 +182,19 @@ class HomeController extends Controller
         Session::flush();
         return redirect()->route('index');
     }
+
+    public function impersonate(User $user)
+    {        
+        Auth::user()->impersonate($user);        
+
+        return redirect()->route('index');
+
+    }
+
+    public function impersonate_leave()
+    {
+        Auth::user()->leaveImpersonation();
+        
+        return redirect()->route('index');
+    }
 }

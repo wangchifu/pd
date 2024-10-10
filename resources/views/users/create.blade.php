@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','帳號管理')
+@section('title','新增帳號')
 
 @section('content')
 <section class="page-section" id="contact">

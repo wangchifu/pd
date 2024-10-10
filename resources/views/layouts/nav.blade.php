@@ -23,6 +23,9 @@
                                 <li><a class="dropdown-item" href="{{ route('user.index') }}">帳號管理</a></li>
                             @endif
                             <li><hr class="dropdown-divider" style="width:80%;margin: 0 auto;"></li>
+                            @impersonating                            
+                                <li><a class="dropdown-item" href="#!" onclick="return sw_confirm1('確定返回原本帳琥？','{{ route('impersonate_leave') }}')">結束模擬</a></li>
+                            @endImpersonating
                             <li><a class="dropdown-item" href="#!" onclick="sw_confirm1('確定登出？','{{ route('logout') }}')">登出</a></li>
                         </ul>
                     </li>
