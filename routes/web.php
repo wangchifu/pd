@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\YearController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LinkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,9 @@ Route::get('pic', [HomeController::class,'pic'])->name('pic');
 
 Route::get('/', [HomeController::class,'index'])->name('index');
 
+Route::get('post/index', [PostController::class,'index'])->name('post.index');
+Route::get('post/show/{post}', [PostController::class,'show'])->name('post.show');
+
 //使用者可用
 Route::group(['middleware' => 'auth'],function(){
     Route::get('impersonate_leave', [HomeController::class,'impersonate_leave'])->name('impersonate_leave');    
@@ -72,14 +76,19 @@ Route::group(['middleware' => 'admin'],function(){
     Route::post('year/update/{year}', [YearController::class,'update_year'])->name('year.update_year');
     Route::get('year/year_destroy/{year}', [YearController::class,'year_destroy'])->name('year.year_destroy');
 
-    Route::get('post/index', [PostController::class,'index'])->name('post.index');
+    
     Route::get('post/create', [PostController::class,'create'])->name('post.create');    
-    Route::post('post/store', [PostController::class,'store'])->name('post.store');
-    Route::get('post/show/{post}', [PostController::class,'show'])->name('post.show');
+    Route::post('post/store', [PostController::class,'store'])->name('post.store');    
     Route::get('post/edit/{post}', [PostController::class,'edit'])->name('post.edit');
     Route::post('post/update/{post}', [PostController::class,'update'])->name('post.update');
     Route::get('post/destroy/{post}', [PostController::class,'destroy'])->name('post.destroy');
     Route::get('post/{post}/delete_file/{filename}', [PostController::class,'delete_file'])->name('post.delete_file');
+
+    Route::get('link/index', [LinkController::class,'index'])->name('link.index');
+    Route::post('link/store', [LinkController::class,'store'])->name('link.store');            
+    Route::get('link/edit/{link}', [LinkController::class,'edit'])->name('link.edit');
+    Route::post('link/update/{link}', [LinkController::class,'update'])->name('link.update');
+    Route::get('link/destroy/{link}', [LinkController::class,'destroy'])->name('link.destroy');
     
 });
 

@@ -8,14 +8,20 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Link;
 
 class HomeController extends Controller
 {
     public function index(){
         $posts = Post::orderBy('created_at','DESC')
             ->paginate(10);  
+
+        $link1s = Link::where('side','left')->orderBy('order_by')->get();
+        $link2s = Link::where('side','right')->orderBy('order_by')->get();            
         $data = [
             'posts'=>$posts,
+            'link1s'=>$link1s,            
+            'link2s'=>$link2s, 
         ];
         return view('index',$data);
     }

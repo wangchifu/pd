@@ -7,12 +7,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Portfolio</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ route('post.index') }}">最新公告</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">辦理成果</a></li>
                 @guest
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ route('glogin') }}">登入</a></li>
                 @endguest
                 @auth                    
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">學校填報</a></li>
                     <li class="nav-item dropdown mx-0 mx-lg-1">
                         <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3 rounded" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ auth()->user()->school_name }} {{ auth()->user()->name }}
@@ -20,11 +21,10 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><span class="dropdown-item" href="#!">{{ auth()->user()->title }} 你好</span></li>
                             @if(auth()->user()->admin=="1")
-                                <li><hr class="dropdown-divider" style="width:80%;margin: 0 auto;"></li>
-                                <li><a class="dropdown-item" href="{{ route('post.index') }}">公告系統</a></li>
+                                <li><hr class="dropdown-divider" style="width:80%;margin: 0 auto;"></li>                                
                                 <li><a class="dropdown-item" href="{{ route('user.index') }}">帳號管理</a></li>
                                 <li><a class="dropdown-item" href="{{ route('year.index') }}">填報管理</a></li>
-                                <li><a class="dropdown-item" href="{{ route('year.index') }}">連結管理</a></li>
+                                <li><a class="dropdown-item" href="{{ route('link.index') }}">連結管理</a></li>
                             @endif
                             @if(auth()->user()->review=="1")
                                 <li><hr class="dropdown-divider" style="width:80%;margin: 0 auto;"></li>

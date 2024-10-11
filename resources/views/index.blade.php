@@ -33,19 +33,14 @@
         <!-- Contact Section Form-->
         <div class="row justify-content-center">
             <div class="col-lg-2 col-xl-2">
-                <div class="card" style="width: 100%;">
-                    <img src="{{ asset('images/title1.png') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <ul>
-                        <li>
-                            123
-                        </li>
-                        <li>
-                            456
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                <div class="list-group">
+                    <a class="list-group-item p-0 disabled">
+                        <img src="{{ asset('images/title1.png') }}" alt="Image" class="img-fluid w-100">
+                    </a>
+                    @foreach($link1s as $link)
+                        <a href="{{ $link->url }}" class="list-group-item list-group-item-action" target="_blank">{{ $link->title }}</a>                    
+                    @endforeach
+                </div>  
             </div>
             <div class="col-lg-8 col-xl-8">
                 <div class="card">                    
@@ -99,19 +94,14 @@
                   </div>
             </div>
             <div class="col-lg-2 col-xl-2">
-                <div class="card" style="width: 100%;">
-                    <img src="{{ asset('images/title2.png') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <ul>
-                          <li>
-                              123
-                          </li>
-                          <li>
-                              456
-                          </li>
-                        </ul>
-                      </div>
-                  </div>
+                <div class="list-group">
+                    <a class="list-group-item p-0 disabled">
+                        <img src="{{ asset('images/title2.png') }}" alt="Image" class="img-fluid w-100">
+                    </a>
+                    @foreach($link2s as $link)
+                        <a href="{{ $link->url }}" class="list-group-item list-group-item-action" target="_blank">{{ $link->title }}</a>                    
+                    @endforeach
+                </div>                                  
             </div>
         </div>
     </div>
