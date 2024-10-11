@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\YearController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +57,19 @@ Route::group(['middleware' => 'admin'],function(){
     Route::get('user/{user}/edit', [UserController::class,'edit'])->name('user.edit');
     Route::patch('user/{user}/update', [UserController::class,'update'])->name('user.update');
     Route::get('user/{user}/destroy', [UserController::class,'destroy'])->name('user.destroy');
+    Route::post('user/search', [UserController::class,'search'])->name('user.search');
+
+    Route::get('year/index', [YearController::class,'index'])->name('year.index');
+    Route::post('year/store', [YearController::class,'store'])->name('year.store');
+    Route::get('year/create_item/{year}', [YearController::class,'create_item'])->name('year.create_item');
+    Route::post('year/item_store', [YearController::class,'item_store'])->name('year.item_store');
+    Route::get('year/item_destroy/{item}', [YearController::class,'item_destroy'])->name('year.item_destroy');
+    Route::get('year/edit_item/{item}', [YearController::class,'edit_item'])->name('year.edit_item');
+    Route::post('year/update_item/{item}', [YearController::class,'item_update'])->name('year.update_item');
+    Route::post('year/copy_year/{year}', [YearController::class,'copy_year'])->name('year.copy_year');
+    Route::get('year/edit_year/{year}', [YearController::class,'edit_year'])->name('year.edit_year');
+    Route::post('year/update/{year}', [YearController::class,'update_year'])->name('year.update_year');
+    Route::get('year/year_destroy/{year}', [YearController::class,'year_destroy'])->name('year.year_destroy');
     
 });
 

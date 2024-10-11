@@ -18,15 +18,8 @@
         <link href="{{ asset('css/my.css') }}" rel="stylesheet" />
     </head>
     <body id="page-top">
-        <!-- Navigation-->
-        @include('layouts.nav')
-        <br>
-        @yield('content')
-
-        
-        <!-- Footer-->
-        @include('layouts.footer')
-        
+        <!-- Navigation-->        
+        @yield('content')                            
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

@@ -8,8 +8,9 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function index(){
-        $users = User::orderBy('updated_at','DESC')    
-            ->orderBy('disable')        
+        $users = User::orderBy('login_type','DESC')
+            ->orderBy('disable')
+            ->orderBy('updated_at','DESC') 
             ->paginate(1);        
 
         $data = [
@@ -51,5 +52,19 @@ class UserController extends Controller
 
         User::create($att);
         return redirect()->route('user.index');
+    }
+    public function search(Request $request){
+        $want = $request->input('want');
+        $users = User::where('school_code', 'like', "%" . $want . "%")
+        ->orWhere('school_name', 'like', "%" . $want . "%")
+        ->orWhere('title', 'like', "%" . $want . "%")
+        ->orWhere('username', 'like', "%" . $want . "%")
+        ->orWhere('name', 'like', "%" . $want . "%")
+        ->get();
+        $data = [
+            'users'=>$users,    
+            'want'=>$want,
+        ];
+        return view('users.search',$data);
     }
 }

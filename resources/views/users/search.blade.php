@@ -1,16 +1,16 @@
 @extends('layouts.master')
 
-@section('title','帳號管理')
+@section('title','搜尋帳號')
 
 @section('content')
 <section class="page-section" id="contact">
     <div class="container">
         <div class="mb-2">
-            <a href="{{ route('user.create') }}" class="btn btn-primary">新增帳號</a>
+            搜尋「{{ $want }}」的結果
         </div>        
         <div class="card" >
             <div class="card-body">
-                <h3 class="card-title">帳號管理</h5>
+                <h3 class="card-title">搜尋帳號</h5>
                 <form action="{{ route('user.search') }}" method="post">
                     @csrf
                     <table>
@@ -87,7 +87,7 @@
                                         一般使用者
                                     @endif
                                 </td>
-                                <td>                                    
+                                <td>
                                     @if(empty($user->disable))
                                         @if(auth()->user()->id != $user->id)
                                             <a href="#!" class="btn btn-secondary btn-sm" onclick="sw_confirm1('確定停用？','{{ route('user.change_user',$user->id) }}')">停用</a>
@@ -113,7 +113,7 @@
                     </tbody>                    
                 </table>
                 <div class="d-flex justify-content-left">						
-                    {{ $users->withQueryString()->links('pagination::bootstrap-5') }}
+                    <a href="{{ route('user.index') }}" class="btn btn-secondary">返回</a>
                 </div>
             </div>
         </div>        
