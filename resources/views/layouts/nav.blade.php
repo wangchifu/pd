@@ -21,6 +21,7 @@
                             <li><span class="dropdown-item" href="#!">{{ auth()->user()->title }} 你好</span></li>
                             @if(auth()->user()->admin=="1")
                                 <li><hr class="dropdown-divider" style="width:80%;margin: 0 auto;"></li>
+                                <li><a class="dropdown-item" href="{{ route('post.index') }}">公告系統</a></li>
                                 <li><a class="dropdown-item" href="{{ route('user.index') }}">帳號管理</a></li>
                                 <li><a class="dropdown-item" href="{{ route('year.index') }}">填報管理</a></li>
                                 <li><a class="dropdown-item" href="{{ route('year.index') }}">連結管理</a></li>

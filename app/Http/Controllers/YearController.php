@@ -9,7 +9,7 @@ use App\Models\Item;
 class YearController extends Controller
 {
     public function index(){
-        $years = Year::orderBy('year_name','DESC')->get();
+        $years = Year::orderBy('year_name','DESC')->paginate(4);;
         $data = [
             'years'=>$years,
         ];

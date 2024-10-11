@@ -11,7 +11,7 @@ class UserController extends Controller
         $users = User::orderBy('login_type','DESC')
             ->orderBy('disable')
             ->orderBy('updated_at','DESC') 
-            ->paginate(1);        
+            ->paginate(20);        
 
         $data = [
             'users'=>$users,            

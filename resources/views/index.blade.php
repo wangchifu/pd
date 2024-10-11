@@ -32,7 +32,7 @@
         </div>
         <!-- Contact Section Form-->
         <div class="row justify-content-center">
-            <div class="col-lg-3 col-xl-3">
+            <div class="col-lg-2 col-xl-2">
                 <div class="card" style="width: 100%;">
                     <img src="{{ asset('images/title1.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -47,15 +47,58 @@
                     </div>
                   </div>
             </div>
-            <div class="col-lg-6 col-xl-6">
+            <div class="col-lg-8 col-xl-8">
                 <div class="card">                    
                     <div class="card-body">
                       <h5 class="card-title">最新公告</h5>
-                      
+                      @auth
+                        @if(auth()->user()->admin=="1")
+                            <a href="{{ route('post.create') }}" class="btn btn-primary">新增公告</a>                  
+                        @endif
+                      @endauth
+                      <table class="table table-hover table-bordered">                        
+                        <thead class="bg-secondary text-light">
+                            <tr>
+                                <th style="width:600px;">
+                                    公告標題
+                                </th>
+                                <th style="width:100px;">
+                                    發佈人
+                                </th>
+                                <th style="width:150px;">
+                                    發佈時間
+                                </th>                                
+                                <th style="width:60px;">
+                                    點閱
+                                </th>                                
+                            </tr>
+                        </thead>                    
+                        <tbody>       
+                            @foreach($posts as $post)                     
+                                <tr>
+                                    <td>
+                                        <a href="{{ route('post.show',$post->id) }}" class="text-decoration-none">
+                                            {{ $post->title }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{ $post->user->name }}
+                                    </td>
+                                    <td>
+                                        {{ $post->user->created_at }}
+                                    </td>
+                                    <td>
+                                        {{ $post->views }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                      </table>
+                      <a href="{{ route('post.index') }}" class="text-decoration-none">...更多公告</a>
                     </div>
                   </div>
             </div>
-            <div class="col-lg-3 col-xl-3">
+            <div class="col-lg-2 col-xl-2">
                 <div class="card" style="width: 100%;">
                     <img src="{{ asset('images/title2.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">

@@ -6,24 +6,24 @@ use Illuminate\Support\Facades\Log;
 if (!function_exists('get_files')) {
     function get_files($folder)
     {
-        $files = [];
-        $i = 0;
-        if (is_dir($folder)) {
-            if ($handle = opendir($folder)) {
-                while (false !== ($name = readdir($handle))) {
-                    if ($name != "." && $name != "..") {
-                        //去除掉..跟.
-                        $files[$i] = $name;
-                        $i++;
-                    }
-                }
-                closedir($handle);
+        if (!is_dir($folder)) {
+            return false;
+        }
+           // 使用 scandir 取得目錄中的所有檔案和子目錄，過濾掉 '.' 和 '..'
+        $files = array_diff(scandir($folder), array('.', '..'));
+
+        // 初始化一個空陣列來保存文件
+        $allFiles = [];
+
+        // 遍歷每個檔案並確認它是文件而不是目錄
+        foreach ($files as $file) {
+            $filePath = $folder . DIRECTORY_SEPARATOR . $file;
+            if (is_file($filePath)) {
+                $allFiles[] = $file;  // 將文件名加入結果陣列
             }
         }
-        $files = array_values(array_sort($files, function ($value) {
-            return $value;
-        }));
-        return $files;
+
+        return $allFiles; // 返回所有檔案的陣列
     }
 }
 

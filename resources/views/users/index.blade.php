@@ -10,7 +10,7 @@
         </div>        
         <div class="card" >
             <div class="card-body">
-                <h3 class="card-title">帳號管理</h5>
+                <h3 class="card-title">帳號管理</h3>
                 <form action="{{ route('user.search') }}" method="post">
                     @csrf
                     <table>
