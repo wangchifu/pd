@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('schools', function (Blueprint $table) {
+        Schema::create('uploads', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('code');
-            $table->unsignedInteger('township_id');            
+            $table->string('title');
+            $table->integer('order_by')->nullable();
+            $table->string('type');
+            $table->unsignedInteger('report_id');
+            $table->unsignedInteger('user_id');            
             $table->timestamps();                        
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('schools');
+        Schema::dropIfExists('uploads');
     }
 };

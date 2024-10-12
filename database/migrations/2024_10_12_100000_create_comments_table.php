@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('years', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('year_name');            
-            $table->unsignedInteger('user_id');                      
+            $table->string('title');
+            $table->integer('order_by')->nullable();
+            $table->integer('score');
+            $table->text('standard')->nullable();
+            $table->unsignedInteger('report_id');
+            $table->unsignedInteger('user_id');            
             $table->timestamps();                        
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('years');
+        Schema::dropIfExists('comments');
     }
 };

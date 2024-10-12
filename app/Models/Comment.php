@@ -5,20 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Comment extends Model
 {
     use HasFactory;
     protected $fillable = [
         'title',
         'order_by',
-        'type',
-        'year_id',        
-        'user_id',        
+        'score',
+        'report_id',
+        'user_id',
+        'standard',
     ];
 
-    public function year()
+    public function report()
     {
-        return $this->belongsTo(Year::class);
+        return $this->belongsTo(Report::class);
     }
     public function user()
     {

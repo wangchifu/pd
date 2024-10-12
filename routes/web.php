@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\YearController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LinkController;
 
@@ -64,17 +64,23 @@ Route::group(['middleware' => 'admin'],function(){
     Route::get('user/{user}/destroy', [UserController::class,'destroy'])->name('user.destroy');
     Route::post('user/search', [UserController::class,'search'])->name('user.search');
 
-    Route::get('year/index', [YearController::class,'index'])->name('year.index');
-    Route::post('year/store', [YearController::class,'store'])->name('year.store');
-    Route::get('year/create_item/{year}', [YearController::class,'create_item'])->name('year.create_item');
-    Route::post('year/item_store', [YearController::class,'item_store'])->name('year.item_store');
-    Route::get('year/item_destroy/{item}', [YearController::class,'item_destroy'])->name('year.item_destroy');
-    Route::get('year/edit_item/{item}', [YearController::class,'edit_item'])->name('year.edit_item');
-    Route::post('year/update_item/{item}', [YearController::class,'item_update'])->name('year.update_item');
-    Route::post('year/copy_year/{year}', [YearController::class,'copy_year'])->name('year.copy_year');
-    Route::get('year/edit_year/{year}', [YearController::class,'edit_year'])->name('year.edit_year');
-    Route::post('year/update/{year}', [YearController::class,'update_year'])->name('year.update_year');
-    Route::get('year/year_destroy/{year}', [YearController::class,'year_destroy'])->name('year.year_destroy');
+    Route::get('report/index', [reportController::class,'index'])->name('report.index');
+    Route::post('report/store', [reportController::class,'store'])->name('report.store');    
+    Route::get('report/edit/{report}', [reportController::class,'edit'])->name('report.edit');
+    Route::post('report/update/{report}', [reportController::class,'update'])->name('report.update');
+    Route::get('report/destroy/{report}', [reportController::class,'destroy'])->name('report.destroy');
+    Route::post('report/upload_copy/{report}', [reportController::class,'upload_copy'])->name('report.upload_copy');
+    Route::get('report/upload_create/{report}', [reportController::class,'upload_create'])->name('report.upload_create');
+    Route::post('report/upload_store', [reportController::class,'upload_store'])->name('report.upload_store');
+    Route::get('report/upload_destroy/{upload}', [reportController::class,'upload_destroy'])->name('report.upload_destroy');
+    Route::get('report/upload_edit/{upload}', [reportController::class,'upload_edit'])->name('report.upload_edit');
+    Route::post('report/upload_update/{upload}', [reportController::class,'upload_update'])->name('report.upload_update');    
+    Route::post('report/comment_copy/{report}', [reportController::class,'comment_copy'])->name('report.comment_copy');
+    Route::get('report/comment_create/{report}', [reportController::class,'comment_create'])->name('report.comment_create');
+    Route::post('report/comment_store', [reportController::class,'comment_store'])->name('report.comment_store');
+    Route::get('report/comment_destroy/{comment}', [reportController::class,'comment_destroy'])->name('report.comment_destroy');
+    Route::get('report/comment_edit/{comment}', [reportController::class,'comment_edit'])->name('report.comment_edit');
+    Route::post('report/comment_update/{comment}', [reportController::class,'comment_update'])->name('report.comment_update');    
 
     
     Route::get('post/create', [PostController::class,'create'])->name('post.create');    
