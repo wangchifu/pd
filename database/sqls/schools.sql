@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2024 年 10 月 10 日 12:18
+-- 產生時間： 2024 年 10 月 12 日 17:59
 -- 伺服器版本： 8.0.39-0ubuntu0.22.04.1
 -- PHP 版本： 7.4.33
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `schools` (
   `id` int NOT NULL,
-  `school_name` varchar(50) NOT NULL,
-  `code_no` varchar(12) NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `code` varchar(12) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `township_id` smallint UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
@@ -38,7 +38,7 @@ CREATE TABLE `schools` (
 -- 傾印資料表的資料 `schools`
 --
 
-INSERT INTO `schools` (`id`, `school_name`, `code_no`, `township_id`) VALUES
+INSERT INTO `schools` (`id`, `name`, `code`, `township_id`) VALUES
 (1, '中山國小', '074601', 500),
 (2, '民生國小', '074602', 500),
 (3, '平和國小', '074603', 500),
@@ -224,11 +224,8 @@ INSERT INTO `schools` (`id`, `school_name`, `code_no`, `township_id`) VALUES
 (211, '萬興國中', '074512', 526),
 (212, '原斗國中小', '074537074745', 526),
 (214, '大城國小', '074747', 527),
-(215, '永光國小', '074748', 527),
 (216, '西港國小', '074749', 527),
 (217, '美豐國小', '074750', 527),
-(218, '頂庄國小', '074751', 527),
-(219, '潭墘國小', '074752', 527),
 (220, '大城國中', '074515', 527),
 (221, '竹塘國小', '074753', 525),
 (222, '田頭國小', '074754', 525),
@@ -252,17 +249,8 @@ INSERT INTO `schools` (`id`, `school_name`, `code_no`, `township_id`) VALUES
 (243, '成功高中', '074339074539', 508),
 (244, '和美高中', '074323074523', 508),
 (245, '田中高中', '074328074528', 508),
-(246, '私立文興高中(國中部)', '071317', 520),
 (247, '鹿江國中小', '074542074778', 505),
-(248, '民權華德福國中小', '074543074760', 528),
-(249, '私立正德高中(國中部)', '071318', 500),
-(250, '私立精誠中學(國中部)', '071311', 500),
-(251, '特殊教育學校', '099901', 511),
-(252, '向日葵學園', '099902', 525),
-(253, '晨陽學園', '099903', 528),
-(254, '喜樂之家', '099904', 526),
-(255, '教師研習中心', '099905', 510),
-(257, '私立正德高中(國小部)', '071318b', 500);
+(248, '民權華德福國中小', '074543074760', 528);
 
 --
 -- 已傾印資料表的索引
@@ -273,7 +261,7 @@ INSERT INTO `schools` (`id`, `school_name`, `code_no`, `township_id`) VALUES
 --
 ALTER TABLE `schools`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `code_no` (`code_no`);
+  ADD KEY `code_no` (`code`);
 
 --
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)

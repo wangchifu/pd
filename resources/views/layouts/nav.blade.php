@@ -12,8 +12,10 @@
                 @guest
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ route('glogin') }}">登入</a></li>
                 @endguest
-                @auth                    
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">學校填報</a></li>
+                @auth
+                    @if(!empty(auth()->user()->school_name))                    
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ route('fill.index') }}">學校填報</a></li>
+                    @endif
                     <li class="nav-item dropdown mx-0 mx-lg-1">
                         <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3 rounded" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ auth()->user()->school_name }} {{ auth()->user()->name }}

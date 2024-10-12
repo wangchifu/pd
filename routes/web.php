@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LinkController;
+use App\Http\Controllers\FillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,9 @@ Route::get('post/show/{post}', [PostController::class,'show'])->name('post.show'
 //使用者可用
 Route::group(['middleware' => 'auth'],function(){
     Route::get('impersonate_leave', [HomeController::class,'impersonate_leave'])->name('impersonate_leave');    
+    Route::get('fill/index', [FillController::class,'index'])->name('fill.index');
+    Route::get('fill/create/{report}', [FillController::class,'create'])->name('fill.create');
+    Route::post('fill/store/{upload}', [FillController::class,'store'])->name('fill.store');
 });
 
 //管理者可用
