@@ -14,10 +14,11 @@ class ResultController extends Controller
         $reports = Report::orderBy('id','DESC')->get();
         
         $schools = School::all();
-        
+        $upload_count = 0;
+        $school_has_finish = [];
         foreach($reports as $report){            
             //題目數            
-            $upload_count[$report->id] = Upload::where('report_id',$report->id)->count();
+            $upload_count[$report->id] = Upload::where('report_id',$report->id)->count();            
 
             $fills = Fill::where('report_id',$report->id)->get();
             $school_fill = [];            
