@@ -14,7 +14,7 @@ class ResultController extends Controller
         $reports = Report::orderBy('id','DESC')->get();
         
         $schools = School::all();
-        $upload_count = 0;
+        $upload_count = [];
         $school_has_finish = [];
         foreach($reports as $report){            
             //題目數            
