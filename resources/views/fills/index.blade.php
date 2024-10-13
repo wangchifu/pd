@@ -33,7 +33,11 @@
                                 迄：{{ $report->stop_date }}
                             </td>
                             <td>
-                                <a href="{{ route('fill.create',$report->id) }}" class="btn btn-primary">進入填報</a>
+                                @if(date('Y-m-d') >= $report->start_date and date('Y-m-d') <= $report->stop_date)
+                                    <a href="{{ route('fill.create',$report->id) }}" class="btn btn-primary">進入填報</a>
+                                @else
+                                    非上傳期間
+                                @endif
                             </td>
                         </tr>
                     @endforeach

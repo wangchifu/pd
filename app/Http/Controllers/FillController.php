@@ -29,10 +29,11 @@ class FillController extends Controller
     }
 
     public function store(Request $request,Upload $upload){
-
-        //dd(storage_path());
-        $school = School::where('code','like','%'.auth()->user()->school_code.'%')->first();
-
+        
+        $school_code = get_schoool_code(auth()->user()->school_code);            
+        $school_name_array = config('pd.schools_name');        
+        $school_name = $school_name_array[$school_code];
+        
         if($upload->type=="pdf"){
             $request->validate([
                 'file' => 'required|file|max:5120', // 10240 KB = 10 MB     
@@ -46,7 +47,7 @@ class FillController extends Controller
                 ];            
             }
             
-            $file->storeAs('public/fills/'.$upload->report_id.'/'.$school->code, $info['original_filename']);
+            $file->storeAs('public/fills/'.$upload->report_id.'/'.$school_code, $info['original_filename']);
 
             $att['filename'] = $info['original_filename'];
         }else{
@@ -56,12 +57,13 @@ class FillController extends Controller
             $att['filename'] = $request->input('url');
         }
 
-        $att['school_code'] = $school->code; 
-        $att['school_name'] = $school->name;             
+        $att['school_code'] = $school_code; 
+        $att['school_name'] = $school_name;             
         $att['upload_id'] = $upload->id; 
         $att['report_id'] = $upload->report_id; 
         $att['user_id'] = auth()->user()->id; 
 
+        //是不是上傳過了
         $check_fill = Fill::where('upload_id',$upload->id)->where('school_code','like','%'.auth()->user()->school_code.'%')->first();
         if(empty($check_fill)){
             Fill::create($att);            

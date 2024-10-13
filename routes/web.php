@@ -7,6 +7,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\FillController;
+use App\Http\Controllers\ResultController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,11 @@ Route::get('/', [HomeController::class,'index'])->name('index');
 
 Route::get('post/index', [PostController::class,'index'])->name('post.index');
 Route::get('post/show/{post}', [PostController::class,'show'])->name('post.show');
+
+Route::get('result/index', [ResultController::class,'index'])->name('result.index');
+Route::get('result/view/{report}', [ResultController::class,'view'])->name('result.view');
+Route::get('result/nonesent/{report}', [ResultController::class,'nonesent'])->name('result.nonesent');
+Route::get('result/show/{report}/{code}', [ResultController::class,'show'])->name('result.show');
 
 //使用者可用
 Route::group(['middleware' => 'auth'],function(){

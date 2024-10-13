@@ -106,3 +106,26 @@ function get_ip()
     }
     return $ipAddress;
 }
+
+//回傳學校代碼，為國中小而設
+if (!function_exists('get_schoool_code')) {
+    function get_schoool_code($code)
+    {
+        //成功高中
+        if($code =="074339" or $code =="074539") return "074339074539";
+        //和美高中
+        if($code =="074323" or $code =="074523") return "074323074523";
+        //田中高中
+        if($code =="074328" or $code =="074528") return "074328074528";
+        //信義國中小
+        if($code =="074541" or $code =="074774") return "074541074774";
+        //鹿江國中小
+        if($code =="074542" or $code =="074778") return "074542074778";
+        //民權華德福國中小
+        if($code =="074543" or $code =="074760") return "074543074760";
+        //原斗國中小
+        if($code =="074537" or $code =="074745") return "074537074745";
+
+        return $code;
+    }
+}
