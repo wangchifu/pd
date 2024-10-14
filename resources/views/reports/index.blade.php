@@ -92,7 +92,9 @@
                                                             {{ $upload->order_by }}.{{ $upload->title }}
                                                         </a>
                                                         @if($upload->type=="pdf")
-                                                            <span class="text-info">(傳 PDF)</span>
+                                                            <span class="text-info">(傳 PDF 文件)</span>
+                                                        @elseif($upload->type=="mp4")
+                                                            <span class="text-info">(傳 MP4 影片)</span>
                                                         @elseif($upload->type=="link")
                                                             <span class="text-info">(傳影片連結)</span>
                                                         @endif                                                        

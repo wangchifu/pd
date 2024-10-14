@@ -34,10 +34,18 @@ class FillController extends Controller
         $school_name_array = config('pd.schools_name');        
         $school_name = $school_name_array[$school_code];
         
-        if($upload->type=="pdf"){
-            $request->validate([
-                'file' => 'required|file|max:5120', // 10240 KB = 10 MB     
-            ]);
+        if($upload->type=="pdf" or $upload->type=="mp4"){
+            if($upload->type=="pdf"){
+                $request->validate([
+                    'file' => 'required|file|max:5120', // 5120 KB = 5 MB     
+                ]);                
+            }
+            if($upload->type=="mp4"){
+                $request->validate([
+                    'file' => 'required|file|max:307200', // 307200 KB = 300 MB     
+                ]);                
+            }
+            
             //處理檔案上傳        
             if ($request->hasFile('file')) {
                 $file = $request->file('file');
@@ -49,8 +57,8 @@ class FillController extends Controller
             
             $file->storeAs('public/fills/'.$upload->report_id.'/'.$school_name, $info['original_filename']);
 
-            $att['filename'] = $info['original_filename'];
-        }else{
+            $att['filename'] = $info['original_filename'];        
+        }elseif($upload->type=="url"){
             $request->validate([
                 'url' => 'required',
             ]);

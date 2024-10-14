@@ -17,9 +17,9 @@
                 <h3 class="card-title">填報「{{ $report->title }}」</h3>
                 @include('layouts.errors')
                 註：
-                <br>1.PDF 檔不得超過 5 MB。
-                <br>2.影片連結的做法：你可以放上YouTube，或是放在谷歌雲端硬碟，<span class="text-danger">記得設定權限為公開</span>。
-                <br>3.重覆上傳將覆蓋舊的檔案或連結。
+                <br>1.PDF 文件檔不得超過 5 MB。[<a href="https://www.ilovepdf.com/zh-tw/compress_pdf" class="text-decoration-none" target="_blank">線上壓縮</a>]
+                <br>2.MP4 影片檔不得超過 300 MB。[<a href="https://www.adobe.com/tw/express/feature/video/convert/mp4" class="text-decoration-none" target="_blank">線上轉檔</a>]                
+                <br>3.重覆上傳將覆蓋舊的檔案。
                 <table class="table table-hover table-bordered">
                     <thead class="bg-secondary text-light">
                         <tr>
@@ -49,7 +49,9 @@
                                     <div class="mb-3">      
                                         <label for="up{{ $upload->id }}" class="form-label text-success">                                                    
                                             @if($upload->type=="pdf")
-                                                上傳PDF檔
+                                                上傳 PDF 文件
+                                            @elseif($upload->type=="mp4") 
+                                                上傳 MP4 影片
                                             @elseif($upload->type=="link") 
                                                 貼上影片連結
                                             @endif
@@ -59,6 +61,8 @@
                                                 <td>
                                                     @if($upload->type=="pdf")
                                                         <input class="form-control" type="file" accept=".pdf" id="up{{ $upload->id }}" name="file" required>                                                
+                                                    @elseif($upload->type=="mp4")
+                                                        <input class="form-control" type="file" accept=".mp4" id="up{{ $upload->id }}" name="file" required>                                                
                                                     @elseif($upload->type=="link")            
                                                         <input class="form-control" type="text" id="up{{ $upload->id }}" name="url" placeholder="貼上連結" required>                                                
                                                     @endif                                                            
@@ -76,8 +80,10 @@
                                 @if(!empty($check_fill))
                                     已上傳 <small>(by{{ $check_fill->user->name }})</small><br>
                                     @if($upload->type=="pdf")
-                                    <a href="{{ asset('storage/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-file-alt"></i></i> {{ $check_fill->filename }}</a>
-                                    @elseif($upload->type=="link")            
+                                        <a href="{{ asset('storage/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-file-alt"></i> {{ $check_fill->filename }}</a>
+                                    @elseif($upload->type=="mp4")
+                                        <a href="{{ asset('storage/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-film"></i> {{ $check_fill->filename }}</a>
+                                    @elseif($upload->type=="link")       
                                         <a href="{{ transfer_url_http($check_fill->filename) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-film"></i> 影片連結</a>
                                     @endif 
                                 @else

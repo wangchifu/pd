@@ -34,11 +34,15 @@
                                     <td>
                                         <?php
                                             $selected1 = ($upload->type=="pdf")?"selected":null;
-                                            $selected2 = ($upload->type=="link")?"selected":null;
+                                            $selected2 = ($upload->type=="mp4")?"selected":null;
+                                            $selected3 = ($upload->type=="link")?"selected":null;
                                         ?>
                                         <select class="form-control" name="type" required>
-                                            <option value="pdf" {{ $selected1 }}>上傳 PDF</option>
-                                            <option value="link" {{ $selected2 }}>上傳影片連結</option>
+                                            <option value="pdf" {{ $selected1 }}>上傳 PDF 文件</option>
+                                            <option value="mp4" {{ $selected2 }}>上傳 MP4 影片</option>
+                                            <!--
+                                            <option value="link" {{ $selected3 }}>上傳影片連結</option>
+                                            -->
                                         </select>
                                     </td>
                                     <td>

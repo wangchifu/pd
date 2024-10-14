@@ -33,8 +33,11 @@
                                     </td>
                                     <td>
                                         <select class="form-control" name="type" required>
-                                            <option value="pdf">上傳 PDF</option>
+                                            <option value="pdf">上傳 PDF 文件</option>
+                                            <option value="mp4">上傳 MP4 影片</option>
+                                            <!--
                                             <option value="link">上傳影片連結</option>
+                                            -->
                                         </select>
                                     </td>
                                     <td>

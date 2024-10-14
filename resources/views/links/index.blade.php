@@ -6,6 +6,7 @@
 <section class="page-section" id="contact">
     <div class="container">
         <div class="row justify-content-center">
+            <!--
             <div class="col-lg-6 col-xl-6">
                 <div class="card" style="width: 100%;">
                     <img src="{{ asset('images/title1.png') }}" class="card-img-top" alt="...">
@@ -45,6 +46,7 @@
                     </div>
                   </div>
             </div>
+            -->
             <div class="col-lg-6 col-xl-6">
                 <div class="card" style="width: 100%;">
                     <img src="{{ asset('images/title2.png') }}" class="card-img-top" alt="...">

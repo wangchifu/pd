@@ -32,6 +32,7 @@
         </div>
         <!-- Contact Section Form-->
         <div class="row justify-content-center">
+            <!--
             <div class="col-lg-2 col-xl-2">
                 <div class="list-group">
                     <a class="list-group-item p-0 disabled">
@@ -42,7 +43,8 @@
                     @endforeach
                 </div>  
             </div>
-            <div class="col-lg-8 col-xl-8">
+            -->
+            <div class="col-lg-10 col-xl-10">
                 <div class="card">                    
                     <div class="card-body">
                       <h5 class="card-title">最新公告</h5>
