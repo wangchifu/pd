@@ -76,7 +76,7 @@
                                 @if(!empty($check_fill))
                                     已上傳 <small>(by{{ $check_fill->user->name }})</small><br>
                                     @if($upload->type=="pdf")
-                                    <a href="{{ asset('storage/fills/'.$upload->report_id.'/'.$check_fill->school_code.'/'.$check_fill->filename) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-file-alt"></i></i> {{ $check_fill->filename }}</a>
+                                    <a href="{{ asset('storage/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-file-alt"></i></i> {{ $check_fill->filename }}</a>
                                     @elseif($upload->type=="link")            
                                         <a href="{{ transfer_url_http($check_fill->filename) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-film"></i> 影片連結</a>
                                     @endif 
