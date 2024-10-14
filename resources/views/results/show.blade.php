@@ -40,12 +40,16 @@
                             <td>
                                 {{ $upload->title }}
                             </td>
-                            <td>                                 
-                                @if($upload->type=="pdf")
-                                <a href="{{ asset('storage/fills/'.$upload->report_id.'/'.$code.'/'.$fill_data[$upload->id]) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-file-alt"></i></i> {{ $fill_data[$upload->id] }}</a>
-                                @elseif($upload->type=="link")            
-                                    <a href="{{ transfer_url_http($fill_data[$upload->id]) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-film"></i> 影片連結</a>
-                                @endif                                                                           
+                            <td>
+                                @if(isset($fill_data[$upload->id]))                                 
+                                    @if($upload->type=="pdf")                                    
+                                        <a href="{{ asset('storage/fills/'.$upload->report_id.'/'.$code.'/'.$fill_data[$upload->id]) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-file-alt"></i></i> {{ $fill_data[$upload->id] }}</a>
+                                    @elseif($upload->type=="link")            
+                                        <a href="{{ transfer_url_http($fill_data[$upload->id]) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-film"></i> 影片連結</a>
+                                    @endif                           
+                                @else
+                                    <span class="text-danger">尚未上傳</span>
+                                @endif                                                
                             </td>
                         </tr>
                         <?php $n++; ?>

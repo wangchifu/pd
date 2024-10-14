@@ -96,7 +96,7 @@
                                     <a href="#!" class="btn btn-outline-secondary btn-sm" onclick="sw_confirm1('確定再啟用？','{{ route('user.change_user',$user->id) }}')">再啟用</a>
                                     @endif
                                     @if(empty($user->admin))
-                                        <a href="#!" class="btn btn-primary btn-sm" onclick="sw_confirm1('確定他是評審？','{{ route('user.add_user_power',['user'=>$user->id,'power'=>'admin']) }}')">設為系統管理者</a>                                        
+                                        <a href="#!" class="btn btn-primary btn-sm" onclick="sw_confirm1('確定他是系統管理者？','{{ route('user.add_user_power',['user'=>$user->id,'power'=>'admin']) }}')">設為系統管理者</a>                                        
                                     @else
                                         @if(auth()->user()->id != $user->id)
                                             <a href="#!" class="btn btn-outline-primary btn-sm" onclick="sw_confirm1('取消他的系統管理權？','{{ route('user.remove_user_power',['user'=>$user->id,'power'=>'admin']) }}')">取消系統管理權</a>
