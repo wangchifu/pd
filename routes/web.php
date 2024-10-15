@@ -78,23 +78,23 @@ Route::group(['middleware' => 'admin'],function(){
     Route::get('user/{user}/destroy', [UserController::class,'destroy'])->name('user.destroy');
     Route::post('user/search', [UserController::class,'search'])->name('user.search');
 
-    Route::get('report/index', [reportController::class,'index'])->name('report.index');
-    Route::post('report/store', [reportController::class,'store'])->name('report.store');    
-    Route::get('report/edit/{report}', [reportController::class,'edit'])->name('report.edit');
-    Route::post('report/update/{report}', [reportController::class,'update'])->name('report.update');
-    Route::get('report/destroy/{report}', [reportController::class,'destroy'])->name('report.destroy');
-    Route::post('report/upload_copy/{report}', [reportController::class,'upload_copy'])->name('report.upload_copy');
-    Route::get('report/upload_create/{report}', [reportController::class,'upload_create'])->name('report.upload_create');
-    Route::post('report/upload_store', [reportController::class,'upload_store'])->name('report.upload_store');
-    Route::get('report/upload_destroy/{upload}', [reportController::class,'upload_destroy'])->name('report.upload_destroy');
-    Route::get('report/upload_edit/{upload}', [reportController::class,'upload_edit'])->name('report.upload_edit');
-    Route::post('report/upload_update/{upload}', [reportController::class,'upload_update'])->name('report.upload_update');    
-    Route::post('report/comment_copy/{report}', [reportController::class,'comment_copy'])->name('report.comment_copy');
-    Route::get('report/comment_create/{report}', [reportController::class,'comment_create'])->name('report.comment_create');
-    Route::post('report/comment_store', [reportController::class,'comment_store'])->name('report.comment_store');
-    Route::get('report/comment_destroy/{comment}', [reportController::class,'comment_destroy'])->name('report.comment_destroy');
-    Route::get('report/comment_edit/{comment}', [reportController::class,'comment_edit'])->name('report.comment_edit');
-    Route::post('report/comment_update/{comment}', [reportController::class,'comment_update'])->name('report.comment_update');    
+    Route::get('report/index', [ReportController::class,'index'])->name('report.index');
+    Route::post('report/store', [ReportController::class,'store'])->name('report.store');    
+    Route::get('report/edit/{report}', [ReportController::class,'edit'])->name('report.edit');
+    Route::post('report/update/{report}', [ReportController::class,'update'])->name('report.update');
+    Route::get('report/destroy/{report}', [ReportController::class,'destroy'])->name('report.destroy');
+    Route::post('report/upload_copy/{report}', [ReportController::class,'upload_copy'])->name('report.upload_copy');
+    Route::get('report/upload_create/{report}', [ReportController::class,'upload_create'])->name('report.upload_create');
+    Route::post('report/upload_store', [ReportController::class,'upload_store'])->name('report.upload_store');
+    Route::get('report/upload_destroy/{upload}', [ReportController::class,'upload_destroy'])->name('report.upload_destroy');
+    Route::get('report/upload_edit/{upload}', [ReportController::class,'upload_edit'])->name('report.upload_edit');
+    Route::post('report/upload_update/{upload}', [ReportController::class,'upload_update'])->name('report.upload_update');    
+    Route::post('report/comment_copy/{report}', [ReportController::class,'comment_copy'])->name('report.comment_copy');
+    Route::get('report/comment_create/{report}', [ReportController::class,'comment_create'])->name('report.comment_create');
+    Route::post('report/comment_store', [ReportController::class,'comment_store'])->name('report.comment_store');
+    Route::get('report/comment_destroy/{comment}', [ReportController::class,'comment_destroy'])->name('report.comment_destroy');
+    Route::get('report/comment_edit/{comment}', [ReportController::class,'comment_edit'])->name('report.comment_edit');
+    Route::post('report/comment_update/{comment}', [ReportController::class,'comment_update'])->name('report.comment_update');    
 
     
     Route::get('post/create', [PostController::class,'create'])->name('post.create');    
@@ -109,6 +109,8 @@ Route::group(['middleware' => 'admin'],function(){
     Route::get('link/edit/{link}', [LinkController::class,'edit'])->name('link.edit');
     Route::post('link/update/{link}', [LinkController::class,'update'])->name('link.update');
     Route::get('link/destroy/{link}', [LinkController::class,'destroy'])->name('link.destroy');
+
+    Route::get('review/index', [ReviewController::class,'index'])->name('review.index');
     
 });
 

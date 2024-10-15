@@ -14,6 +14,7 @@ class Comment extends Model
         'score',
         'report_id',
         'user_id',
+        'refer',
         'standard',
     ];
 

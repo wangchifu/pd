@@ -23,23 +23,24 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><span class="dropdown-item">{{ auth()->user()->title }} 你好</span></li>
                             @if(auth()->user()->login_type=="local")
-                                <li><a class="dropdown-item" href="{{ route('password_edit') }}">更改密碼</a></li>
+                                <li><a class="dropdown-item" href="{{ route('password_edit') }}"><i class="fas fa-key"></i> 更改密碼</a></li>
                             @endif
                             @if(auth()->user()->admin=="1")
                                 <li><hr class="dropdown-divider" style="width:80%;margin: 0 auto;"></li>                                
-                                <li><a class="dropdown-item" href="{{ route('user.index') }}">帳號管理</a></li>
-                                <li><a class="dropdown-item" href="{{ route('report.index') }}">填報管理</a></li>
-                                <li><a class="dropdown-item" href="{{ route('link.index') }}">連結管理</a></li>
+                                <li><a class="dropdown-item" href="{{ route('user.index') }}"><i class="fas fa-user"></i> 帳號管理</a></li>
+                                <li><a class="dropdown-item" href="{{ route('report.index') }}"><i class="fas fa-list-ol"></i> 填報管理</a></li>
+                                <li><a class="dropdown-item" href="{{ route('review.index') }}"><i class="fas fa-user-edit"></i> 評審管理</a></li>
+                                <li><a class="dropdown-item" href="{{ route('link.index') }}"><i class="fas fa-link"></i> 連結管理</a></li>
                             @endif
                             @if(auth()->user()->review=="1")
                                 <li><hr class="dropdown-divider" style="width:80%;margin: 0 auto;"></li>
-                                <li><a class="dropdown-item" href="{{ route('user.index') }}">審查學校</a></li>                                
+                                <li><a class="dropdown-item" href="{{ route('user.index') }}"><i class="fas fa-search"></i> 審查學校</a></li>                                
                             @endif
                             <li><hr class="dropdown-divider" style="width:80%;margin: 0 auto;"></li>
                             @impersonating                            
                                 <li><a class="dropdown-item" href="#!" onclick="return sw_confirm1('確定返回原本帳琥？','{{ route('impersonate_leave') }}')">結束模擬</a></li>
                             @endImpersonating
-                            <li><a class="dropdown-item" href="#!" onclick="sw_confirm1('確定登出？','{{ route('logout') }}')">登出</a></li>
+                            <li><a class="dropdown-item" href="#!" onclick="sw_confirm1('確定登出？','{{ route('logout') }}')"><i class="fas fa-sign-out-alt"></i> 登出</a></li>
                         </ul>
                     </li>
                 @endauth

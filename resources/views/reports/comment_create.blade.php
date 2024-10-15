@@ -11,21 +11,24 @@
                     <table class="table table-hover table-bordered">                        
                         <thead class="bg-secondary text-light">
                             <tr>
+                                <th style="width:100px;">
+                                    排序
+                                </th>
                                 <th>
                                     項目名稱*
                                 </th>
                                 <th style="width:100px;">
                                     占分*
-                                </th>
-                                <th style="width:100px;">
-                                    排序
-                                </th>
+                                </th>                                
                             </tr>
                         </thead>                    
                         <tbody>
                             <form action="{{ route('report.comment_store') }}" method="post" id="comment_store">
                                 <tr style="background-color: rgba(223, 216, 214, 0.493);">
                                     @csrf
+                                    <td>
+                                        <input type="number" class="form-control" name="order_by">
+                                    </td>
                                     <td>                                    
                                         <input type="text" class="form-control" name="title" required> 
                                         <input type="hidden" name="report_id" value="{{ $report->id }}">
@@ -33,16 +36,34 @@
                                     </td>
                                     <td>
                                         <input type="number" class="form-control" name="score" required>
+                                    </td>                                                                        
+                                </tr>
+                                <thead class="bg-secondary text-light">
+                                    <tr>
+                                        <th colspan="3">
+                                            參考依據
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td colspan="3">
+                                        @foreach($uploads as $upload)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="refer[]" value="{{ $upload->id }}" id="cb{{ $upload->id }}">
+                                            <label class="form-check-label" for="cb{{ $upload->id }}">
+                                                {{ $upload->order_by }}.{{ $upload->title }}
+                                            </label>
+                                          </div>                                                
+                                        @endforeach                                           
                                     </td>
-                                    <td>
-                                        <input type="text" class="form-control" name="order_by">
-                                    </td>                                    
                                 </tr>
-                                <tr class="bg-secondary text-light">
-                                    <th colspan="3">
-                                        評分標準
-                                    </th>
-                                </tr>
+                                <thead class="bg-secondary text-light">
+                                    <tr>
+                                        <th colspan="3">
+                                            評分標準
+                                        </th>
+                                    </tr>
+                                </thead>
                                 <tr>
                                     <td colspan="3">
                                         <textarea class="form-control" name="standard" rows="6"></textarea>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->integer('order_by')->nullable();
             $table->integer('score');
+            $table->text('refer')->nullable();
             $table->text('standard')->nullable();
             $table->unsignedInteger('report_id');
             $table->unsignedInteger('user_id');            

@@ -23,12 +23,12 @@
                                 <div class="invalid-feedback" data-sb-feedback="username:required">必填欄位</div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="password1" name="password1" type="text" placeholder="輸入密碼1..." data-sb-validations="required" required />
+                                <input class="form-control" id="password1" name="password1" type="password" placeholder="輸入密碼1..." data-sb-validations="required" required />
                                 <label for="password1">預設密碼</label>
                                 <div class="invalid-feedback" data-sb-feedback="password1:required">必填欄位</div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="password2" name="password2" type="text" placeholder="再次輸入密碼..." data-sb-validations="required" required />
+                                <input class="form-control" id="password2" name="password2" type="password" placeholder="再次輸入密碼..." data-sb-validations="required" required />
                                 <label for="password1">再次輸入密碼</label>
                                 <div class="invalid-feedback" data-sb-feedback="password2:required">必填欄位</div>
                             </div>

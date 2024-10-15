@@ -11,21 +11,24 @@
                     <table class="table table-hover table-bordered">                        
                         <thead class="bg-secondary text-light">
                             <tr>
-                                <th style="width:400px;">
+                                <th style="width: 100px;">
+                                    排序
+                                </th>
+                                <th>
                                     項目名稱*
                                 </th>
                                 <th style="width:150px;">
                                     類型*
-                                </th>
-                                <th>
-                                    排序
-                                </th>
+                                </th>                                
                             </tr>
                         </thead>                    
                         <tbody>
                             <form action="{{ route('report.upload_store') }}" method="post" id="upload_store">
                                 <tr style="background-color: rgba(223, 216, 214, 0.493);">
                                     @csrf
+                                    <td>
+                                        <input type="number" class="form-control" name="order_by">
+                                    </td>
                                     <td>                                    
                                         <input type="text" class="form-control" name="title" required> 
                                         <input type="hidden" name="report_id" value="{{ $report->id }}">
@@ -39,10 +42,7 @@
                                             <option value="link">上傳影片連結</option>
                                             -->
                                         </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" name="order_by" style="width:50px;">
-                                    </td>                                    
+                                    </td>                                                                        
                                 </tr>
                             </form>
                         </tbody>

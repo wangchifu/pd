@@ -158,7 +158,7 @@
 <script>
     function open_window(url,name)
         {
-            window.open(url,name,'statusbar=no,scrollbars=yes,status=yes,resizable=yes,width=850,height=600');
+            window.open(url,name,'statusbar=no,scrollbars=yes,status=yes,resizable=yes,width=850,height=800');
         }
 </script>
 @endsection

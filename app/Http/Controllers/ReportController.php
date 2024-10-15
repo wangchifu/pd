@@ -115,14 +115,19 @@ class ReportController extends Controller
     }
 
     public function comment_create(Report $report){
+        $uploads = Upload::orderBy('order_by')->get();
         $data = [
             'report'=>$report,
+            'uploads'=>$uploads,
         ];
         return view('reports.comment_create',$data);
     }
 
     public function comment_store(Request $request){
         $att = $request->all();        
+        if(!empty($att['refer'])){
+            $att['refer'] = serialize($att['refer']);
+        }        
         Comment::create($att);
         echo "<body onload=\"opener.location.reload();;window.close();\">";
     }
@@ -136,11 +141,21 @@ class ReportController extends Controller
     }
 
     public function comment_edit(Comment $comment){
-        $report = $comment->report;    
+        $report = $comment->report;
+
+        $cbs = (!empty($comment->refer))?unserialize($comment->refer):[];
+        $check_refer = [];
+        foreach($cbs as $k=>$v){
+            $check_refer[$v] = "checked";
+        }
         
+        
+        $uploads = Upload::orderBy('order_by')->get();
         $data = [
             'report'=>$report,
             'comment'=>$comment,
+            'check_refer'=>$check_refer,
+            'uploads'=>$uploads,
         ];
         return view('reports.comment_edit',$data);
     }
@@ -149,7 +164,12 @@ class ReportController extends Controller
         if($comment->user_id != auth()->user()->id){
             return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);;
         }
-        $att = $request->all();        
+        $att = $request->all();    
+        if(!empty($att['refer'])){
+            $att['refer'] = serialize($att['refer']);
+        }else{
+            $att['refer'] = null;
+        }    
         $comment->update($att);
         echo "<body onload=\"opener.location.reload();;window.close();\">";
     }
