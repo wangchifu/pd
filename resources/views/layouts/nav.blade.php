@@ -21,7 +21,10 @@
                             {{ auth()->user()->school_name }} {{ auth()->user()->name }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><span class="dropdown-item" href="#!">{{ auth()->user()->title }} 你好</span></li>
+                            <li><span class="dropdown-item">{{ auth()->user()->title }} 你好</span></li>
+                            @if(auth()->user()->login_type=="local")
+                                <li><a class="dropdown-item" href="{{ route('password_edit') }}">更改密碼</a></li>
+                            @endif
                             @if(auth()->user()->admin=="1")
                                 <li><hr class="dropdown-divider" style="width:80%;margin: 0 auto;"></li>                                
                                 <li><a class="dropdown-item" href="{{ route('user.index') }}">帳號管理</a></li>

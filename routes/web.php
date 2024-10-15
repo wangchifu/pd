@@ -56,6 +56,8 @@ Route::get('result/show/{report}/{code}', [ResultController::class,'show'])->nam
 //使用者可用
 Route::group(['middleware' => 'auth'],function(){
     Route::get('impersonate_leave', [HomeController::class,'impersonate_leave'])->name('impersonate_leave');    
+    Route::get('password_edit', [HomeController::class,'password_edit'])->name('password_edit');
+    Route::patch('password_update', [HomeController::class,'password_update'])->name('password_update');
     Route::get('fill/index', [FillController::class,'index'])->name('fill.index');
     Route::get('fill/create/{report}', [FillController::class,'create'])->name('fill.create');
     Route::post('fill/store/{upload}', [FillController::class,'store'])->name('fill.store');
@@ -63,6 +65,7 @@ Route::group(['middleware' => 'auth'],function(){
 
 //管理者可用
 Route::group(['middleware' => 'admin'],function(){
+    Route::get('password_reset/{user}', [UserController::class,'password_reset'])->name('user.password_reset');
     Route::get('impersonate/{user}', [HomeController::class,'impersonate'])->name('impersonate');   
     Route::get('user/index', [UserController::class,'index'])->name('user.index');
     Route::get('user/{user}/change_user', [UserController::class,'change_user'])->name('user.change_user');

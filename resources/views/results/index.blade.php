@@ -19,22 +19,22 @@
                     <table class="table table-hover table-bordered">
                         <thead class="bg-secondary text-light">
                             <tr>
-                                <th>
+                                <th nowrap>
                                     成果項目 
                                 </th>
-                                <th style="width:50px">
+                                <th style="width:50px" nowrap>
                                     題數
                                 </th>
-                                <th style="width:50px">
+                                <th style="width:50px" nowrap>
                                     應填
                                 </th>
-                                <th style="width:50px">
+                                <th style="width:50px" nowrap>
                                     已填
                                 </th>
-                                <th style="width:50px">
+                                <th style="width:50px" nowrap>
                                     未填
                                 </th>
-                                <th style="width:200px;">
+                                <th style="width:200px;" nowrap>
                                     填報時間
                                 </th>
                             </tr>

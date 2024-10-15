@@ -205,4 +205,30 @@ class HomeController extends Controller
         
         return redirect()->route('index');
     }
+
+    public function password_edit()
+    {                
+        return view('auth.password_edit');
+    }
+
+    public function password_update(Request $request)
+    {
+        if(empty($request->input('password1')) or empty($request->input('password2'))){        
+            return back()->withErrors(['error' => ['新密碼為空值']]);
+        }
+
+        if (!password_verify($request->input('password0'), auth()->user()->password)) {            
+            return back()->withErrors(['error' => ['舊密碼錯誤！你不是本人！？']]);
+        }
+        if ($request->input('password1') != $request->input('password2')) {            
+            return back()->withErrors(['error' => ['兩次新密碼不相同']]);
+        }
+
+
+        $att['id'] = auth()->user()->id;
+        $att['password'] = bcrypt($request->input('password1'));
+        $user = User::where('id', $att['id'])->first();
+        $user->update($att);
+        return redirect()->route('index');
+    }
 }

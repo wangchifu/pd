@@ -47,104 +47,106 @@
                             @include('layouts.errors')
                         </form>
                         <h4>填報列表</h5>
-                        <table class="table table-hover table-bordered">
-                            <thead class="bg-secondary text-light">
-                                <tr>
-                                    <th>
-                                        id
-                                    </th>
-                                    <th style="width:200px;">
-                                        成果填報名稱
-                                    </th>
-                                    <th style="width:400px;">
-                                        1.上傳項目
-                                    </th>
-                                    <th style="width:400px;">
-                                        2.評分項目
-                                    </th>
-                                    <th>
-                                        動作
-                                    </th>
-                                </tr>
-                            </thead>                    
-                            <tbody>
-                                @foreach($reports as $report)                        
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered">
+                                <thead class="bg-secondary text-light">
                                     <tr>
-                                        <td>
-                                            {{ $report->id }}
-                                        </td>
-                                        <td>
-                                            <a href="javascript:open_window('{{ route('report.edit',$report->id) }}','修改填報')" class="text-decoration-none">
-                                                {{ $report->title }}
-                                            </a>
-                                            <small>
-                                            <br>起：{{ $report->start_date }}
-                                            <br>迄：{{ $report->stop_date }}
-                                            </small>
-                                            <br><small class="text-secondary">({{ $report->user->name }} 建立)</small>
-                                        </td>                                        
-                                        <td>
-                                            <a href="javascript:open_window('{{ route('report.upload_create',$report->id) }}','新增項目')" class="btn btn-primary btn-sm">新增</a>
-                                            <ul>
-                                                @foreach($report->uploads as $upload)
-                                                    <li>
-                                                        <a href="javascript:open_window('{{ route('report.upload_edit',$upload->id) }}','修改項目')" class="text-decoration-none">
-                                                            {{ $upload->order_by }}.{{ $upload->title }}
-                                                        </a>
-                                                        @if($upload->type=="pdf")
-                                                            <span class="text-info">(傳 PDF 文件)</span>
-                                                        @elseif($upload->type=="mp4")
-                                                            <span class="text-info">(傳 MP4 影片)</span>
-                                                        @elseif($upload->type=="link")
-                                                            <span class="text-info">(傳影片連結)</span>
-                                                        @endif                                                        
-                                                        <br><small class="text-secondary">({{ $upload->user->name }} 建立)</small>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </td>
-                                        <td>
-                                            <a href="javascript:open_window('{{ route('report.comment_create',$report->id) }}','新增項目')" class="btn btn-primary btn-sm">新增</a>
-                                            <ul>
-                                                @foreach($report->comments as $comment)
-                                                    <li>
-                                                        <a href="javascript:open_window('{{ route('report.comment_edit',$comment->id) }}','修改項目')" class="text-decoration-none">
-                                                            {{ $comment->order_by }}.{{ $comment->title }}
-                                                        </a>
-                                                        ({{ $comment->score }} 分)                                                       
-                                                        <br><small class="text-secondary">({{ $comment->user->name }} 建立)</small>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </td>
-                                        <td>
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        <form action="{{ route('report.upload_copy',$report->id) }}" method="post" id="upload_copy{{ $report->id }}">
-                                                            1.從填報 id <input type="text" name="id" style="width:50px;">複製「上傳項目」到此列                                                                                        
-                                                            @csrf
-                                                        </form>
-                                                        <a href="#!" class="btn btn-success btn-sm" onclick="sw_confirm2('確定複製？','upload_copy{{ $report->id }}')">複製1</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <form action="{{ route('report.comment_copy',$report->id) }}" method="post" id="comment_copy{{ $report->id }}">
-                                                            2.從填報 id <input type="text" name="id" style="width:50px;">複製「評分項目」到此列                                                                                        
-                                                            @csrf
-                                                        </form>
-                                                        <a href="#!" class="btn btn-success btn-sm" onclick="sw_confirm2('確定複製？','comment_copy{{ $report->id }}')">複製2</a>
-                                                    </td>
-                                                </tr>
-                                            </table>                                            
-                                        </td>
+                                        <th>
+                                            id
+                                        </th>
+                                        <th style="width:200px;" nowrap>
+                                            成果填報名稱
+                                        </th>
+                                        <th style="width:400px;" nowrap>
+                                            1.上傳項目
+                                        </th>
+                                        <th style="width:400px;" nowrap>
+                                            2.評分項目
+                                        </th>
+                                        <th nowrap>
+                                            動作
+                                        </th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <div class="d-flex justify-content-left">						
-                            {{ $reports->withQueryString()->links('pagination::bootstrap-5') }}
+                                </thead>                    
+                                <tbody>
+                                    @foreach($reports as $report)                        
+                                        <tr>
+                                            <td>
+                                                {{ $report->id }}
+                                            </td>
+                                            <td>
+                                                <a href="javascript:open_window('{{ route('report.edit',$report->id) }}','修改填報')" class="text-decoration-none">
+                                                    {{ $report->title }}
+                                                </a>
+                                                <small>
+                                                <br>起：{{ $report->start_date }}
+                                                <br>迄：{{ $report->stop_date }}
+                                                </small>
+                                                <br><small class="text-secondary">({{ $report->user->name }} 建立)</small>
+                                            </td>                                        
+                                            <td>
+                                                <a href="javascript:open_window('{{ route('report.upload_create',$report->id) }}','新增項目')" class="btn btn-primary btn-sm">新增</a>
+                                                <ul>
+                                                    @foreach($report->uploads as $upload)
+                                                        <li>
+                                                            <a href="javascript:open_window('{{ route('report.upload_edit',$upload->id) }}','修改項目')" class="text-decoration-none">
+                                                                {{ $upload->order_by }}.{{ $upload->title }}
+                                                            </a>
+                                                            @if($upload->type=="pdf")
+                                                                <span class="text-info">(傳 PDF 文件)</span>
+                                                            @elseif($upload->type=="mp4")
+                                                                <span class="text-info">(傳 MP4 影片)</span>
+                                                            @elseif($upload->type=="link")
+                                                                <span class="text-info">(傳影片連結)</span>
+                                                            @endif                                                        
+                                                            <br><small class="text-secondary">({{ $upload->user->name }} 建立)</small>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <a href="javascript:open_window('{{ route('report.comment_create',$report->id) }}','新增項目')" class="btn btn-primary btn-sm">新增</a>
+                                                <ul>
+                                                    @foreach($report->comments as $comment)
+                                                        <li>
+                                                            <a href="javascript:open_window('{{ route('report.comment_edit',$comment->id) }}','修改項目')" class="text-decoration-none">
+                                                                {{ $comment->order_by }}.{{ $comment->title }}
+                                                            </a>
+                                                            ({{ $comment->score }} 分)                                                       
+                                                            <br><small class="text-secondary">({{ $comment->user->name }} 建立)</small>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <form action="{{ route('report.upload_copy',$report->id) }}" method="post" id="upload_copy{{ $report->id }}">
+                                                                1.從填報 id <input type="text" name="id" style="width:50px;">複製「上傳項目」到此列                                                                                        
+                                                                @csrf
+                                                            </form>
+                                                            <a href="#!" class="btn btn-success btn-sm" onclick="sw_confirm2('確定複製？','upload_copy{{ $report->id }}')">複製1</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <form action="{{ route('report.comment_copy',$report->id) }}" method="post" id="comment_copy{{ $report->id }}">
+                                                                2.從填報 id <input type="text" name="id" style="width:50px;">複製「評分項目」到此列                                                                                        
+                                                                @csrf
+                                                            </form>
+                                                            <a href="#!" class="btn btn-success btn-sm" onclick="sw_confirm2('確定複製？','comment_copy{{ $report->id }}')">複製2</a>
+                                                        </td>
+                                                    </tr>
+                                                </table>                                            
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <div class="d-flex justify-content-left">						
+                                {{ $reports->withQueryString()->links('pagination::bootstrap-5') }}
+                            </div>
                         </div>
                     </div>
             </div>

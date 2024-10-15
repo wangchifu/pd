@@ -53,44 +53,46 @@
                             <a href="{{ route('post.create') }}" class="btn btn-primary">新增公告</a>                  
                         @endif
                       @endauth
-                      <table class="table table-hover table-bordered">                        
-                        <thead class="bg-secondary text-light">
-                            <tr>
-                                <th style="width:600px;">
-                                    公告標題
-                                </th>
-                                <th style="width:100px;">
-                                    發佈人
-                                </th>
-                                <th style="width:150px;">
-                                    發佈時間
-                                </th>                                
-                                <th style="width:60px;">
-                                    點閱
-                                </th>                                
-                            </tr>
-                        </thead>                    
-                        <tbody>       
-                            @foreach($posts as $post)                     
+                      <div class="table-responsive">
+                        <table class="table table-hover table-bordered">                        
+                            <thead class="bg-secondary text-light">
                                 <tr>
-                                    <td>
-                                        <a href="{{ route('post.show',$post->id) }}" class="text-decoration-none">
-                                            {{ $post->title }}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        {{ $post->user->name }}
-                                    </td>
-                                    <td>
-                                        {{ $post->user->created_at }}
-                                    </td>
-                                    <td>
-                                        {{ $post->views }}
-                                    </td>
+                                    <th style="width:600px;" nowrap>
+                                        公告標題
+                                    </th>
+                                    <th style="width:100px;" nowrap>
+                                        發佈人
+                                    </th>
+                                    <th style="width:150px;" nowrap>
+                                        發佈時間
+                                    </th>                                
+                                    <th style="width:60px;" nowrap>
+                                        點閱
+                                    </th>                                
                                 </tr>
-                            @endforeach
-                        </tbody>
-                      </table>
+                            </thead>                    
+                            <tbody>       
+                                @foreach($posts as $post)                     
+                                    <tr>
+                                        <td>
+                                            <a href="{{ route('post.show',$post->id) }}" class="text-decoration-none">
+                                                {{ $post->title }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {{ $post->user->name }}
+                                        </td>
+                                        <td>
+                                            {{ $post->user->created_at }}
+                                        </td>
+                                        <td>
+                                            {{ $post->views }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                      </div>
                       <a href="{{ route('post.index') }}" class="text-decoration-none">...更多公告</a>
                     </div>
                   </div>

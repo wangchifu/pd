@@ -67,4 +67,11 @@ class UserController extends Controller
         ];
         return view('users.search',$data);
     }
+
+    public function password_reset(User $user)
+    {
+        $att['password'] = bcrypt('demo1234');        
+        $user->update($att);
+        return back();
+    }
 }
