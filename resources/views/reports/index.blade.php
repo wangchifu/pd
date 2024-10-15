@@ -12,39 +12,41 @@
                         <h4>新增填報</h5>
                         <form action="{{ route('report.store') }}" method="post" id="report_store">
                             @csrf
-                            <table class="table table-bordered">
-                                <thead class="bg-secondary text-light">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead class="bg-secondary text-light">
+                                        <tr>
+                                            <th nowrap>
+                                                新增成果填報名稱 
+                                            </th>
+                                            <th style="width:200px;" nowrap>
+                                                開始填報日期
+                                            </th>
+                                            <th style="width:200px;" nowrap>
+                                                結束填報日期
+                                            </th>
+                                            <th style="width:95px;" nowrap>
+                                                動作
+                                            </th>
+                                        </tr>
+                                    </thead>
                                     <tr>
-                                        <th>
-                                            新增成果填報名稱 
-                                        </th>
-                                        <th style="width:200px;">
-                                            開始填報日期
-                                        </th>
-                                        <th style="width:200px;">
-                                            結束填報日期
-                                        </th>
-                                        <th style="width:95px;">
-                                            動作
-                                        </th>
+                                        <td>                                    
+                                            <input type="text" class="form-control" name="title" value="年度學校辦理「防災教育」及「國家防災日活動」成果填報" required>
+                                        </td>
+                                        <td>
+                                            <input type="date" class="form-control" name="start_date" required>
+                                        </td>
+                                        <td>
+                                            <input type="date" class="form-control" name="stop_date" required>
+                                        </td>
+                                        <td>                                        
+                                            <a href="#!" class="btn btn-primary btn-sm" onclick="sw_confirm2('確定新增？','report_store')">新增填報</a>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tr>
-                                    <td>                                    
-                                        <input type="text" class="form-control" name="title" value="年度學校辦理「防災教育」及「國家防災日活動」成果填報" required>
-                                    </td>
-                                    <td>
-                                        <input type="date" class="form-control" name="start_date" required>
-                                    </td>
-                                    <td>
-                                        <input type="date" class="form-control" name="stop_date" required>
-                                    </td>
-                                    <td>                                        
-                                        <a href="#!" class="btn btn-primary btn-sm" onclick="sw_confirm2('確定新增？','report_store')">新增填報</a>
-                                    </td>
-                                </tr>
-                            </table>
-                            @include('layouts.errors')
+                                </table>
+                                @include('layouts.errors')
+                            </div>
                         </form>
                         <h4>填報列表</h5>
                         <div class="table-responsive">
