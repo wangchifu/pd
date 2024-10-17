@@ -7,15 +7,42 @@ use App\Models\Fill;
 use App\Models\Report;
 use App\Models\Upload;
 use App\Models\School;
+use App\Models\Opinion;
+use App\Models\Score;
 
 class FillController extends Controller
 {
     public function index(){
-        $reports = Report::orderBy('id','DESC')->get();
+        $reports = Report::orderBy('id','DESC')->get();        
+
         $data = [
-            'reports'=>$reports,
+            'reports'=>$reports,            
         ];
         return view('fills.index',$data);
+    }
+
+    public function award(Report $report){
+        $opinion = Opinion::where('report_id',$report->id)->where('school_code','like','%'.auth()->user()->school_code.'%')->first();
+        $school = School::where('code','like','%'.auth()->user()->school_code.'%')->first();
+        $scores = Score::where('report_id',$report->id)->where('school_code','like','%'.auth()->user()->school_code.'%')->get();
+        $score_data = [];
+        foreach($scores as $score){
+            $score_data[$score->comment_id] = $score->score;
+        }
+
+        $upload_data = [];
+        foreach($report->uploads as $upload){
+            $upload_data[$upload->id] = $upload->title;
+        }
+        $data = [
+            'school'=>$school,
+            'report'=>$report,
+            'opinion'=>$opinion,    
+            'score_data'=>$score_data,
+            'upload_data'=>$upload_data,
+        ];
+        return view('fills.award',$data);
+
     }
 
     public function create(Report $report){

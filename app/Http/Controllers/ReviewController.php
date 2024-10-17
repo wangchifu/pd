@@ -64,8 +64,7 @@ class ReviewController extends Controller
     }
 
     public function do_school_assign(Request $request){
-        $att= $request->all();
-        dd($att);
+        $att= $request->all();        
         $att['schools_array'] = serialize($att['select_school']);
 
         //查是否已經有勾選過了

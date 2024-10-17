@@ -57,10 +57,7 @@
                                         @else
                                             <i class="fas fa-times text-danger"></i> 
                                         @endif
-                                        {{ $user->name }} ({{ $user->username }})
-                                        @if(auth()->user()->id != $user->id)
-                                            <a class="btn btn-info btn-sm" href="#!" onclick="sw_confirm1('確定模擬他？','{{ route('impersonate',$user->id) }}')">模擬</a>
-                                        @endif
+                                        {{ $user->name }} ({{ $user->username }})                                        
                                     </td>
                                     <td>
                                         @if($user->login_type=="gsuite")
@@ -88,7 +85,10 @@
                                             一般使用者
                                         @endif
                                     </td>
-                                    <td>                                    
+                                    <td>
+                                        @if(auth()->user()->id != $user->id)
+                                            <a class="btn btn-info btn-sm" href="#!" onclick="sw_confirm1('確定模擬他？','{{ route('impersonate',$user->id) }}')">模擬</a>
+                                        @endif                                    
                                         @if(empty($user->disable))
                                             @if(auth()->user()->id != $user->id)
                                                 <a href="#!" class="btn btn-secondary btn-sm" onclick="sw_confirm1('確定停用？','{{ route('user.change_user',$user->id) }}')">停用</a>

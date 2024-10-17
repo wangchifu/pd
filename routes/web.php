@@ -60,8 +60,9 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('password_edit', [HomeController::class,'password_edit'])->name('password_edit');
     Route::patch('password_update', [HomeController::class,'password_update'])->name('password_update');
     Route::get('fill/index', [FillController::class,'index'])->name('fill.index');
+    Route::get('fill/award/{report}', [FillController::class,'award'])->name('fill.award');
     Route::get('fill/create/{report}', [FillController::class,'create'])->name('fill.create');
-    Route::post('fill/store/{upload}', [FillController::class,'store'])->name('fill.store');
+    Route::post('fill/store/{upload}', [FillController::class,'store'])->name('fill.store');    
 });
 
 //管理者可用

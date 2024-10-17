@@ -30,6 +30,11 @@
                         </tr>
                     </thead>
                     @foreach($reports as $report)
+                        <?php 
+                            $opinion = \App\Models\Opinion::where('report_id',$report->id)
+                                ->where('school_code','like','%'.auth()->user()->school_code.'%')
+                                ->first();
+                        ?>                   
                         <tr>
                             <td>
                                 {{ $report->title }}
@@ -42,8 +47,13 @@
                                 @if(date('Y-m-d') >= $report->start_date and date('Y-m-d') <= $report->stop_date)
                                     <a href="{{ route('fill.create',$report->id) }}" class="btn btn-primary">進入填報</a>
                                 @else
-                                    非上傳期間
+                                    @if(!empty($opinion->id))                                        
+                                        <a href="{{ route('fill.award',$report->id) }}" class="btn btn-warning"><i class="fas fa-award"></i> 評審結果</a>
+                                    @else
+                                        非上傳期間
+                                    @endif                                    
                                 @endif
+
                             </td>
                         </tr>
                     @endforeach
