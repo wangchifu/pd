@@ -25,12 +25,16 @@ class ReviewController extends Controller
     }
 
     public function school_assign(Request $request,Report $report){
+        $request->validate([
+            'reviewer_id' => 'required',
+        ]);
         //查是否已經有勾選過了
         $school_assign = SchoolAssign::where('report_id',$report->id)->where('user_id',$request->input('reviewer_id'))->first();    
         $select_schools = (!empty($school_assign->id))?unserialize($school_assign->schools_array):[];     
         
         //查其他人的勾選
         $other_school_assigns = SchoolAssign::where('report_id',$report->id)->where('user_id','<>',$request->input('reviewer_id'))->get();    
+        $other_select_school_data = [];
         foreach($other_school_assigns as $other_school_assign){
             $other_select_schools = unserialize($other_school_assign->schools_array);
             foreach($other_select_schools as $k=>$v){

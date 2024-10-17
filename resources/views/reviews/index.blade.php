@@ -36,7 +36,7 @@
                                             {{ $report->title }}
                                         </td>
                                         <td>
-                                            <select name="reviewer_id" class="form-control" id="select_reviewer{{ $report->id }}" onchange="change_reviewer(select_reviewer{{ $report->id }},{{ $report->id }})">
+                                            <select name="reviewer_id" class="form-control" id="select_reviewer{{ $report->id }}" onchange="change_reviewer(select_reviewer{{ $report->id }},{{ $report->id }})" required>
                                                 @foreach($reviewers as $reviewer)
                                                     <option value="{{ $reviewer->id}}">{{ $reviewer->name }}</option>
                                                 @endforeach
