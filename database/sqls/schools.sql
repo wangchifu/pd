@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0-rc1
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2024 年 10 月 12 日 17:59
--- 伺服器版本： 8.0.39-0ubuntu0.22.04.1
--- PHP 版本： 7.4.33
+-- 產生時間： 2024 年 10 月 17 日 05:57
+-- 伺服器版本： 5.7.42-0ubuntu0.18.04.1
+-- PHP 版本： 7.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,11 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `schools` (
-  `id` int NOT NULL,
-  `name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `code` varchar(12) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `township_id` smallint UNSIGNED NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `code` varchar(12) NOT NULL,
+  `township_id` smallint(5) UNSIGNED NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- 傾印資料表的資料 `schools`
@@ -246,9 +246,9 @@ INSERT INTO `schools` (`id`, `name`, `code`, `township_id`) VALUES
 (238, '草湖國中', '074516', 528),
 (241, '二林高中', '074313', 526),
 (242, '信義國中小', '074541074774', 500),
-(243, '成功高中', '074339074539', 508),
+(243, '成功高中', '074339074539', 514),
 (244, '和美高中', '074323074523', 508),
-(245, '田中高中', '074328074528', 508),
+(245, '田中高中', '074328074528', 520),
 (247, '鹿江國中小', '074542074778', 505),
 (248, '民權華德福國中小', '074543074760', 528);
 
@@ -271,7 +271,7 @@ ALTER TABLE `schools`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `schools`
 --
 ALTER TABLE `schools`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('opinions', function (Blueprint $table) {
-            $table->id();
+        Schema::create('scores', function (Blueprint $table) {
+            $table->id();        
             $table->string('school_name');
-            $table->string('school_code');
-            $table->text('suggestion');                                                
+            $table->string('school_code');     
+            $table->integer('score');                        
             $table->unsignedInteger('report_id');
-            $table->unsignedInteger('user_id');                      
+            $table->unsignedInteger('comment_id');
+            $table->unsignedInteger('user_id');                                     
             $table->timestamps();                        
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opinions');
+        Schema::dropIfExists('scores');
     }
 };

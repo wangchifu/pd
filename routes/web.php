@@ -9,6 +9,7 @@ use App\Http\Controllers\LinkController;
 use App\Http\Controllers\FillController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ReviewerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,4 +120,7 @@ Route::group(['middleware' => 'admin'],function(){
 
 //評審可用
 Route::group(['middleware' => 'review'],function(){
+    Route::get('reviewer/index', [ReviewerController::class,'index'])->name('reviewer.index');
+    Route::get('reviewer/school/{report}/{school_code}', [ReviewerController::class,'school'])->name('reviewer.school');
+    Route::post('reviewer/school_store', [ReviewerController::class,'school_store'])->name('reviewer.school_store');
 });

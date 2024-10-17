@@ -20,9 +20,7 @@ return new class extends Migration
             $table->string('filename');                                    
             $table->unsignedInteger('upload_id');
             $table->unsignedInteger('report_id');
-            $table->unsignedInteger('user_id');          
-            $table->unsignedInteger('review_user_id')->nullable();
-            $table->integer('score')->nullable();
+            $table->unsignedInteger('user_id');                      
             $table->timestamps();                        
         });
     }

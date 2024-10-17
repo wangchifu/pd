@@ -36,7 +36,7 @@ class ResultController extends Controller
             if(!isset($school_has_finish[$report->id])) $school_has_finish[$report->id] = 0;   
             foreach($school_fill as $k => $v){
                 foreach($v as $k1=>$v1){
-                    if($v1 == $upload_count[$fill->report_id]) $school_has_finish[$report->id]++;
+                    if($v1 == $upload_count[$report->id]) $school_has_finish[$report->id]++;
                 }                
             }
         }

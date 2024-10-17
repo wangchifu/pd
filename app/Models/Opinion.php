@@ -11,8 +11,7 @@ class Opinion extends Model
     protected $fillable = [
         'school_code',
         'school_name',        
-        'suggestion',
-        'upload_id',      
+        'suggestion',         
         'report_id',
         'user_id',        
     ]; 
