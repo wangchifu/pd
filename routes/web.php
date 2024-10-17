@@ -111,6 +111,9 @@ Route::group(['middleware' => 'admin'],function(){
     Route::get('link/destroy/{link}', [LinkController::class,'destroy'])->name('link.destroy');
 
     Route::get('review/index', [ReviewController::class,'index'])->name('review.index');
+    Route::post('review/school_assign/{report}', [ReviewController::class,'school_assign'])->name('review.school_assign');
+    Route::post('review/do_school_assign', [ReviewController::class,'do_school_assign'])->name('review.do_school_assign');
+    Route::get('review/check_reviewer/{report_id}/{reviewer_id}', [ReviewController::class,'check_reviewer'])->name('review.check_reviewer');
     
 });
 
