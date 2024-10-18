@@ -17,7 +17,7 @@
                                     成果項目 
                                 </th>
                                 <th style="width:100px" nowrap>
-                                    評審
+                                    分組
                                 </th>
                                 <th nowrap>
                                     學校
@@ -36,11 +36,13 @@
                                             {{ $report->title }}
                                         </td>
                                         <td>
-                                            <select name="reviewer_id" class="form-control" id="select_reviewer{{ $report->id }}" onchange="change_reviewer(select_reviewer{{ $report->id }},{{ $report->id }})" required>
-                                                @foreach($reviewers as $reviewer)
-                                                    <option value="{{ $reviewer->id}}">{{ $reviewer->name }}</option>
-                                                @endforeach
-                                            </select>
+                                            <select name="name" class="form-control" required id="select_group{{ $report->id }}" onchange="change_group('select_group{{ $report->id }}',{{ $report->id }})">
+                                                <option value="第一組">第一組</option>
+                                                <option value="第二組">第二組</option>
+                                                <option value="第三組">第三組</option>
+                                                <option value="第四組">第四組</option>
+                                                <option value="第五組">第五組</option>
+                                            </select>                                            
                                         </td>
                                         <td>
                                             <div id="show_school{{ $report->id }}">
@@ -64,20 +66,20 @@
     @foreach($reports as $report)
         $(document).ready(function() {            
             // 當頁面載入時，執行 AJAX 請求
-            var firstOptionValue = $('#select_reviewer{{ $report->id }} option:first').val(); // 取得第一個 option 的值
+            var firstOptionValue = $('#select_group{{ $report->id }} option:first').val(); // 取得第一個 option 的值
             fetchData(firstOptionValue,{{ $report->id }}); // 根據這個值取資料
         });                  
     @endforeach
 
-    function change_reviewer(id,report_id){
-        var selectedValue = $(id).val(); // 取得選中的值
+    function change_group(id,report_id){
+        var selectedValue = $('#'+id).val(); // 取得選中的值
         fetchData(selectedValue,report_id); // 根據選中的值取資料
     }
     
                 // AJAX 取資料的函數
-            function fetchData(reviewer_id,report_id) {
+            function fetchData(name,report_id) {
                 $.ajax({
-                    url: '/review/check_reviewer/'+report_id+'/'+reviewer_id, // 伺服器端 API 的 URL
+                    url: '/review/check_group/'+report_id+'/'+name, // 伺服器端 API 的 URL
                     type: 'GET',
                     dataType : 'json',
                     success: function(result) {

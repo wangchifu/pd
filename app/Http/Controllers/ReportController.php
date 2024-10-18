@@ -71,6 +71,9 @@ class ReportController extends Controller
     }
     
     public function upload_copy(Request $request,Report $report){
+        $request->validate([
+            'id' => 'required',
+        ]);
         $id = $request->input('id');
         $old_report = Report::find($id);
         foreach($old_report->uploads as $upload){
@@ -175,6 +178,9 @@ class ReportController extends Controller
     }
     
     public function comment_copy(Request $request,Report $report){
+        $request->validate([
+            'id' => 'required',
+        ]);
         $id = $request->input('id');
         $old_report = Report::find($id);
         foreach($old_report->comments as $comment){

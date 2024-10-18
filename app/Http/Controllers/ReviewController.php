@@ -26,22 +26,23 @@ class ReviewController extends Controller
 
     public function school_assign(Request $request,Report $report){
         $request->validate([
-            'reviewer_id' => 'required',
+            'name' => 'required',
         ]);
         //查是否已經有勾選過了
-        $school_assign = SchoolAssign::where('report_id',$report->id)->where('user_id',$request->input('reviewer_id'))->first();    
+        $school_assign = SchoolAssign::where('report_id',$report->id)->where('name',$request->input('name'))->first();    
         $select_schools = (!empty($school_assign->id))?unserialize($school_assign->schools_array):[];     
         
         //查其他人的勾選
-        $other_school_assigns = SchoolAssign::where('report_id',$report->id)->where('user_id','<>',$request->input('reviewer_id'))->get();    
-        $other_select_school_data = [];
+        $other_school_assigns = SchoolAssign::where('report_id',$report->id)->where('name','<>',$request->input('name'))->get();    
+        $other_select_school_data1 = [];
+        $other_select_school_data2 = [];
         foreach($other_school_assigns as $other_school_assign){
             $other_select_schools = unserialize($other_school_assign->schools_array);
             foreach($other_select_schools as $k=>$v){
-                $other_select_school_data[$v] = $other_school_assign->user->name;
+                $other_select_school_data1[$v] = $other_school_assign->user->name;
+                $other_select_school_data2[$v] = $other_school_assign->name;
             }
-        }
-        
+        }        
 
         $township_ids = config('pd.township_ids');
         $schools = School::all();
@@ -50,25 +51,29 @@ class ReviewController extends Controller
             if(!isset($school_fill[$school->code])) $school_fill[$school->code] = 0;            
         }
 
-        $reviewer = User::find($request->input('reviewer_id'));
+        $reviewers = User::where('review','1')->get();
         $data = [
+            'school_assign'=>$school_assign,
             'select_schools'=>$select_schools,
-            'other_select_school_data'=>$other_select_school_data,
+            'other_select_school_data1'=>$other_select_school_data1,
+            'other_select_school_data2'=>$other_select_school_data2,
             'report'=>$report,
-            'reviewer'=>$reviewer,
+            'reviewers'=>$reviewers,
             'township_ids'=>$township_ids,
             'school_array'=>$school_array,
+            'name'=>$request->input('name'),
         ];
 
         return view('reviews.school_assign',$data);
     }
 
     public function do_school_assign(Request $request){
-        $att= $request->all();        
+        $att= $request->all();
+        
         $att['schools_array'] = serialize($att['select_school']);
 
         //查是否已經有勾選過了
-        $school_assign = SchoolAssign::where('report_id',$request->input('report_id'))->where('user_id',$request->input('user_id'))->first();    
+        $school_assign = SchoolAssign::where('report_id',$request->input('report_id'))->where('name',$request->input('name'))->first();    
         if(!empty($school_assign->id)){
             $school_assign->update($att);
         }else{
@@ -79,19 +84,23 @@ class ReviewController extends Controller
 
     }
 
-    public function check_reviewer($report_id,$reviewer_id){
-        $school_assign = SchoolAssign::where('report_id',$report_id)->where('user_id',$reviewer_id)->first();        
+    public function check_group($report_id,$name){
+        $school_assign = SchoolAssign::where('report_id',$report_id)->where('name',$name)->first();        
         $select_schools = (!empty($school_assign->id))?unserialize($school_assign->schools_array):[];
         
         $schools_name = config('pd.schools_name');
-        $result = (empty($school_assign->id))?"尚未指定學校":"";
+        if(empty($school_assign->id)){
+            $result = "尚未指定評審及學校";            
+        }else{
+            $result = "評審：".$school_assign->user->name."<br>";                        
+        };
         
         $n=0;
         foreach($select_schools as $k=>$v){
            $result .= $schools_name[$v].",";
            $n++;
         }
-        if($result != "尚未指定學校") $result.="(共 ".$n." 校)";
+        if($result != "尚未指定評審及學校") $result.="(共 ".$n." 校)";
         echo json_encode($result);
         return;
     }

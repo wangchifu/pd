@@ -10,6 +10,7 @@ class SchoolAssign extends Model
     use HasFactory;
     
     protected $fillable = [
+        'name',
         'user_id',
         'report_id',
         'schools_array',

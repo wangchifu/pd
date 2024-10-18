@@ -125,7 +125,7 @@
                                                     <tr>
                                                         <td>
                                                             <form action="{{ route('report.upload_copy',$report->id) }}" method="post" id="upload_copy{{ $report->id }}">
-                                                                1.從填報 id <input type="text" name="id" style="width:50px;">複製「上傳項目」到此列                                                                                        
+                                                                1.從填報 id <input type="text" name="id" style="width:50px;" required>複製「上傳項目」到此列                                                                                        
                                                                 @csrf
                                                             </form>
                                                             <a href="#!" class="btn btn-success btn-sm" onclick="sw_confirm2('確定複製？','upload_copy{{ $report->id }}')">複製1</a>
@@ -134,7 +134,7 @@
                                                     <tr>
                                                         <td>
                                                             <form action="{{ route('report.comment_copy',$report->id) }}" method="post" id="comment_copy{{ $report->id }}">
-                                                                2.從填報 id <input type="text" name="id" style="width:50px;">複製「評分項目」到此列                                                                                        
+                                                                2.從填報 id <input type="text" name="id" style="width:50px;" required>複製「評分項目」到此列                                                                                        
                                                                 @csrf
                                                             </form>
                                                             <a href="#!" class="btn btn-success btn-sm" onclick="sw_confirm2('確定複製？','comment_copy{{ $report->id }}')">複製2</a>

@@ -18,7 +18,7 @@
                 <h4>{{ $report->title }}</h4>
                 <div class="table-responsive">
                     <form action="{{ route('reviewer.school_store') }}" method="post" id="school_review">
-                        @csrf
+                        @csrf                        
                         <table class="table table-bordered">
                             <thead class="bg-secondary text-light">
                                 <tr>

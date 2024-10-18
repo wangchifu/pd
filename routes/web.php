@@ -96,8 +96,7 @@ Route::group(['middleware' => 'admin'],function(){
     Route::post('report/comment_store', [ReportController::class,'comment_store'])->name('report.comment_store');
     Route::get('report/comment_destroy/{comment}', [ReportController::class,'comment_destroy'])->name('report.comment_destroy');
     Route::get('report/comment_edit/{comment}', [ReportController::class,'comment_edit'])->name('report.comment_edit');
-    Route::post('report/comment_update/{comment}', [ReportController::class,'comment_update'])->name('report.comment_update');    
-
+    Route::post('report/comment_update/{comment}', [ReportController::class,'comment_update'])->name('report.comment_update');        
     
     Route::get('post/create', [PostController::class,'create'])->name('post.create');    
     Route::post('post/store', [PostController::class,'store'])->name('post.store');    
@@ -115,7 +114,7 @@ Route::group(['middleware' => 'admin'],function(){
     Route::get('review/index', [ReviewController::class,'index'])->name('review.index');
     Route::post('review/school_assign/{report}', [ReviewController::class,'school_assign'])->name('review.school_assign');
     Route::post('review/do_school_assign', [ReviewController::class,'do_school_assign'])->name('review.do_school_assign');
-    Route::get('review/check_reviewer/{report_id}/{reviewer_id}', [ReviewController::class,'check_reviewer'])->name('review.check_reviewer');
+    Route::get('review/check_group/{report_id}/{name}', [ReviewController::class,'check_group'])->name('review.check_group');
     
 });
 

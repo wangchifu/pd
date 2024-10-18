@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('school_assigns', function (Blueprint $table) {
-            $table->id();                                   
+            $table->id();         
+            $table->string('name');                          
             $table->unsignedInteger('report_id');
-            $table->unsignedInteger('user_id');     
+            $table->unsignedInteger('user_id')->nullable();//評審
             $table->text('schools_array');                     
             $table->timestamps();                        
         });

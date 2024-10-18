@@ -31,11 +31,12 @@
                                 <li><a class="dropdown-item" href="{{ route('password_edit') }}"><i class="fas fa-key"></i> 更改密碼</a></li>
                             @endif
                             @if(auth()->user()->admin=="1")
-                                <li><hr class="dropdown-divider" style="width:80%;margin: 0 auto;"></li>                                
+                                <li><hr class="dropdown-divider" style="width:80%;margin: 0 auto;"></li>                                                                
                                 <li><a class="dropdown-item" href="{{ route('user.index') }}"><i class="fas fa-user"></i> 帳號管理</a></li>
-                                <li><a class="dropdown-item" href="{{ route('report.index') }}"><i class="fas fa-list-ol"></i> 填報管理</a></li>
-                                <li><a class="dropdown-item" href="{{ route('review.index') }}"><i class="fas fa-user-edit"></i> 評審管理</a></li>
                                 <li><a class="dropdown-item" href="{{ route('link.index') }}"><i class="fas fa-link"></i> 連結管理</a></li>
+                                <li><hr class="dropdown-divider" style="width:80%;margin: 0 auto;"></li>      
+                                <li><a class="dropdown-item" href="{{ route('report.index') }}"><i class="fas fa-list-ol"></i> 1.填報管理</a></li>                                
+                                <li><a class="dropdown-item" href="{{ route('review.index') }}"><i class="fas fa-user-edit"></i> 2.評審與學校</a></li>                                
                             @endif                            
                             <li><hr class="dropdown-divider" style="width:80%;margin: 0 auto;"></li>
                             @impersonating                            

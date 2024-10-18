@@ -15,53 +15,71 @@
         <div class="card" >
             <div class="card-body">
                 <h3 class="card-title">評審指定學校</h3>
+                <h4>現在設定：{{ $name }}</h4>
                 @include('layouts.errors')
                 <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead class="bg-secondary text-light">
-                            <tr>
-                                <th style="width:200px" nowrap>
-                                    成果項目 
-                                </th>
-                                <th style="width:100px" nowrap>
-                                    評審
-                                </th>
-                                <th nowrap>
-                                    學校
-                                </th>
-                                <th style="width:100px" nowrap>
-                                    動作
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <form action="{{ route('review.do_school_assign') }}" method="post" id="do_assign">
-                                @csrf
+                    <form action="{{ route('review.do_school_assign') }}" method="post" id="do_assign">
+                        @csrf                                         
+                        <table class="table table-bordered">
+                            <thead class="bg-secondary text-light">
+                                <tr>
+                                    <th style="width:200px" nowrap>
+                                        成果項目 
+                                    </th>
+                                    <th style="width:100px" nowrap>
+                                        評審
+                                    </th>
+                                    <th nowrap>
+                                        學校
+                                    </th>
+                                    <th style="width:120px" nowrap>
+                                        動作
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>                            
                                 <tr>
                                     <td>
                                         {{ $report->title }}
                                     </td>
                                     <td>
-                                        {{ $reviewer->name }}
+                                        <select name="user_id" class="form-control" id="select_reviewer{{ $report->id }}" onchange="change_reviewer(select_reviewer{{ $report->id }},{{ $report->id }})" required>
+                                            @foreach($reviewers as $reviewer)
+                                                <?php 
+                                                    $selected  = null;
+                                                    if(!empty($school_assign->id)){
+                                                        if($school_assign->user_id==$reviewer->id){
+                                                            $selected = "selected";
+                                                        }
+                                                    }                                                                                                
+                                                ?>
+                                                @if(!in_array($reviewer->name,$other_select_school_data1))
+                                                    <option value="{{ $reviewer->id}}" {{ $selected }}>{{ $reviewer->name }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
                                     </td>
                                     <td>
                                         @foreach($township_ids as $k=>$v)
                                             <h4 style="clear:both;"><i class="fab fa-fort-awesome"></i> {{ $k }}</h4>
+                                            <!--
                                             <div>
                                                 <a href="#!" class="btn btn-secondary btn-sm" onclick="selectAll{{ $v }}()">勾選全部{{ $k }}</a>
                                                 <a href="#!" class="btn btn-outline-secondary btn-sm" onclick="nonselectAll{{ $v }}()">取消勾選全部{{ $k }}</a>
                                             </div>
+                                            -->
                                             @foreach($school_array[$v] as $k1=>$v1)                                        
                                             <div style="float: left;">
                                                 <?php
                                                     $checked = in_array($k1,$select_schools)?"checked":null;
-                                                    $disabled = (isset($other_select_school_data[$k1]))?"disabled":null;
+                                                    $disabled = (isset($other_select_school_data1[$k1]))?"disabled":null;
+                                                    $color = (isset($other_select_school_data1[$k1]))?"#D0D0D0":"black";                                                    
                                                 ?>
                                                 <input class="form-check-input area{{ $v }}" type="checkbox" name="select_school[]" value="{{ $k1 }}" id="cb{{ $k1 }}" {{ $checked }} {{ $disabled }}>
-                                                <label for="cb{{ $k1 }}">
+                                                <label for="cb{{ $k1 }}" style="color:{{ $color }}">
                                                     {{ $v1 }}
-                                                    @if(isset($other_select_school_data[$k1]))
-                                                        <small class="text-secondary">({{ $other_select_school_data[$k1] }})</small>
+                                                    @if(isset($other_select_school_data1[$k1]))
+                                                        <small class="text-danger">({{ $other_select_school_data2[$k1] }}-{{ $other_select_school_data1[$k1] }})</small>
                                                     @endif
                                                     　　
                                                 </label>
@@ -71,14 +89,15 @@
                                         @endforeach
                                     </td>
                                     <td>
+                                        <button class="btn btn-secondary btn-sm" onclick="window.history.go(-1);">返回</button>
                                         <a href="#!" class="btn btn-primary btn-sm" onclick="sw_confirm2('確定？','do_assign')">儲存</a>
                                     </td>
                                 </tr>
                                 <input type="hidden" name="report_id" value="{{ $report->id }}">
-                                <input type="hidden" name="user_id" value="{{ $reviewer->id }}">
-                            </form>
-                        </tbody>
-                    </table>
+                                <input type="hidden" name="name" value="{{ $name}}">                            
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>
