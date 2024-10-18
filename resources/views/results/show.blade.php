@@ -46,12 +46,12 @@
                                         @if($upload->type=="pdf")                                    
                                             <a href="{{ asset('storage/fills/'.$upload->report_id.'/'.$school_name.'/'.$fill_data[$upload->id]) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-file-alt"></i> {{ $fill_data[$upload->id] }}</a>
                                             @if(!file_exists(storage_path('app/public/fills/'.$upload->report_id.'/'.$school_name.'/'.$fill_data[$upload->id])))
-                                                <span class="text-danger">(檔案遺失)</span>
+                                                <br><span class="text-danger">(檔案遺失)</span>
                                             @endif
                                         @elseif($upload->type=="mp4")
                                             <a href="{{ asset('storage/fills/'.$upload->report_id.'/'.$school_name.'/'.$fill_data[$upload->id]) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-film"></i> {{ $fill_data[$upload->id] }}</a>
                                             @if(!file_exists(storage_path('app/public/fills/'.$upload->report_id.'/'.$school_name.'/'.$fill_data[$upload->id])))
-                                                <span class="text-danger">(檔案遺失)</span>
+                                                <br><span class="text-danger">(檔案遺失)</span>
                                             @endif
                                         @elseif($upload->type=="link")            
                                             <a href="{{ transfer_url_http($fill_data[$upload->id]) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-film"></i> 影片連結</a>
