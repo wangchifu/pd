@@ -7,6 +7,10 @@ use App\Models\Report;
 use App\Models\User;
 use App\Models\School;
 use App\Models\SchoolAssign;
+use App\Models\Opinion;
+use App\Models\Score;
+use Rap2hpoutre\FastExcel\FastExcel;
+use Rap2hpoutre\FastExcel\SheetCollection;
 
 class ReviewController extends Controller
 {
@@ -104,4 +108,101 @@ class ReviewController extends Controller
         echo json_encode($result);
         return;
     }
+
+    public function score(){
+        $reports = Report::orderBy('id','DESC')->paginate(4);
+        $reviewers_array = [];
+        foreach($reports as $report){
+            $school_assigns = SchoolAssign::where('report_id',$report->id)->get();
+            foreach($school_assigns as $school_assign){
+                $reviewers_array[$report->id][$school_assign->name] = $school_assign->user->name;
+            }
+        }
+        
+
+        $data = [
+            'reports'=>$reports,
+            'reviewers_array'=>$reviewers_array,
+        ];
+
+        return view('reviews.score',$data);
+    }
+
+    public function import(Report $report){
+        $data = [
+            'report'=>$report,            
+        ];
+
+        return view('reviews.import',$data);
+    }
+
+    public function do_import(Request $request){
+        $request->validate([
+            'file' => 'required',
+        ]);
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');            
+            $collection = (new FastExcel)->import($file);            
+            foreach ($collection as $row) {
+                $school = School::where('code','like','%'.$row['代碼'].'%')->first();
+                $att['school_name'] = $school->name;
+                $att['school_code'] = $school->code;
+                $att['suggestion'] = $row['綜合意見'];
+                $att['report_id'] = $request->input('report_id');
+                $att['user_id'] = $request->input('user_id');
+                
+                $check = Opinion::where('school_code',$att['school_code'])->where('report_id',$att['report_id'])->first();
+                if(!empty($check->id)){
+                    $check->update($att);
+                }else{
+                    Opinion::create($att);
+                }
+            }
+            
+            echo "<body onload=\"opener.location.reload();;window.close();\">";
+
+        }
+    }
+
+    public function award(Request $request){
+        $att = $request->all();
+        $report = Report::find($att['report_id']);
+        $school_assign = SchoolAssign::where('report_id',$att['report_id'])->where('name',$att['name'])->first();
+        $schools_array = [];
+        $score_data = [];
+        $suggestion = [];
+        if(!empty($school_assign->id)){
+            $schools_array = unserialize($school_assign->schools_array);
+            foreach($schools_array as $k=>$v){
+                $scores = Score::where('report_id',$att['report_id'])->where('school_code',$v)->get();
+                foreach($scores as $score){
+                    $score_data[$v][$score->comment_id] = $score->score;                    
+                }
+                $opinion = Opinion::where('school_code',$v)->where('report_id',$report->id)->first();
+                $suggestion[$v] = (!empty($opinion->suggestion))?$opinion->suggestion:"";
+            }
+        }
+        
+        foreach($schools_array as $k=>$v){
+            $total_score[$v] = 0;
+            foreach($report->comments as $comment){
+                if(isset($score_data[$v][$comment->id])) $total_score[$v] += $score_data[$v][$comment->id];
+            }
+        }
+        krsort($total_score);
+        //dd($total_score);
+
+        $data = [
+            'group_name'=>$att['name'],
+            'schools_name'=>config('pd.schools_name'),
+            'report'=>$report,
+            'schools_array'=>$schools_array,
+            'score_data'=>$score_data,
+            'suggestion'=>$suggestion,
+            'total_score'=>$total_score,
+        ];
+
+        return view('reviews.award',$data);
+    }
 }
+

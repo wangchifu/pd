@@ -8,7 +8,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{{ route('index') }}" class="text-decoration-none">首頁</a></li>
-              <li class="breadcrumb-item"><a href="{{ route('review.index') }}" class="text-decoration-none">評審管理</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('review.index') }}" class="text-decoration-none">評審與學校</a></li>
               <li class="breadcrumb-item active" aria-current="page">評審指定學校</li>
             </ol>
           </nav>

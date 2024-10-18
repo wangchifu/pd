@@ -37,6 +37,7 @@
                                 <li><hr class="dropdown-divider" style="width:80%;margin: 0 auto;"></li>      
                                 <li><a class="dropdown-item" href="{{ route('report.index') }}"><i class="fas fa-list-ol"></i> 1.填報管理</a></li>                                
                                 <li><a class="dropdown-item" href="{{ route('review.index') }}"><i class="fas fa-user-edit"></i> 2.評審與學校</a></li>                                
+                                <li><a class="dropdown-item" href="{{ route('review.score') }}"><i class="fas fa-trophy"></i> 3.分數與結果</a></li>                                
                             @endif                            
                             <li><hr class="dropdown-divider" style="width:80%;margin: 0 auto;"></li>
                             @impersonating                            

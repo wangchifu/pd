@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
-@section('title','評審管理')
+@section('title','評審與學校')
 
 @section('content')
 <section class="page-section" id="contact">
     <div class="container">
         <div class="card" >
             <div class="card-body">
-                <h3 class="card-title">評審管理</h3>
+                <h3 class="card-title">評審與學校</h3>
                 @include('layouts.errors')
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -20,7 +20,7 @@
                                     分組
                                 </th>
                                 <th nowrap>
-                                    學校
+                                    評審/學校
                                 </th>
                                 <th style="width:100px" nowrap>
                                     動作

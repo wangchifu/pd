@@ -115,6 +115,10 @@ Route::group(['middleware' => 'admin'],function(){
     Route::post('review/school_assign/{report}', [ReviewController::class,'school_assign'])->name('review.school_assign');
     Route::post('review/do_school_assign', [ReviewController::class,'do_school_assign'])->name('review.do_school_assign');
     Route::get('review/check_group/{report_id}/{name}', [ReviewController::class,'check_group'])->name('review.check_group');
+    Route::get('review/score', [ReviewController::class,'score'])->name('review.score');
+    Route::get('review/import/{report}', [ReviewController::class,'import'])->name('review.import');
+    Route::post('review/do_import', [ReviewController::class,'do_import'])->name('review.do_import');
+    Route::post('review/award', [ReviewController::class,'award'])->name('review.award');
     
 });
 
