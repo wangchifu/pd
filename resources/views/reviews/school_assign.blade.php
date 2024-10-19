@@ -26,9 +26,6 @@
                                     <th style="width:200px" nowrap>
                                         成果項目 
                                     </th>
-                                    <th style="width:100px" nowrap>
-                                        評審
-                                    </th>
                                     <th nowrap>
                                         學校
                                     </th>
@@ -41,23 +38,6 @@
                                 <tr>
                                     <td>
                                         {{ $report->title }}
-                                    </td>
-                                    <td>
-                                        <select name="user_id" class="form-control" id="select_reviewer{{ $report->id }}" onchange="change_reviewer(select_reviewer{{ $report->id }},{{ $report->id }})" required>
-                                            @foreach($reviewers as $reviewer)
-                                                <?php 
-                                                    $selected  = null;
-                                                    if(!empty($school_assign->id)){
-                                                        if($school_assign->user_id==$reviewer->id){
-                                                            $selected = "selected";
-                                                        }
-                                                    }                                                                                                
-                                                ?>
-                                                @if(!in_array($reviewer->name,$other_select_school_data1))
-                                                    <option value="{{ $reviewer->id}}" {{ $selected }}>{{ $reviewer->name }}</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
                                     </td>
                                     <td>
                                         @foreach($township_ids as $k=>$v)

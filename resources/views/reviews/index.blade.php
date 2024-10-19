@@ -7,7 +7,7 @@
     <div class="container">
         <div class="card" >
             <div class="card-body">
-                <h3 class="card-title">評審與學校</h3>
+                <h3 class="card-title">分組的評審與學校</h3>
                 @include('layouts.errors')
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -17,14 +17,17 @@
                                     成果項目 
                                 </th>
                                 <th style="width:100px" nowrap>
-                                    分組
+                                    更換分組
                                 </th>
-                                <th nowrap>
-                                    評審/學校
+                                <th style="width:200px" nowrap>
+                                    動作1
                                 </th>
                                 <th style="width:100px" nowrap>
-                                    動作
+                                    動作2
                                 </th>
+                                <th nowrap>
+                                    結果
+                                </th>                                
                             </tr>
                         </thead>
                         <tbody>                                                     
@@ -34,7 +37,7 @@
                                     <tr>
                                         <td>
                                             {{ $report->title }}
-                                        </td>
+                                        </td>                                        
                                         <td>
                                             <select name="name" class="form-control" required id="select_group{{ $report->id }}" onchange="change_group('select_group{{ $report->id }}',{{ $report->id }})">
                                                 <option value="第一組">第一組</option>
@@ -45,14 +48,32 @@
                                             </select>                                            
                                         </td>
                                         <td>
-                                            <div id="show_school{{ $report->id }}">
-
-                                            </div>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        指定
+                                                    </td>
+                                                    <td>
+                                                        <select name="user_id" required>
+                                                            @foreach($reviewers as $reviewer)
+                                                                <option value="{{ $reviewer->id }}">{{ $reviewer->name }}</option>                                             
+                                                            @endforeach
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="submit" class="btn btn-secondary btn-sm" name="action" value="為評審">
+                                                    </td>
+                                                </tr>
+                                            </table>                                                                                        
                                         </td>
                                         <td>
-                                            <button type="submit" class="btn btn-primary btn-sm">指定學校</button>
+                                            <input type="submit" class="btn btn-primary btn-sm" name="action" value="指定學校">
                                         </td>
+                                        <td>
+                                            <div id="show_school{{ $report->id }}"></div>
+                                        </td>                                        
                                     </tr>
+                                    <input type="hidden" name="report_id" value="{{ $report->id }}">
                                 </form>
                             @endforeach                            
                         </tbody>
