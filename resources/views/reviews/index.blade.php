@@ -29,7 +29,7 @@
                         </thead>
                         <tbody>                                                     
                             @foreach($reports as $report)
-                                <form action="{{ route('review.school_assign',$report->id) }}" method="post" id="school_assign{{ $report->id }}">
+                                <form action="{{ route('review.school_assign',$report->id) }}" method="get" id="school_assign{{ $report->id }}">
                                     @csrf   
                                     <tr>
                                         <td>

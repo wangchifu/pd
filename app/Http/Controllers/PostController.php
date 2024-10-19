@@ -23,6 +23,10 @@ class PostController extends Controller
     }
 
     public function store(Request $request){        
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
         $att['title'] = $request->input('title');
         $att['content'] = $request->input('content');
         $att['user_id'] = auth()->user()->id;
@@ -85,6 +89,10 @@ class PostController extends Controller
     }
 
     public function update(Request $request,Post $post){        
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
         $att['title'] = $request->input('title');
         $att['content'] = $request->input('content');
                 

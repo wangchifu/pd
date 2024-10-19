@@ -46,6 +46,12 @@ class UserController extends Controller
         if($att['password1'] != $att['password2']){
             return back()->withErrors(['errors' => ['兩次密碼不一致！']]);;
         }
+
+        $check = User::where('username',$att['username'])->first();
+        if(!empty($check->id)){
+            return back()->withErrors(['errors' => ['此帳號有人使用了！']]);;
+        }
+
         if($att['power']=="review") $att['review'] = 1;
         if($att['power']=="admin") $att['admin'] = 1;
         $att['password'] = bcrypt($request->input('password1'));                
@@ -54,6 +60,9 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
     public function search(Request $request){
+        $request->validate([
+            'want' => 'required',            
+        ]);
         $want = $request->input('want');
         $users = User::where('school_code', 'like', "%" . $want . "%")
         ->orWhere('school_name', 'like', "%" . $want . "%")

@@ -14,9 +14,10 @@ class FillController extends Controller
 {
     public function index(){
         $reports = Report::orderBy('id','DESC')->get();        
-
+        $school = School::where('code','like','%'.auth()->user()->school_code.'%')->first();
         $data = [
             'reports'=>$reports,            
+            'school'=>$school,
         ];
         return view('fills.index',$data);
     }
@@ -49,7 +50,9 @@ class FillController extends Controller
         if ($report->start_date > date('Y-m-d') or $report->stop_date < date('Y-m-d')) {
             return back()->withErrors(['error' => ['現在不是填報日期！']]);
         }
+        $school = School::where('code','like','%'.auth()->user()->school_code.'%')->first();
         $data = [
+            'school'=>$school,
             'report'=>$report,
         ];
         return view('fills.create',$data);

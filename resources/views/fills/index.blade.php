@@ -13,7 +13,7 @@
           </nav>
         <div class="card" >
             <div class="card-body">
-                <h3 class="card-title">學校填報</h3>
+                <h3 class="card-title">「{{ $school->name }}」填報</h3>
                 @include('layouts.errors')
                 <table class="table table-hover table-bordered">
                     <thead class="bg-secondary text-light">

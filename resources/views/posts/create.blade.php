@@ -29,6 +29,7 @@
                         <label for="files" class="form-label">附加檔案</label>
                         <input class="form-control" type="file" id="files" name="files[]" multiple>
                     </div>
+                    @include('layouts.errors')
                     <a href="{{ route('post.index') }}" class="btn btn-dark">返回</a>
                     <a href="#!" class="btn btn-primary" onclick="sw_confirm2('確定儲存？','create_post')">儲存公告</a>
                 </form>

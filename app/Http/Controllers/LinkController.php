@@ -19,6 +19,10 @@ class LinkController extends Controller
     }
 
     public function store(Request $request){        
+        $request->validate([
+            'title' => 'required',
+            'url' => 'required',
+        ]);
         $att = $request->all();        
         $att['user_id'] = auth()->user()->id;        
         Link::create($att);

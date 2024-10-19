@@ -47,6 +47,7 @@
                             </form>
                         </tbody>
                     </table>
+                    @include('layouts.errors')
                     <a href="#!" class="btn btn-primary" onclick="sw_confirm2('確定新增','upload_store')">新增</a>
             </div>
         </div>        

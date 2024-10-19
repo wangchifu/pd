@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','學校填報')
+@section('title','學校成果')
 
 @section('content')
 <section class="page-section" id="contact">

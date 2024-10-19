@@ -39,6 +39,9 @@ class ReportController extends Controller
     }
 
     public function upload_store(Request $request){
+        $request->validate([
+            'title' => 'required',
+        ]);
         $att = $request->all();        
         Upload::create($att);
         echo "<body onload=\"opener.location.reload();;window.close();\">";
@@ -62,6 +65,9 @@ class ReportController extends Controller
     }
 
     public function upload_update(Request $request,Upload $upload){
+        $request->validate([
+            'title' => 'required',
+        ]);
         if($upload->user_id != auth()->user()->id){
             return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);;
         }
@@ -96,7 +102,12 @@ class ReportController extends Controller
         return view('reports.edit',$data);
     }
 
-    public function update(Request $request,Report $report){        
+    public function update(Request $request,Report $report){   
+        $request->validate([
+            'title' => 'required',
+            'start_date' => 'required',
+            'stop_date' => 'required',
+        ]);     
         if($report->user_id != auth()->user()->id){
             return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);;
         }
@@ -127,6 +138,11 @@ class ReportController extends Controller
     }
 
     public function comment_store(Request $request){
+        $request->validate([
+            'title' => 'required',
+            'score' => 'required',
+        ]);
+
         $att = $request->all();        
         if(!empty($att['refer'])){
             $att['refer'] = serialize($att['refer']);
@@ -164,6 +180,12 @@ class ReportController extends Controller
     }
 
     public function comment_update(Request $request,Comment $comment){
+        $request->validate([
+            'title' => 'required',
+            'score' => 'required',
+        ]);
+
+
         if($comment->user_id != auth()->user()->id){
             return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);;
         }
@@ -180,16 +202,36 @@ class ReportController extends Controller
     public function comment_copy(Request $request,Report $report){
         $request->validate([
             'id' => 'required',
-        ]);
+        ]); 
         $id = $request->input('id');
         $old_report = Report::find($id);
+        $p=1;
         foreach($old_report->comments as $comment){
             $att['title'] = $comment->title;
             $att['order_by'] = $comment->order_by;
             $att['score'] = $comment->score;
+            
+            
+            //refer要refer新的upload            
+            if($comment->refer){
+                $old_refer_array = unserialize($comment->refer);
+                $old_uploads = Upload::whereIn('id',$old_refer_array)->get();
+                $n= 0 ;
+                foreach($old_uploads as $old_upload){
+                    $new_upload = Upload::where('title',$old_upload->title)->where('report_id',$report->id)->first();
+                    $new_refer_array[$n] = $new_upload->id;
+                    $n++;
+                }
+                $att['refer'] = serialize($new_refer_array);
+            }else{
+                $att['refer'] = $comment->refer;
+            }
+
+                                                
             $att['standard'] = $comment->standard;
             $att['report_id'] = $report->id;
             $att['user_id'] = auth()->user()->id;
+
             Comment::create($att);
         }
         

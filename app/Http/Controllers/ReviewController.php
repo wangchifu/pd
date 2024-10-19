@@ -71,9 +71,11 @@ class ReviewController extends Controller
         return view('reviews.school_assign',$data);
     }
 
-    public function do_school_assign(Request $request){
+    public function do_school_assign(Request $request){        
         $att= $request->all();
-        
+        if(!isset($att['select_school'])){
+            return back()->withErrors(['error' => ['沒有選擇學校！']]);
+        }
         $att['schools_array'] = serialize($att['select_school']);
 
         //查是否已經有勾選過了
@@ -182,15 +184,15 @@ class ReviewController extends Controller
                 $suggestion[$v] = (!empty($opinion->suggestion))?$opinion->suggestion:"";
             }
         }
-        
+        $total_score = [];
         foreach($schools_array as $k=>$v){
             $total_score[$v] = 0;
             foreach($report->comments as $comment){
                 if(isset($score_data[$v][$comment->id])) $total_score[$v] += $score_data[$v][$comment->id];
             }
         }
-        krsort($total_score);
-        //dd($total_score);
+        arsort($total_score);
+        
 
         $data = [
             'group_name'=>$att['name'],

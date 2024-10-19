@@ -47,7 +47,7 @@
                                             <h5>{{ $comment->title }}({{ $comment->score }}分)</h5>
                                             @if(!empty($comment->refer))
                                                 <?php 
-                                                    $refers = unserialize($comment->refer);
+                                                    $refers = unserialize($comment->refer);                                                    
                                                 ?>
                                                 <span class="text-success">參考依據：</span>
                                                 <ol>                                            
@@ -56,7 +56,7 @@
                                                             $fill = \App\Models\Fill::where('school_code',$school_code)
                                                                 ->where('report_id',$report->id)
                                                                 ->where('upload_id',$v)
-                                                                ->first();                                                            
+                                                                ->first();                                                                           
                                                         ?>
                                                         @if(!empty($fill->id))
                                                             <li class="text-danger"><a href="{{ asset('storage/fills/'.$report->id."/".$schools_name[$school_code]."/".$fill->filename) }}" target="_blank" class="text-decoration-none">{{ $upload_data[$v] }}</a></li>

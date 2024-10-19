@@ -6,7 +6,7 @@
 <section class="page-section" id="contact">
     <div class="container">
         <div class="mb-2">
-            <a href="{{ route('user.create') }}" class="btn btn-primary">新增帳號</a>
+            <a href="{{ route('user.create') }}" class="btn btn-primary">新增本機帳號</a>
         </div>        
         <div class="card" >
             <div class="card-body">
@@ -22,7 +22,8 @@
                                 <button type="submit" class="btn btn-sm btn-dark">搜尋</button>
                             </td>
                         </tr>
-                    </table>                     
+                    </table>       
+                    @include('layouts.errors')              
                 </form>
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">

@@ -78,6 +78,12 @@
                                             <a href="{{ route('post.show',$post->id) }}" class="text-decoration-none">
                                                 {{ $post->title }}
                                             </a>
+                                            <?php
+                                                $files = get_files(storage_path('app/public/posts/'.$post->id));                                        
+                                             ?>
+                                            @if(!empty($files))
+                                                <i class="fas fa-download"></i>
+                                            @endif
                                         </td>
                                         <td>
                                             {{ $post->user->name }}

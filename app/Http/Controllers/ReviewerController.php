@@ -36,7 +36,7 @@ class ReviewerController extends Controller
             $upload_data[$upload->id] = $upload->title;
         }
 
-        //查是否已經有輸入過了
+        //查是否已經有輸入過了 
         $opinion = Opinion::where('report_id',$report->id)->where('school_code',$school_code)->first();
         $suggestion = (!empty($opinion->id))?$opinion->suggestion:null;
         $scores = Score::where('report_id',$report->id)->where('school_code',$school_code)->get();
@@ -44,7 +44,7 @@ class ReviewerController extends Controller
         foreach($scores as $score){
             $score_data[$score->comment_id] = $score->score;
         }
-
+        
         $data = [           
             'report' =>$report,            
             'schools_name'=>$schools_name, 

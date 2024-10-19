@@ -64,11 +64,12 @@
                                     <td>
                                         <input type="text" class="form-control" name="url" required placeholder="網址">
                                     </td>
-                                    <td>
+                                    <td>                                        
                                         <a href="#!" class="btn btn-primary btn-sm" onclick="sw_confirm2('確定？','create_link2')">儲存</a>
                                     </td>
                                 </tr>
-                            </table>                            
+                            </table>    
+                            @include('layouts.errors')                        
                             <input type="hidden" name="side" value="right">
                         </form>
                         <hr>
