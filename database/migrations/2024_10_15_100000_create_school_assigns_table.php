@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');                          
             $table->unsignedInteger('report_id');
             $table->unsignedInteger('user_id')->nullable();//評審
-            $table->text('schools_array');                     
+            $table->text('schools_array')->nullable();                     
             $table->timestamps();                        
         });
     }
