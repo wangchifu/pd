@@ -13,6 +13,9 @@
                     <table class="table table-bordered">
                         <thead class="bg-secondary text-light">
                             <tr>
+                                <th>
+                                    id
+                                </th>
                                 <th style="width:200px" nowrap>
                                     成果項目 
                                 </th>
@@ -25,6 +28,9 @@
                                 <th style="width:100px" nowrap>
                                     動作2
                                 </th>
+                                <th style="width:200px" nowrap>
+                                    也可以複製(小心使用)
+                                </th>
                                 <th nowrap>
                                     結果
                                 </th>                                
@@ -35,6 +41,9 @@
                                 <form action="{{ route('review.school_assign',$report->id) }}" method="get" id="school_assign{{ $report->id }}">
                                     @csrf   
                                     <tr>
+                                        <td>
+                                            {{ $report->id }}
+                                        </td>
                                         <td>
                                             {{ $report->title }}
                                         </td>                                        
@@ -69,6 +78,10 @@
                                         <td>
                                             <input type="submit" class="btn btn-primary btn-sm" name="action" value="指定學校">
                                         </td>
+                                        <td>                                            
+                                                從 id <input type="text" name="old_id" id="old_id{{ $report->id }}" style="width:50px;">                                                                                                                                     
+                                            <a href="#!" class="btn btn-success btn-sm" onclick="send_id({{ $report->id }})">複製至此</a>
+                                        </td>
                                         <td>
                                             <div id="show_school{{ $report->id }}"></div>
                                         </td>                                        
@@ -84,6 +97,16 @@
     </div>
 </section>
 <script>
+    function send_id(new_id){
+        old_id = $('#old_id'+new_id).val();        
+        if(old_id === ""){
+            sw_alert('id 為必填！');
+        }else{
+            sw_confirm1('確定要複製，會覆蓋已設定的資料喔！','school_assign_copy/'+old_id+'/'+new_id);
+        }
+        
+    }
+    
     @foreach($reports as $report)
         $(document).ready(function() {            
             // 當頁面載入時，執行 AJAX 請求

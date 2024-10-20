@@ -98,6 +98,33 @@ class ReviewController extends Controller
         
     }
 
+    public function school_assign_copy($old_id=null,$new_id=null){
+        
+        if(empty($old_id)){
+            return back()->withErrors(['error' => ['id 為必填']]);
+        }
+        $old_report = Report::find($old_id);
+        if(empty($old_report->id)){
+            return back()->withErrors(['error' => ['沒有此 id']]);
+        }
+
+        if($old_id == $new_id){
+            return back()->withErrors(['error' => ['自己的 id 是要怎樣複製到自己？']]);
+        }
+        $school_assigns = SchoolAssign::where('report_id',$old_id)->get();
+        SchoolAssign::where('report_id',$new_id)->delete();
+        foreach($school_assigns as $school_assign){
+            $att['name'] = $school_assign->name;
+            $att['report_id'] = $new_id;
+            $att['user_id'] = $school_assign->user_id;
+            $att['schools_array'] = $school_assign->schools_array;
+
+            SchoolAssign::create($att);
+        }
+
+        return back();
+    }
+
     public function do_school_assign(Request $request){        
         $att= $request->all();
         if(!isset($att['select_school'])){

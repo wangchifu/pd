@@ -82,6 +82,12 @@ class ReportController extends Controller
         ]);
         $id = $request->input('id');
         $old_report = Report::find($id);
+        if(empty($old_report->id)){
+            return back()->withErrors(['error' => ['沒有此 id']]);
+        }
+        if($old_report->id == $report->id){
+            return back()->withErrors(['error' => ['自己的 id 是要怎樣複製到自己？']]);
+        }
         foreach($old_report->uploads as $upload){
             $att['title'] = $upload->title;
             $att['order_by'] = $upload->order_by;
@@ -205,6 +211,13 @@ class ReportController extends Controller
         ]); 
         $id = $request->input('id');
         $old_report = Report::find($id);
+        if(empty($old_report->id)){
+            return back()->withErrors(['error' => ['沒有此 id']]);
+        }
+
+        if($old_report->id == $report->id){
+            return back()->withErrors(['error' => ['自己的 id 是要怎樣複製到自己？']]);
+        }
         $p=1;
         foreach($old_report->comments as $comment){
             $att['title'] = $comment->title;
