@@ -18,7 +18,7 @@
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ route('glogin') }}">登入</a></li>
                 @endguest
                 @auth
-                    @if(!empty(auth()->user()->school_name))                    
+                    @if(!empty(auth()->user()->school_name) and auth()->user()->school_name != "教育處" and auth()->user()->school_name != "網路中心")                    
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ route('fill.index') }}">學校填報</a></li>
                     @endif
                     <li class="nav-item dropdown mx-0 mx-lg-1">
