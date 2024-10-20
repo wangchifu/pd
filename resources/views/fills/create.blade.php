@@ -83,8 +83,14 @@
                                     已上傳 <small>(by{{ $check_fill->user->name }})</small><br>
                                     @if($upload->type=="pdf")
                                         <a href="{{ asset('storage/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-file-alt"></i> {{ $check_fill->filename }}</a>
+                                        @if(!file_exists(storage_path('app/public/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename)))
+                                            <br><span class="text-danger">(檔案遺失)</span>
+                                        @endif
                                     @elseif($upload->type=="mp4")
                                         <a href="{{ asset('storage/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-film"></i> {{ $check_fill->filename }}</a>
+                                        @if(!file_exists(storage_path('app/public/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename)))
+                                            <br><span class="text-danger">(檔案遺失)</span>
+                                        @endif
                                     @elseif($upload->type=="link")       
                                         <a href="{{ transfer_url_http($check_fill->filename) }}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-film"></i> 影片連結</a>
                                     @endif 
