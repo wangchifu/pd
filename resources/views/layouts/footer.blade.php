@@ -22,9 +22,8 @@
             <div class="col-lg-4">
                 <h4 class="text-uppercase mb-4">關於 Freelancer</h4>
                 <p class="lead mb-0">
-                    Freelance 是可以免費使用的，MIT 授權的 Bootstrap theme 由
-                    <a href="http://startbootstrap.com" target="_blank">Start Bootstrap</a> 所提供
-                    .
+                    程式設計：ET Wang wangchifu@hdes.chc.edu.tw 版權所有。<br>
+                    Bootstrap theme 由 <a href="http://startbootstrap.com" target="_blank">Start Bootstrap</a> 所提供。                    
                 </p>
             </div>
         </div>
