@@ -63,7 +63,7 @@
                                                         指定
                                                     </td>
                                                     <td>
-                                                        <select name="user_id" required>
+                                                        <select name="user_id">                                                            
                                                             @foreach($reviewers as $reviewer)
                                                                 <option value="{{ $reviewer->id }}">{{ $reviewer->name }}</option>                                             
                                                             @endforeach
