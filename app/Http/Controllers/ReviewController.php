@@ -185,7 +185,9 @@ class ReviewController extends Controller
         foreach($reports as $report){
             $school_assigns = SchoolAssign::where('report_id',$report->id)->get();
             foreach($school_assigns as $school_assign){
-                $reviewers_array[$report->id][$school_assign->name] = $school_assign->user->name;
+                if(!empty($school_assign->name) and !empty($school_assign->user_id)){
+                    $reviewers_array[$report->id][$school_assign->name] = $school_assign->user->name;
+                }               
             }
         }
         
