@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2024 年 10 月 20 日 05:31
+-- 產生時間： 2024 年 10 月 20 日 10:41
 -- 伺服器版本： 5.7.42-0ubuntu0.18.04.1
 -- PHP 版本： 7.4.24
 
@@ -1729,6 +1729,17 @@ CREATE TABLE `school_assigns` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- 傾印資料表的資料 `school_assigns`
+--
+
+INSERT INTO `school_assigns` (`id`, `name`, `report_id`, `user_id`, `schools_array`, `created_at`, `updated_at`) VALUES
+(1, '第一組', 1, NULL, 'a:43:{i:0;s:6:\"074608\";i:1;s:6:\"074611\";i:2;s:6:\"074612\";i:3;s:6:\"074613\";i:4;s:6:\"074616\";i:5;s:6:\"074617\";i:6;s:6:\"074618\";i:7;s:6:\"074619\";i:8;s:6:\"074620\";i:9;s:6:\"074622\";i:10;s:6:\"074623\";i:11;s:6:\"074624\";i:12;s:6:\"074656\";i:13;s:6:\"074659\";i:14;s:6:\"074646\";i:15;s:6:\"074648\";i:16;s:6:\"074651\";i:17;s:6:\"074652\";i:18;s:6:\"074653\";i:19;s:6:\"074634\";i:20;s:6:\"074637\";i:21;s:6:\"074688\";i:22;s:6:\"074705\";i:23;s:6:\"074706\";i:24;s:6:\"074707\";i:25;s:6:\"074694\";i:26;s:6:\"074696\";i:27;s:6:\"074697\";i:28;s:6:\"074676\";i:29;s:6:\"074677\";i:30;s:6:\"074678\";i:31;s:6:\"074661\";i:32;s:6:\"074665\";i:33;s:6:\"074690\";i:34;s:6:\"074667\";i:35;s:6:\"074668\";i:36;s:6:\"074670\";i:37;s:6:\"074672\";i:38;s:6:\"074700\";i:39;s:6:\"074701\";i:40;s:6:\"074702\";i:41;s:6:\"074703\";i:42;s:6:\"074710\";}', '2024-10-20 15:34:24', '2024-10-20 15:34:24'),
+(2, '第二組', 1, NULL, 'a:41:{i:0;s:6:\"074643\";i:1;s:6:\"074708\";i:2;s:6:\"074679\";i:3;s:6:\"074671\";i:4;s:6:\"074715\";i:5;s:6:\"074719\";i:6;s:6:\"074720\";i:7;s:6:\"074723\";i:8;s:6:\"074724\";i:9;s:6:\"074725\";i:10;s:6:\"074726\";i:11;s:6:\"074728\";i:12;s:6:\"074729\";i:13;s:6:\"074730\";i:14;s:6:\"074731\";i:15;s:6:\"074732\";i:16;s:6:\"074733\";i:17;s:6:\"074734\";i:18;s:6:\"074735\";i:19;s:6:\"074754\";i:20;s:6:\"074755\";i:21;s:6:\"074756\";i:22;s:6:\"074757\";i:23;s:6:\"074737\";i:24;s:6:\"074739\";i:25;s:6:\"074740\";i:26;s:6:\"074741\";i:27;s:6:\"074743\";i:28;s:6:\"074744\";i:29;s:6:\"074746\";i:30;s:6:\"074749\";i:31;s:6:\"074750\";i:32;s:6:\"074758\";i:33;s:6:\"074759\";i:34;s:6:\"074761\";i:35;s:6:\"074762\";i:36;s:6:\"074763\";i:37;s:6:\"074764\";i:38;s:6:\"074766\";i:39;s:6:\"074767\";i:40;s:6:\"074711\";}', '2024-10-20 18:28:28', '2024-10-20 18:28:28'),
+(3, '第三組', 1, NULL, 'a:43:{i:0;s:6:\"074609\";i:1;s:6:\"074615\";i:2;s:6:\"074625\";i:3;s:6:\"074626\";i:4;s:6:\"074654\";i:5;s:6:\"074655\";i:6;s:6:\"074658\";i:7;s:6:\"074641\";i:8;s:6:\"074642\";i:9;s:6:\"074644\";i:10;s:6:\"074649\";i:11;s:6:\"074650\";i:12;s:6:\"074629\";i:13;s:6:\"074630\";i:14;s:6:\"074632\";i:15;s:6:\"074684\";i:16;s:6:\"074687\";i:17;s:6:\"074685\";i:18;s:6:\"074686\";i:19;s:6:\"074773\";i:20;s:6:\"074772\";i:21;s:6:\"074695\";i:22;s:6:\"074673\";i:23;s:6:\"074674\";i:24;s:6:\"074675\";i:25;s:6:\"074662\";i:26;s:6:\"074664\";i:27;s:6:\"074691\";i:28;s:6:\"074692\";i:29;s:6:\"074666\";i:30;s:6:\"074669\";i:31;s:6:\"074699\";i:32;s:6:\"074713\";i:33;s:6:\"074714\";i:34;s:6:\"074716\";i:35;s:6:\"074718\";i:36;s:6:\"074721\";i:37;s:6:\"074727\";i:38;s:6:\"074753\";i:39;s:6:\"074742\";i:40;s:6:\"074747\";i:41;s:6:\"074765\";i:42;s:6:\"074709\";}', '2024-10-20 18:33:32', '2024-10-20 18:33:32'),
+(4, '第四組', 1, NULL, 'a:42:{i:0;s:6:\"074601\";i:1;s:6:\"074602\";i:2;s:6:\"074603\";i:3;s:6:\"074604\";i:4;s:6:\"074605\";i:5;s:6:\"074606\";i:6;s:6:\"074607\";i:7;s:6:\"074610\";i:8;s:6:\"074614\";i:9;s:6:\"074775\";i:10;s:6:\"074621\";i:11;s:6:\"074657\";i:12;s:6:\"074639\";i:13;s:6:\"074640\";i:14;s:6:\"074645\";i:15;s:6:\"074771\";i:16;s:6:\"074647\";i:17;s:6:\"074633\";i:18;s:6:\"074627\";i:19;s:6:\"074628\";i:20;s:6:\"074631\";i:21;s:6:\"074769\";i:22;s:6:\"074635\";i:23;s:6:\"074636\";i:24;s:6:\"074638\";i:25;s:6:\"074680\";i:26;s:6:\"074681\";i:27;s:6:\"074682\";i:28;s:6:\"074683\";i:29;s:6:\"074704\";i:30;s:6:\"074693\";i:31;s:6:\"074660\";i:32;s:6:\"074663\";i:33;s:6:\"074777\";i:34;s:6:\"074689\";i:35;s:6:\"074698\";i:36;s:6:\"074776\";i:37;s:6:\"074712\";i:38;s:6:\"074717\";i:39;s:6:\"074722\";i:40;s:6:\"074736\";i:41;s:6:\"074738\";}', '2024-10-20 18:37:39', '2024-10-20 18:37:39'),
+(5, '第五組', 1, NULL, 'a:43:{i:0;s:6:\"074308\";i:1;s:6:\"074505\";i:2;s:6:\"074506\";i:3;s:6:\"074507\";i:4;s:6:\"074538\";i:5;s:6:\"074540\";i:6;s:12:\"074541074774\";i:7;s:6:\"074509\";i:8;s:6:\"074526\";i:9;s:6:\"074522\";i:10;s:6:\"074502\";i:11;s:6:\"074503\";i:12;s:12:\"074542074778\";i:13;s:6:\"074521\";i:14;s:6:\"074504\";i:15;s:6:\"074535\";i:16;s:12:\"074323074523\";i:17;s:6:\"074524\";i:18;s:6:\"074510\";i:19;s:6:\"074511\";i:20;s:6:\"074536\";i:21;s:6:\"074530\";i:22;s:6:\"074527\";i:23;s:6:\"074520\";i:24;s:6:\"074518\";i:25;s:12:\"074339074539\";i:26;s:6:\"074525\";i:27;s:6:\"074519\";i:28;s:12:\"074328074528\";i:29;s:6:\"074501\";i:30;s:6:\"074531\";i:31;s:6:\"074534\";i:32;s:6:\"074532\";i:33;s:6:\"074533\";i:34;s:6:\"074514\";i:35;s:6:\"074512\";i:36;s:12:\"074537074745\";i:37;s:6:\"074313\";i:38;s:6:\"074515\";i:39;s:6:\"074517\";i:40;s:6:\"074516\";i:41;s:12:\"074543074760\";i:42;s:6:\"074529\";}', '2024-10-20 18:40:29', '2024-10-20 18:40:29');
+
 -- --------------------------------------------------------
 
 --
@@ -1767,7 +1778,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('UQTnCsiNKW4ycJAEHkypefjofoud4WZ05xFFD1jj', 1, '163.23.93.126', 'Mozilla/5.0 (X11; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibE5GZmNwVXp3UFVCUXBMSE9EaERqdkJ1NzFHRmtXd3lIZVRhbFhzbSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDg6Imh0dHBzOi8vcHJldmVudC1kaXNhc3Rlci5jaGMuZWR1LnR3L3Jldmlldy9pbmRleCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6ODoiY2hhcHRjaGEiO2k6MzkzNzU7czo1MDoibG9naW5fd2ViXzNkYzdhOTEzZWY1ZmQ0Yjg5MGVjYWJlMzQ4NzA4NTU3M2UxNmNmODIiO2k6MTt9', 1729402245);
+('dalzehdvuJEdmta1jTZCtxnn6PXmRmKx7bHv4wtC', NULL, '66.249.71.134', 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibGIxc2VSbktiWEN1dlJMd1duQ1Ewd3ZHbmNtN1N2WDM0cWFxYmpKSyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHBzOi8vcHJldmVudC1kaXNhc3Rlci5jaGMuZWR1LnR3Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1729416032),
+('UQTnCsiNKW4ycJAEHkypefjofoud4WZ05xFFD1jj', 1, '163.23.93.126', 'Mozilla/5.0 (X11; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibE5GZmNwVXp3UFVCUXBMSE9EaERqdkJ1NzFHRmtXd3lIZVRhbFhzbSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDY6Imh0dHBzOi8vcHJldmVudC1kaXNhc3Rlci5jaGMuZWR1LnR3L3Bvc3QvaW5kZXgiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjg6ImNoYXB0Y2hhIjtpOjM5Mzc1O3M6NTA6ImxvZ2luX3dlYl8zZGM3YTkxM2VmNWZkNGI4OTBlY2FiZTM0ODcwODU1NzNlMTZjZjgyIjtpOjE7fQ==', 1729420854),
+('zi0SnKwlkJ3ELaaGTz3ASksdDWCxQtiElxGdLoi3', NULL, '66.249.69.163', 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoid3RoYkM4YzN4MVlpV1VNdzZ6blVYbHdPRHBWZVJ3bTFvTHEwZHNBNyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHBzOi8vcHJldmVudC1kaXNhc3Rlci5jaGMuZWR1LnR3Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1729416031);
 
 -- --------------------------------------------------------
 
@@ -1831,7 +1844,12 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `email`, `school_code`, `school_name`, `kind`, `title`, `edu_key`, `uid`, `admin`, `review`, `login_type`, `disable`, `created_at`, `updated_at`) VALUES
 (1, 'wang', '$2y$10$xOv62bvdResOirilkPGuMOsiNYemmlG/S8LT9fDIF.eW2utWeaMqe', '王老師', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 'local', NULL, '2024-10-13 20:49:23', '2024-10-13 20:49:23'),
 (2, 'charse', '$2y$10$XnPgHKQd5D4osfTSC/jGZOfZcq5x1yQf6DoiW3z7WuXujGODD2VCO', '林根煌', NULL, '074617', '縣立寶山國小', '教職員', '資訊組長', '3840fbb1038346d62d57001b7895ccf20b5d56defca98efd11fd20c3356f3841', 'c043a218-ab7a-4f83-ac52-f584bf0feb76', 1, NULL, 'gsuite', NULL, '2024-10-13 21:20:45', '2024-10-18 12:04:05'),
-(3, 'wangchifu', '$2y$10$lVv/Fwh/rCIAXHDUpIWl0u6waNOxCibXhfM5qQJagBGxp7JK1TvKm', '王麒富', NULL, '074628', '縣立和東國小', '教職員', '資訊組長', '4208f4152cb215d19edfa78d4e85ae2ccee65497ed68af69e5ca7641510d3af6', 'f49601c3-7d2f-4c38-bd1d-9ceea05b6ff8', NULL, NULL, 'gsuite', NULL, '2024-10-17 20:55:53', '2024-10-17 20:55:53');
+(3, 'wangchifu', '$2y$10$lVv/Fwh/rCIAXHDUpIWl0u6waNOxCibXhfM5qQJagBGxp7JK1TvKm', '王麒富', NULL, '074628', '縣立和東國小', '教職員', '資訊組長', '4208f4152cb215d19edfa78d4e85ae2ccee65497ed68af69e5ca7641510d3af6', 'f49601c3-7d2f-4c38-bd1d-9ceea05b6ff8', NULL, NULL, 'gsuite', NULL, '2024-10-17 20:55:53', '2024-10-17 20:55:53'),
+(4, 'reviewer1', '$2y$10$.8XlzlY.g1h0a/ubpq/SeOA75G1r8May8QAMwtrIWhaBXZ8TFCkCe', '評審一', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'local', NULL, '2024-10-20 15:16:42', '2024-10-20 15:16:42'),
+(5, 'reviewer2', '$2y$10$VzvgEio703mNqTAQMoo/XecEqANj8zLng9nMtXv6MoKPAgzZ2HXji', '評審二', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'local', NULL, '2024-10-20 15:17:07', '2024-10-20 15:17:07'),
+(6, 'reviewer3', '$2y$10$ktiubskJqlWCPJJxfqZxtuA6mGZjdSB/f4vvjzA207IXHyV/Ks5B2', '評審三', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'local', NULL, '2024-10-20 15:17:24', '2024-10-20 15:17:24'),
+(7, 'reviewer4', '$2y$10$qTVfEui6G8G19f3R0QdUfuJKywgOEbEOeJZxLssgOMumTMuX6txLG', '評審四', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'local', NULL, '2024-10-20 15:17:44', '2024-10-20 15:17:44'),
+(8, 'reviewer5', '$2y$10$gcvrPqXY/AugTEzqnvDdcu3ZafMDqt2/I5RzHb6fg8IIpua9mtxRi', '評審五', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'local', NULL, '2024-10-20 15:18:19', '2024-10-20 15:18:19');
 
 --
 -- 已傾印資料表的索引
@@ -1988,7 +2006,7 @@ ALTER TABLE `schools`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `school_assigns`
 --
 ALTER TABLE `school_assigns`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `scores`
@@ -2006,7 +2024,7 @@ ALTER TABLE `uploads`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
