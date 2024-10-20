@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Models\Upload;
 use App\Models\Comment;
+use App\Models\Fill;
+use App\Models\SchoolAssign;
+use App\Models\Score;
+use App\Models\Opinion;
 
 class ReportController extends Controller
 {
@@ -129,8 +133,17 @@ class ReportController extends Controller
         }
 
         Upload::where('report_id',$report->id)->delete();
-
+        Comment::where('report_id',$report->id)->delete();
+        Fill::where('report_id',$report->id)->delete();
+        SchoolAssign::where('report_id',$report->id)->delete();
+        Score::where('report_id',$report->id)->delete();
+        Opinion::where('report_id',$report->id)->delete();
+        
         $report->delete();
+        if(file_exists(storage_path('app/public/fills/'.$report->id))){
+            del_folder(storage_path('app/public/fills/'.$report->id));
+        }
+        
         echo "<body onload=\"opener.location.reload();;window.close();\">";
     }
 

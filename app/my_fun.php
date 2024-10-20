@@ -29,21 +29,36 @@ if (!function_exists('get_files')) {
 
 //刪除某目錄所有檔案
 if (!function_exists('del_folder')) {
-    function del_folder($folder)
-    {
-        if (is_dir($folder)) {
-            if ($handle = opendir($folder)) { //開啟現在的資料夾
-                while (false !== ($file = readdir($handle))) {
-                    //避免搜尋到的資料夾名稱是false,像是0
-                    if ($file != "." && $file != "..") {
-                        //去除掉..跟.
-                        unlink($folder . '/' . $file);
-                    }
-                }
-                closedir($handle);
-            }
-            rmdir($folder);
+    function del_folder($dir) {
+        if (!is_dir($dir)) {
+            echo "The provided path is not a directory!";
+            return false;
         }
+    
+        // 打开目录句柄
+        $items = scandir($dir);
+        
+        // 遍历目录中的所有项
+        foreach ($items as $item) {
+            if ($item === '.' || $item === '..') {
+                // 跳过 . 和 ..
+                continue;
+            }
+    
+            $path = $dir . DIRECTORY_SEPARATOR . $item;
+    
+            // 如果是目录，递归删除子目录
+            if (is_dir($path)) {
+                del_folder($path);
+            } else {
+                // 如果是文件，删除文件
+                unlink($path);
+            }
+        }
+    
+        // 删除当前目录
+        rmdir($dir);
+        return true;
     }
 }
 

@@ -47,7 +47,7 @@
                     @include('layouts.errors')
                     <a href="#!" class="btn btn-primary" onclick="sw_confirm2('確定儲存俢改？','report_update')">儲存</a>
                     <div class="text-end">
-                        <a href="#!" onclick="sw_confirm1('確定連同底下項目一同刪除？','{{ route('report.destroy',$report->id) }}')">
+                        <a href="#!" onclick="sw_confirm1('確定連同底下項目及上傳的東西一同刪除？','{{ route('report.destroy',$report->id) }}')">
                             <i class="fas fa-times-circle text-danger"></i>
                         </a>
                     </div>                    
