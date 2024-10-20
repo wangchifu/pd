@@ -17,7 +17,7 @@ class ReviewController extends Controller
     public function index(){  
         $reports = Report::orderBy('id','DESC')->paginate(4);
 
-        $reviewers = User::where('review',1)->where('disable','<>','1')->get();
+        $reviewers = User::where('review',1)->where('disable',null)->get();
 
         
         $data = [
