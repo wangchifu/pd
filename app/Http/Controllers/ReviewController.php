@@ -236,6 +236,27 @@ class ReviewController extends Controller
         }
     }
 
+    public function download(Report $report){
+        $exec = "cd ".storage_path('app/public/fills')." && zip -r ./{$report->title}.zip ./".$report->id;        
+        shell_exec($exec);
+            
+        $zipFileName = storage_path('app/public/fills/'.$report->title.'.zip');
+        //dd($zipFileName);
+        // 設置 HTTP 標頭以便下載 ZIP 檔案
+        header('Content-Type: application/zip');
+        header('Content-Disposition: attachment; filename="' . basename($zipFileName) . '"');
+        header('Content-Length: ' . filesize($zipFileName));
+        // 清空輸出緩衝區
+        ob_clean();
+        flush();
+
+        // 讀取 ZIP 檔案並輸出到瀏覽器
+        readfile($zipFileName);
+
+        // 刪除本地生成的 ZIP 檔案
+        unlink($zipFileName);                
+    }
+
     public function award(Request $request){
         $att = $request->all();
         $report = Report::find($att['report_id']);

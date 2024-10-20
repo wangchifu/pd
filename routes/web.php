@@ -120,7 +120,7 @@ Route::group(['middleware' => 'admin'],function(){
     Route::get('review/import/{report}', [ReviewController::class,'import'])->name('review.import');
     Route::post('review/do_import', [ReviewController::class,'do_import'])->name('review.do_import');
     Route::post('review/award', [ReviewController::class,'award'])->name('review.award');
-    
+    Route::get('review/download/{report}', [ReviewController::class,'download'])->name('review.download');
 });
 
 //評審可用

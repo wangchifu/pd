@@ -13,13 +13,13 @@
                     <table class="table table-bordered">
                         <thead class="bg-secondary text-light">
                             <tr>
-                                <th style="width:500px" nowrap>
+                                <th nowrap>
                                     成果項目 
                                 </th>
-                                <th nowrap>
+                                <th style="width:250px" nowrap>
                                     組別 / 評審
                                 </th>
-                                <th style="width:120px" nowrap>
+                                <th style="width:250px" nowrap>
                                     動作
                                 </th>
                             </tr>
@@ -31,56 +31,65 @@
                                         {{ $report->title }}
                                     </td>
                                     <td>
-                                        <form action="{{ route('review.award') }}" method="post" id="review_award{{ $report->id }}">
-                                            @csrf
-                                            <input type="hidden" name="report_id" value="{{ $report->id }}">                                        
-                                            <select name="name" class="form-control" required>
-                                                <option value="第一組">
-                                                    第一組
-                                                    @if(isset($reviewers_array[$report->id]['第一組']))
-                                                        - {{ $reviewers_array[$report->id]['第一組'] }}
-                                                    @else
-                                                        - 未指定
-                                                    @endif
-                                                </option>
-                                                <option value="第二組">
-                                                    第二組
-                                                    @if(isset($reviewers_array[$report->id]['第二組']))
-                                                        - {{ $reviewers_array[$report->id]['第二組'] }}
-                                                    @else
-                                                        - 未指定
-                                                    @endif
-                                                </option>
-                                                <option value="第三組">
-                                                    第三組
-                                                    @if(isset($reviewers_array[$report->id]['第三組']))
-                                                        - {{ $reviewers_array[$report->id]['第三組'] }}
-                                                    @else
-                                                        - 未指定
-                                                    @endif
-                                                </option>
-                                                <option value="第四組">
-                                                    第四組
-                                                    @if(isset($reviewers_array[$report->id]['第四組']))
-                                                        - {{ $reviewers_array[$report->id]['第四組'] }}
-                                                    @else
-                                                        - 未指定
-                                                    @endif
-                                                </option>
-                                                <option value="第五組">
-                                                    第五組
-                                                    @if(isset($reviewers_array[$report->id]['第五組']))
-                                                        - {{ $reviewers_array[$report->id]['第五組'] }}
-                                                    @else
-                                                        - 未指定
-                                                    @endif
-                                                </option>
-                                            </select>      
-                                        </form>                                      
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <form action="{{ route('review.award') }}" method="post" id="review_award{{ $report->id }}">
+                                                        @csrf
+                                                        <input type="hidden" name="report_id" value="{{ $report->id }}">                                        
+                                                        <select name="name" class="form-control" required>
+                                                            <option value="第一組">
+                                                                第一組
+                                                                @if(isset($reviewers_array[$report->id]['第一組']))
+                                                                    - {{ $reviewers_array[$report->id]['第一組'] }}
+                                                                @else
+                                                                    - 未指定
+                                                                @endif
+                                                            </option>
+                                                            <option value="第二組">
+                                                                第二組
+                                                                @if(isset($reviewers_array[$report->id]['第二組']))
+                                                                    - {{ $reviewers_array[$report->id]['第二組'] }}
+                                                                @else
+                                                                    - 未指定
+                                                                @endif
+                                                            </option>
+                                                            <option value="第三組">
+                                                                第三組
+                                                                @if(isset($reviewers_array[$report->id]['第三組']))
+                                                                    - {{ $reviewers_array[$report->id]['第三組'] }}
+                                                                @else
+                                                                    - 未指定
+                                                                @endif
+                                                            </option>
+                                                            <option value="第四組">
+                                                                第四組
+                                                                @if(isset($reviewers_array[$report->id]['第四組']))
+                                                                    - {{ $reviewers_array[$report->id]['第四組'] }}
+                                                                @else
+                                                                    - 未指定
+                                                                @endif
+                                                            </option>
+                                                            <option value="第五組">
+                                                                第五組
+                                                                @if(isset($reviewers_array[$report->id]['第五組']))
+                                                                    - {{ $reviewers_array[$report->id]['第五組'] }}
+                                                                @else
+                                                                    - 未指定
+                                                                @endif
+                                                            </option>
+                                                        </select>      
+                                                    </form>  
+                                                </td>
+                                                <td>
+                                                    <a href="#!" class="btn btn-info btn-sm" onclick="go_submit('review_award{{ $report->id }}')">查閱</a>
+                                                </td>
+                                            </tr>
+                                        </table>                                                                                   
                                     </td>
                                     <td>
-                                        <a href="javascript:open_window('{{ route('review.import',$report->id) }}','匯入')" class="btn btn-primary btn-sm">匯入</a>
-                                        <a href="#!" class="btn btn-info btn-sm" onclick="go_submit('review_award{{ $report->id }}')">查閱</a>                                        
+                                        <a href="javascript:open_window('{{ route('review.import',$report->id) }}','匯入')" class="btn btn-primary btn-sm">匯入綜合意見</a>                                        
+                                        <a href="#!" class="btn btn-secondary btn-sm" onclick="sw_confirm1('會花很久的時候喔，請不要中途關掉視窗！','{{ route('review.download',$report->id) }}')">下載全部檔案</a>                                        
                                     </td>
                                 </tr>                                                            
                             @endforeach                            
