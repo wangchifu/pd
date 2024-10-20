@@ -31,7 +31,7 @@
                     </table>
                     @include('layouts.errors')
                     <a href="{{ asset('sample.xlsx') }}" target="_blank" class="btn btn-info">下載範本</a>
-                    <a href="#!" class="btn btn-primary" onclick="sw_confirm2('確定送出？已有評語的，將被覆蓋喔！','review_import')">儲存</a>                 
+                    <a href="#!" class="btn btn-primary" onclick="sw_confirm2('確定送出？會花點時間，完成後，會自己關閉，不可自行關閉視窗。已有評語的，將被覆蓋喔！','review_import')">儲存</a>                 
             </div>
         </div>        
     </div>
