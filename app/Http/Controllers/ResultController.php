@@ -54,6 +54,9 @@ class ResultController extends Controller
     }
 
     public function view(Report $report){
+        if(date('Y-m-d') <= $report->stop_date){
+            return back()->withErrors(['errors' => ['此成果尚不能公開取閱！']]);
+        }
         $township_ids = config('pd.township_ids');
         $schools = School::all();
 
@@ -103,6 +106,9 @@ class ResultController extends Controller
     }
 
     function show(Report $report,$code){
+        if(date('Y-m-d') <= $report->stop_date){
+            return back()->withErrors(['errors' => ['此成果尚不能公開取閱！']]);
+        }
             $fills = Fill::where('report_id',$report->id)
                 ->where('school_code',$code)
                 ->get();

@@ -17,6 +17,7 @@
                 <h3 class="card-title">學校名稱：{{ $schools_name[$school_code] }}</h3>                
                 <h4>{{ $report->title }}</h4>
                 <div class="table-responsive">
+                    @include('layouts.errors')
                     <form action="{{ route('reviewer.school_store') }}" method="post" id="school_review">
                         @csrf                        
                         <table class="table table-bordered">
@@ -82,12 +83,12 @@
                                 @endforeach
                                 <thead class="bg-secondary text-light">
                                     <th colspan="4">
-                                        綜合意見
+                                        綜合意見(須滿50字)
                                     </th>
                                 </thead>
                                 <tr>
                                     <td colspan="4">
-                                        <textarea class="form-control" rows="5" name="suggestion" required>{{ $suggestion }}</textarea>
+                                        <textarea class="form-control" rows="5" name="suggestion" id="suggestion" required>{{ $suggestion }}</textarea>
                                     </td>
                                 </tr>
                             </tbody>
@@ -96,7 +97,7 @@
                         <input type="hidden" name="school_code" value="{{ $school_code }}">
                         <input type="hidden" name="report_id" value="{{ $report->id }}">
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                        <a href="#!" class="btn btn-primary" onclick="sw_confirm2('確定送出？','school_review')">送出</a>
+                        <a href="#!" class="btn btn-primary" onclick="check_submit()">送出</a>
                     </form>
                 </div>
             </div>
@@ -105,6 +106,39 @@
 </section>
 
 <script>    
+    function check_submit(){
+        var isValid = true;
+        $('input[name^="score_array"]').each(function() {
+            // 检查每个输入框是否为空
+            if ($(this).val() === "") {
+                sw_alert('有項目分數未打！');
+                isValid = false;
+            }
+        });
+        
+        if(!isValid){
+            return false;
+        }
+
+
+        var textareaValue = $('#suggestion').val();
+
+        // 匹配中文字符的正则表达式        
+        var matchedCharacters = textareaValue.match(/[\u4e00-\u9fffA-Za-z0-9]/g) || [];
+
+        // 检查中文字符的数量是否少于 50
+        if (matchedCharacters.length < 50) {
+            // 阻止表单提交
+            event.preventDefault();
+            sw_alert('綜合意見未滿 50 字！')
+        } else {
+            // 清除错误信息
+            sw_confirm2('確定送出？','school_review')
+        }
+        
+
+    }
+
     $(document).ready(function() {
         @foreach($report->comments as $comment)
             $('#score{{ $comment->id }}').on('input', function() {

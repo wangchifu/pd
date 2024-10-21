@@ -37,7 +37,7 @@ class LinkController extends Controller
         }        
         $link->delete();
 
-        echo "<body onload=\"opener.location.reload();;window.close();\">";
+        echo "<body onload=\"opener.location.reload();window.close();\">";
     }
 
     public function edit(Link $link){
@@ -50,11 +50,11 @@ class LinkController extends Controller
 
     public function update(Request $request,Link $link){
         if (auth()->user()->id != $link->user_id) {
-            return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);;
+            return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);
         }   
         $att = $request->all();                
         $link->update($att);
 
-        echo "<body onload=\"opener.location.reload();;window.close();\">";
+        echo "<body onload=\"opener.location.reload();window.close();\">";
     }
 }

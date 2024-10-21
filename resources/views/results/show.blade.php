@@ -13,6 +13,7 @@
               <li class="breadcrumb-item active" aria-current="page">「{{ $school_name }}」成果</li>
             </ol>
           </nav>
+          @include('layouts.errors')
           <div class="card" >
             <div class="card-body">
                 <h2>{{ $report->title }}</h2>

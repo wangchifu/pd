@@ -15,6 +15,9 @@
                                 <th style="width:200px" nowrap>
                                     成果項目 
                                 </th>
+                                <th style="width:80px" nowrap>
+                                    分組
+                                </th>
                                 <th nowrap>
                                     學校
                                 </th>                                
@@ -25,6 +28,11 @@
                                 <tr>
                                     <td>
                                         {{ $report->title }}
+                                    </td>
+                                    <td>
+                                        @if(isset($group_name[$report->id]))   
+                                            <a href="{{ route('reviewer.group',['report'=>$report->id,'name'=>$group_name[$report->id]]) }}" class="btn btn-secondary btn-sm my-2">{{ $group_name[$report->id] }}</a>
+                                        @endif
                                     </td>
                                     <td>                                        
                                         @if(isset($assign_schools[$report->id]))                                        

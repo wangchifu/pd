@@ -14,7 +14,7 @@ use App\Models\Opinion;
 class ReportController extends Controller
 {
     public function index(){
-        $reports = Report::orderBy('id','DESC')->paginate(4);;
+        $reports = Report::orderBy('id','DESC')->paginate(4);
         $data = [
             'reports'=>$reports,
         ];
@@ -48,15 +48,15 @@ class ReportController extends Controller
         ]);
         $att = $request->all();        
         Upload::create($att);
-        echo "<body onload=\"opener.location.reload();;window.close();\">";
+        echo "<body onload=\"opener.location.reload();window.close();\">";
     }
 
     public function upload_destroy(Upload $upload){
         if($upload->user_id != auth()->user()->id){
-            return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);;
+            return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);
         }
         $upload->delete();
-        echo "<body onload=\"opener.location.reload();;window.close();\">";
+        echo "<body onload=\"opener.location.reload();window.close();\">";
     }
 
     public function upload_edit(Upload $upload){
@@ -73,11 +73,11 @@ class ReportController extends Controller
             'title' => 'required',
         ]);
         if($upload->user_id != auth()->user()->id){
-            return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);;
+            return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);
         }
         $att = $request->all();        
         $upload->update($att);
-        echo "<body onload=\"opener.location.reload();;window.close();\">";
+        echo "<body onload=\"opener.location.reload();window.close();\">";
     }
     
     public function upload_copy(Request $request,Report $report){
@@ -119,17 +119,17 @@ class ReportController extends Controller
             'stop_date' => 'required',
         ]);     
         if($report->user_id != auth()->user()->id){
-            return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);;
+            return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);
         }
         $att = $request->all();
         
         $report->update($att);
-        echo "<body onload=\"opener.location.reload();;window.close();\">";
+        echo "<body onload=\"opener.location.reload();window.close();\">";
     }
 
     public function destroy(Report $report){
         if($report->user_id != auth()->user()->id){
-            return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);;
+            return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);
         }
 
         Upload::where('report_id',$report->id)->delete();
@@ -144,14 +144,14 @@ class ReportController extends Controller
             del_folder(storage_path('app/public/fills/'.$report->id));
         }
         
-        echo "<body onload=\"opener.location.reload();;window.close();\">";
+        echo "<body onload=\"opener.location.reload();window.close();\">";
     }
 
     public function comment_create(Report $report){        
         $uploads = Upload::where('report_id',$report->id)->orderBy('order_by')->get();
         if(count($uploads)==0){
             //return back()->withErrors(['errors' => ['必須先建立 1.上傳項目']]);
-            echo "<body onload=\"opener.location.reload();;window.close();\">";
+            echo "<body onload=\"opener.location.reload();window.close();\">";
         }
         $data = [
             'report'=>$report,
@@ -171,15 +171,15 @@ class ReportController extends Controller
             $att['refer'] = serialize($att['refer']);
         }        
         Comment::create($att);
-        echo "<body onload=\"opener.location.reload();;window.close();\">";
+        echo "<body onload=\"opener.location.reload();window.close();\">";
     }
 
     public function comment_destroy(Comment $comment){
         if($comment->user_id != auth()->user()->id){
-            return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);;
+            return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);
         }
         $comment->delete();
-        echo "<body onload=\"opener.location.reload();;window.close();\">";
+        echo "<body onload=\"opener.location.reload();window.close();\">";
     }
 
     public function comment_edit(Comment $comment){ 
@@ -210,7 +210,7 @@ class ReportController extends Controller
 
 
         if($comment->user_id != auth()->user()->id){
-            return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);;
+            return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);
         }
         $att = $request->all();    
         if(!empty($att['refer'])){
@@ -219,7 +219,7 @@ class ReportController extends Controller
             $att['refer'] = null;
         }    
         $comment->update($att);
-        echo "<body onload=\"opener.location.reload();;window.close();\">";
+        echo "<body onload=\"opener.location.reload();window.close();\">";
     }
     
     public function comment_copy(Request $request,Report $report){

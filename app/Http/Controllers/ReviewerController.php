@@ -16,17 +16,69 @@ class ReviewerController extends Controller
         $reports = Report::orderBy('id','DESC')->paginate(4);
         $school_assigns = SchoolAssign::where('user_id',auth()->user()->id)->get();
         $assign_schools = [];
+        $group_name = [];
         foreach($school_assigns as $school_assign){
             $assign_schools[$school_assign->report_id] = unserialize($school_assign->schools_array);
+            $group_name[$school_assign->report_id] = $school_assign->name;
         }        
         $schools_name = config('pd.schools_name');
         $data = [           
             'reports' =>$reports,
+            'group_name'=>$group_name,
             'assign_schools'=>$assign_schools,
             'schools_name'=>$schools_name,
         ];
 
         return view('reviewers.index',$data);
+    }
+
+    public function group(Report $report,$name){        
+        $school_assign = SchoolAssign::where('user_id',auth()->user()->id)  
+            ->where('report_id',$report->id)      
+            ->where('name',$name)->first();     
+        if(empty($school_assign->id)){
+            return back();
+        }else{                        
+            if($school_assign->user_id != auth()->user()->id){                
+                return back();
+            }
+        }
+        
+        $schools_array = [];
+        $score_data = [];
+        $suggestion = [];
+        if(!empty($school_assign->id)){
+            $schools_array = unserialize($school_assign->schools_array);
+            foreach($schools_array as $k=>$v){
+                $scores = Score::where('report_id',$report->id)->where('school_code',$v)->get();
+                foreach($scores as $score){
+                    $score_data[$v][$score->comment_id] = $score->score;                    
+                }
+                $opinion = Opinion::where('school_code',$v)->where('report_id',$report->id)->first();
+                $suggestion[$v] = (!empty($opinion->suggestion))?$opinion->suggestion:"";
+            }
+        }
+        $total_score = [];
+        foreach($schools_array as $k=>$v){
+            $total_score[$v] = 0;
+            foreach($report->comments as $comment){
+                if(isset($score_data[$v][$comment->id])) $total_score[$v] += $score_data[$v][$comment->id];
+            }
+        }
+        arsort($total_score);
+        
+
+        $data = [
+            'group_name'=>$name,
+            'schools_name'=>config('pd.schools_name'),
+            'report'=>$report,
+            'schools_array'=>$schools_array,
+            'score_data'=>$score_data,
+            'suggestion'=>$suggestion,
+            'total_score'=>$total_score,
+        ];
+
+        return view('reviewers.award',$data);
     }
 
     public function school(Report $report,$school_code){
@@ -59,6 +111,10 @@ class ReviewerController extends Controller
     }
 
     public function school_store(Request $request){
+        $request->validate([
+            'score_array' => 'required',
+            'suggestion' => 'required',
+        ]);
         $att = $request->all();
         foreach($att['score_array'] as $k=>$v){
             $att['comment_id'] = $k;

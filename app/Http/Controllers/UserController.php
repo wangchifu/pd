@@ -44,12 +44,12 @@ class UserController extends Controller
     public function store(Request $request){        
         $att = $request->all();
         if($att['password1'] != $att['password2']){
-            return back()->withErrors(['errors' => ['兩次密碼不一致！']]);;
+            return back()->withErrors(['errors' => ['兩次密碼不一致！']]);
         }
 
         $check = User::where('username',$att['username'])->first();
         if(!empty($check->id)){
-            return back()->withErrors(['errors' => ['此帳號有人使用了！']]);;
+            return back()->withErrors(['errors' => ['此帳號有人使用了！']]);
         }
 
         if($att['power']=="review") $att['review'] = 1;

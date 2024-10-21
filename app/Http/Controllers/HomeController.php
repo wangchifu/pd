@@ -158,7 +158,7 @@ class HomeController extends Controller
             }
         };        
 
-        return back()->withErrors(['errors' => ['帳號密碼錯誤']]);;
+        return back()->withErrors(['errors' => ['帳號密碼錯誤']]);
     }
 
     public function auth(Request $request)
@@ -180,7 +180,7 @@ class HomeController extends Controller
                 return redirect($request->session()->get('url.intended'));
             }                
         }
-        return back()->withErrors(['errors' => ['帳號密碼錯誤，或是此帳號被停用了！']]);;
+        return back()->withErrors(['errors' => ['帳號密碼錯誤，或是此帳號被停用了！']]);
     }
     
 
