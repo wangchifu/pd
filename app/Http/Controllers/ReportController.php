@@ -147,8 +147,12 @@ class ReportController extends Controller
         echo "<body onload=\"opener.location.reload();;window.close();\">";
     }
 
-    public function comment_create(Report $report){
-        $uploads = Upload::orderBy('order_by')->get();
+    public function comment_create(Report $report){        
+        $uploads = Upload::where('report_id',$report->id)->orderBy('order_by')->get();
+        if(count($uploads)==0){
+            //return back()->withErrors(['errors' => ['必須先建立 1.上傳項目']]);
+            echo "<body onload=\"opener.location.reload();;window.close();\">";
+        }
         $data = [
             'report'=>$report,
             'uploads'=>$uploads,
@@ -178,7 +182,7 @@ class ReportController extends Controller
         echo "<body onload=\"opener.location.reload();;window.close();\">";
     }
 
-    public function comment_edit(Comment $comment){
+    public function comment_edit(Comment $comment){ 
         $report = $comment->report;
 
         $cbs = (!empty($comment->refer))?unserialize($comment->refer):[];
@@ -188,7 +192,7 @@ class ReportController extends Controller
         }
         
         
-        $uploads = Upload::orderBy('order_by')->get();
+        $uploads = Upload::where('report_id',$comment->report_id)->orderBy('order_by')->get();
         $data = [
             'report'=>$report,
             'comment'=>$comment,
@@ -231,6 +235,12 @@ class ReportController extends Controller
         if($old_report->id == $report->id){
             return back()->withErrors(['error' => ['自己的 id 是要怎樣複製到自己？']]);
         }
+
+        $check_uploads = Upload::where('report_id',$report->id)->orderBy('order_by')->get();
+        if(count($check_uploads)==0){
+            return back()->withErrors(['errors' => ['必須先建立 1.上傳項目']]);            
+        }
+
         $p=1;
         foreach($old_report->comments as $comment){
             $att['title'] = $comment->title;
