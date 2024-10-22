@@ -76,6 +76,10 @@ class PostController extends Controller
 
         $post->delete();
 
+        if(file_exists(storage_path('app/public/posts/'.$post->id))){
+            del_folder(storage_path('app/public/posts/'.$post->id));
+        }
+
         return redirect()->route('post.index');
     }
 

@@ -57,8 +57,11 @@
                         <table class="table table-hover table-bordered">                        
                             <thead class="bg-secondary text-light">
                                 <tr>
-                                    <th style="width:600px;" nowrap>
+                                    <th nowrap>
                                         公告標題
+                                    </th>
+                                    <th style="width:80px;" nowrap>
+                                        動作
                                     </th>
                                     <th style="width:100px;" nowrap>
                                         發佈人
@@ -75,15 +78,18 @@
                                 @foreach($posts as $post)                     
                                     <tr>
                                         <td>
-                                            <a href="{{ route('post.show',$post->id) }}" class="text-decoration-none">
-                                                {{ $post->title }}
-                                            </a>
+                                            {{ $post->title }}                                            
                                             <?php
                                                 $files = get_files(storage_path('app/public/posts/'.$post->id));                                        
                                              ?>
                                             @if(!empty($files))
                                                 <i class="fas fa-download"></i>
-                                            @endif
+                                            @endif                                            
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('post.show',$post->id) }}" class="btn btn-secondary btn-sm">
+                                                查看
+                                            </a>
                                         </td>
                                         <td>
                                             {{ $post->user->name }}
