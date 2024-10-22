@@ -47,6 +47,7 @@ class ReviewerController extends Controller
         $schools_array = [];
         $score_data = [];
         $suggestion = [];
+        $grade = [];
         if(!empty($school_assign->id)){
             $schools_array = unserialize($school_assign->schools_array);
             foreach($schools_array as $k=>$v){
@@ -56,8 +57,9 @@ class ReviewerController extends Controller
                 }
                 $opinion = Opinion::where('school_code',$v)->where('report_id',$report->id)->first();
                 $suggestion[$v] = (!empty($opinion->suggestion))?$opinion->suggestion:"";
+                $grade[$v] = (!empty($opinion->grade))?$opinion->grade:"";
             }
-        }
+        }        
         $total_score = [];
         foreach($schools_array as $k=>$v){
             $total_score[$v] = 0;
@@ -75,10 +77,41 @@ class ReviewerController extends Controller
             'schools_array'=>$schools_array,
             'score_data'=>$score_data,
             'suggestion'=>$suggestion,
+            'grade'=>$grade,
             'total_score'=>$total_score,
         ];
 
-        return view('reviewers.award',$data);
+        return view('reviewers.group',$data);
+    }
+
+    public function reward(Report $report,$school_code,$grade){     
+        $schools_name = config('pd.schools_name');         
+        $att['grade'] = $grade;
+        $opinion = Opinion::where('report_id',$report->id)
+            ->where('school_code',$school_code)->first();
+        if(!empty($opinion->id)){
+            $opinion->update($att);
+        }else{
+            $att['school_name'] = $schools_name[$school_code];
+            $att['school_code'] = $school_code;
+            $att['report_id'] = $report->id;
+            $att['user_id'] = auth()->user()->id;            
+            Opinion::create($att);
+        }
+    
+        return back();
+        
+    }
+
+    public function reward_remove(Report $report,$school_code){     
+        $schools_name = config('pd.schools_name');         
+        $att['grade'] = null;
+        $opinion = Opinion::where('report_id',$report->id)
+            ->where('school_code',$school_code)->first();
+        $opinion->update($att);
+    
+        return back();
+        
     }
 
     public function school(Report $report,$school_code){

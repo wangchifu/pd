@@ -46,11 +46,17 @@
                             <td>
                                 @if(date('Y-m-d') >= $report->start_date and date('Y-m-d') <= $report->stop_date)
                                     <a href="{{ route('fill.create',$report->id) }}" class="btn btn-primary">進入填報</a>
+                                @elseif(date('Y-m-d') < $report->start_date)
+                                    非上傳期間
                                 @else
-                                    @if(!empty($opinion->id))                                        
-                                        <a href="{{ route('fill.award',$report->id) }}" class="btn btn-warning"><i class="fas fa-award"></i> 評審結果</a>
+                                    @if(!empty($opinion->id))                                
+                                        @if($opinion->open==1)                                        
+                                            <a href="{{ route('fill.award',$report->id) }}" class="btn btn-warning"><i class="fas fa-award"></i> 評審結果</a>
+                                        @else
+                                            靜待公佈中
+                                        @endif                                    
                                     @else
-                                        非上傳期間
+                                        靜待審查中
                                     @endif                                    
                                 @endif
 

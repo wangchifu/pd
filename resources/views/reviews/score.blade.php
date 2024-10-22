@@ -19,7 +19,7 @@
                                 <th style="width:250px" nowrap>
                                     組別 / 評審
                                 </th>
-                                <th style="width:250px" nowrap>
+                                <th style="width:320px" nowrap>
                                     動作
                                 </th>
                             </tr>
@@ -27,8 +27,17 @@
                         <tbody>                                                     
                             @foreach($reports as $report)
                                 <tr>
-                                    <td>
+                                    <?php 
+                                        $check_opinion = \App\Models\Opinion::where('report_id',$report->id)                                            
+                                            ->first();
+                                    ?>
+                                    <td>                                        
                                         {{ $report->title }}
+                                        @if(!empty($check_opinion->id))
+                                            @if($check_opinion->open == 1)
+                                                <span class="badge bg-warning text-dark"><i class="far fa-folder-open"></i>已公開</span>
+                                            @endif
+                                        @endif
                                     </td>
                                     <td>
                                         <table>
@@ -88,7 +97,14 @@
                                         </table>                                                                                   
                                     </td>
                                     <td>
-                                        <a href="{{ route('review.import',$report->id) }}" data-vbtype="iframe" class="btn btn-primary btn-sm venobox-link">匯入綜合意見</a>                                        
+                                        <a href="{{ route('review.import',$report->id) }}" data-vbtype="iframe" class="btn btn-primary btn-sm venobox-link">匯入綜合意見</a>    
+                                        @if(!empty($check_opinion->id))
+                                            @if($check_opinion->open == 1)
+                                                <a href="#!" class="btn btn-outline-warning btn-sm" onclick="sw_confirm1('確定全部取消公開評審結果？','{{ route('review.close',$report->id) }}')">取消公開</a>
+                                            @else
+                                                <a href="#!" class="btn btn-warning btn-sm" onclick="sw_confirm1('確定全部公開評審結果？','{{ route('review.open',$report->id) }}')">公開結果</a>
+                                            @endif
+                                        @endif                                                                            
                                         <a href="#!" class="btn btn-secondary btn-sm" onclick="sw_confirm1('會花很久的時候喔，請不要中途關掉視窗！','{{ route('review.download',$report->id) }}')">下載全部檔案</a>                                        
                                     </td>
                                 </tr>                                                            

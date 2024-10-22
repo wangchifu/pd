@@ -16,9 +16,8 @@ class ReviewController extends Controller
 {
     public function index(){  
         $reports = Report::orderBy('id','DESC')->paginate(4);
-
-        $reviewers = User::where('review',1)->where('disable',null)->get();
-
+        
+        $reviewers = User::where('review',1)->where('disable',null)->get();        
         
         $data = [
             'reports'=>$reports,
@@ -216,6 +215,8 @@ class ReviewController extends Controller
             $file = $request->file('file');            
             $collection = (new FastExcel)->import($file);            
             foreach ($collection as $row) {
+                if(!isset($row['代碼'])) return back()->withErrors(['errors' => ['上傳的欄位錯誤，只能叫「代碼」']]);
+                if(!isset($row['綜合意見'])) return back()->withErrors(['errors' => ['上傳的欄位錯誤，只能叫「綜合意見」']]);
                 $school = School::where('code','like','%'.$row['代碼'].'%')->first();
                 $att['school_name'] = $school->name;
                 $att['school_code'] = $school->code;
@@ -263,6 +264,20 @@ class ReviewController extends Controller
                        
     }
 
+    public function open(Report $report){
+        $att['open'] =1;
+        Opinion::where('report_id',$report->id)->update($att);
+
+        return back();
+    }
+
+    public function close(Report $report){
+        $att['open'] =null;
+        Opinion::where('report_id',$report->id)->update($att);
+
+        return back();
+    }
+
     public function award(Request $request){
         $att = $request->all();
         $report = Report::find($att['report_id']);
@@ -270,6 +285,7 @@ class ReviewController extends Controller
         $schools_array = [];
         $score_data = [];
         $suggestion = [];
+        $grade = [];
         if(!empty($school_assign->id)){
             $schools_array = unserialize($school_assign->schools_array);
             foreach($schools_array as $k=>$v){
@@ -279,6 +295,7 @@ class ReviewController extends Controller
                 }
                 $opinion = Opinion::where('school_code',$v)->where('report_id',$report->id)->first();
                 $suggestion[$v] = (!empty($opinion->suggestion))?$opinion->suggestion:"";
+                $grade[$v] = (!empty($opinion->grade))?$opinion->grade:"";
             }
         }
         $total_score = [];
@@ -298,6 +315,7 @@ class ReviewController extends Controller
             'schools_array'=>$schools_array,
             'score_data'=>$score_data,
             'suggestion'=>$suggestion,
+            'grade'=>$grade,
             'total_score'=>$total_score,
         ];
 

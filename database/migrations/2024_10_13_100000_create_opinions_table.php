@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('school_name');
             $table->string('school_code');
-            $table->text('suggestion');                                                
+            $table->text('suggestion')->nullable();                                                
             $table->unsignedInteger('report_id');
-            $table->unsignedInteger('user_id');                      
+            $table->unsignedInteger('user_id');
+            $table->string('grade')->nullable();             
+            $table->unsignedInteger('open')->nullable();         
             $table->timestamps();                        
         });
     }

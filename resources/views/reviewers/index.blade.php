@@ -15,8 +15,8 @@
                                 <th style="width:200px" nowrap>
                                     成果項目 
                                 </th>
-                                <th style="width:80px" nowrap>
-                                    分組
+                                <th style="width:150px" nowrap>
+                                    組內排名與得獎
                                 </th>
                                 <th nowrap>
                                     學校
@@ -31,7 +31,7 @@
                                     </td>
                                     <td>
                                         @if(isset($group_name[$report->id]))   
-                                            <a href="{{ route('reviewer.group',['report'=>$report->id,'name'=>$group_name[$report->id]]) }}" class="btn btn-secondary btn-sm my-2">{{ $group_name[$report->id] }}</a>
+                                            <a href="{{ route('reviewer.group',['report'=>$report->id,'name'=>$group_name[$report->id]]) }}" class="btn btn-secondary btn-sm my-2">{{ $group_name[$report->id] }}狀況</a>
                                         @endif
                                     </td>
                                     <td>                                        

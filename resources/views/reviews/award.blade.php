@@ -21,6 +21,9 @@
                         <thead class="bg-secondary text-light">
                             <tr>
                                 <th nowrap>
+                                    等級
+                                </th>
+                                <th nowrap>
                                     學校名稱 
                                 </th>
                                 @foreach($report->comments as $comment)
@@ -39,6 +42,22 @@
                         <tbody>                                                     
                             @foreach($total_score as $k=>$v)
                                 <tr>
+                                    <td>
+                                        @if(isset($grade[$k]))
+                                            @if($grade[$k]=="特優")
+                                                <span class="badge bg-warning"><i class="fas fa-crown"></i> 特優</span>                                                
+                                            @endif
+                                            @if($grade[$k]=="優等")
+                                                <span class="badge bg-success"><i class="fas fa-star"></i> 優等</span>                                                
+                                            @endif
+                                            @if($grade[$k]=="甲等")
+                                                <span class="badge bg-info"><i class="fas fa-thumbs-up"></i> 甲等</span>                                                
+                                            @endif
+                                            @if($grade[$k]=="受訪")
+                                                <span class="badge bg-danger"><i class="fas fa-sad-cry"></i> 受訪</span>                                                
+                                            @endif
+                                        @endif
+                                    </td>
                                     <td>
                                         {{ $schools_name[$k] }}
                                     </td>

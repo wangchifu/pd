@@ -121,6 +121,8 @@ Route::group(['middleware' => 'admin'],function(){
     Route::post('review/do_import', [ReviewController::class,'do_import'])->name('review.do_import');
     Route::post('review/award', [ReviewController::class,'award'])->name('review.award');
     Route::get('review/download/{report}', [ReviewController::class,'download'])->name('review.download');
+    Route::get('review/open/{report}', [ReviewController::class,'open'])->name('review.open');
+    Route::get('review/close/{report}', [ReviewController::class,'close'])->name('review.close');    
 });
 
 //評審可用
@@ -129,4 +131,6 @@ Route::group(['middleware' => 'review'],function(){
     Route::get('reviewer/group/{report}/{name}', [ReviewerController::class,'group'])->name('reviewer.group');
     Route::get('reviewer/school/{report}/{school_code}', [ReviewerController::class,'school'])->name('reviewer.school');
     Route::post('reviewer/school_store', [ReviewerController::class,'school_store'])->name('reviewer.school_store');
+    Route::get('reviewer/reward/{report}/{school_code}/{grade}', [ReviewerController::class,'reward'])->name('reviewer.reward');
+    Route::get('reviewer/reward_remove/{report}/{school_code}', [ReviewerController::class,'reward_remove'])->name('reviewer.reward_remove');
 });

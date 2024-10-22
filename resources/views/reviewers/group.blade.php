@@ -20,6 +20,9 @@
                     <table class="table table-bordered table-hover">
                         <thead class="bg-secondary text-light">
                             <tr>
+                                <td style="width:150px;" nowrap>
+                                    等級
+                                </td>
                                 <th nowrap>
                                     學校名稱 
                                 </th>
@@ -34,11 +37,34 @@
                                 <th>
                                     綜合意見
                                 </th>
+                                <td style="width:150px;" nowrap>
+                                    選擇等級
+                                </td>
                             </tr>
                         </thead>
                         <tbody>                                                     
                             @foreach($total_score as $k=>$v)
-                                <tr>
+                                <tr>                                    
+                                    <td>
+                                        @if(isset($grade[$k]))
+                                            @if($grade[$k]=="特優")
+                                                <span class="badge bg-warning"><i class="fas fa-crown"></i> 特優</span>
+                                                <a href="{{ route('reviewer.reward_remove',['report'=>$report->id,'school_code'=>$k]) }}"><i class="fas fa-times-circle text-danger"></i>
+                                            @endif
+                                            @if($grade[$k]=="優等")
+                                                <span class="badge bg-success"><i class="fas fa-star"></i> 優等</span>
+                                                <a href="{{ route('reviewer.reward_remove',['report'=>$report->id,'school_code'=>$k]) }}"><i class="fas fa-times-circle text-danger"></i>
+                                            @endif
+                                            @if($grade[$k]=="甲等")
+                                                <span class="badge bg-info"><i class="fas fa-thumbs-up"></i> 甲等</span>
+                                                <a href="{{ route('reviewer.reward_remove',['report'=>$report->id,'school_code'=>$k]) }}"><i class="fas fa-times-circle text-danger"></i>
+                                            @endif
+                                            @if($grade[$k]=="受訪")
+                                                <span class="badge bg-danger"><i class="fas fa-sad-cry"></i> 受訪</span>
+                                                <a href="{{ route('reviewer.reward_remove',['report'=>$report->id,'school_code'=>$k]) }}"><i class="fas fa-times-circle text-danger"></i>
+                                            @endif
+                                        @endif                                        
+                                    </td>
                                     <td>
                                         {{ $schools_name[$k] }}
                                     </td>
@@ -56,6 +82,14 @@
                                         @if(isset($suggestion[$k]))
                                             {!! nl2br($suggestion[$k]) !!}
                                         @endif 
+                                    </td>
+                                    <td>
+                                        @if(empty($grade[$k]))
+                                            <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'特優']) }}" class="btn btn-light btn-sm mx-1 my-1">特優</a>
+                                            <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'優等']) }}" class="btn btn-light btn-sm mx-1 my-1">優等</a>
+                                            <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'甲等']) }}" class="btn btn-light btn-sm mx-1 my-1">甲等</a>
+                                            <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'受訪']) }}" class="btn btn-light btn-sm mx-1 my-1">受訪</a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach                            

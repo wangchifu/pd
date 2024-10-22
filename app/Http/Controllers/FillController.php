@@ -24,6 +24,17 @@ class FillController extends Controller
 
     public function award(Report $report){
         $opinion = Opinion::where('report_id',$report->id)->where('school_code','like','%'.auth()->user()->school_code.'%')->first();
+        
+        //還沒有公開不能看
+        if(!empty($opinion->id)){
+            if($opinion->open != 1){
+                return back();    
+            }
+        }else{
+            return back();
+        }
+
+
         $school = School::where('code','like','%'.auth()->user()->school_code.'%')->first();
         $scores = Score::where('report_id',$report->id)->where('school_code','like','%'.auth()->user()->school_code.'%')->get();
         $score_data = [];
@@ -35,12 +46,24 @@ class FillController extends Controller
         foreach($report->uploads as $upload){
             $upload_data[$upload->id] = $upload->title;
         }
+
+        $fills = Fill::where('report_id',$report->id)
+        ->where('school_code',$school->code)
+        ->get();
+        
+        $fill_data = [];
+        foreach($fills as $fill){
+            $fill_data[$fill->upload_id] = $fill->filename;
+        }
+
+
         $data = [
             'school'=>$school,
             'report'=>$report,
             'opinion'=>$opinion,    
             'score_data'=>$score_data,
             'upload_data'=>$upload_data,
+            'fill_data'=>$fill_data,
         ];
         return view('fills.award',$data);
 

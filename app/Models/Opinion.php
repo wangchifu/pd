@@ -14,5 +14,7 @@ class Opinion extends Model
         'suggestion',         
         'report_id',
         'user_id',        
+        'grade',  
+        'open',  
     ]; 
 }
