@@ -80,7 +80,7 @@
                                     ({{ $link2->order_by }}) {{ $link2->title }}
                                 </a>
                                 (by {{ $link2->user->name }})                                
-                                <a href="#!" onclick="javascript:open_window('{{ route('link.edit',$link2->id) }}','修改連結')"><i class="fas fa-edit"></i></a>
+                                <a href="{{ route('link.edit',$link2->id) }}" data-vbtype="iframe" class="venobox-link"><i class="fas fa-edit"></i></a>
                             </li>
                         @endforeach
                       </ul>
@@ -92,6 +92,28 @@
 </section>
 
 <script>
+    $(document).ready(function(){
+        var vb = new VenoBox({
+            selector: '.venobox-link',
+            numeration: true,
+            infinigall: true,
+            //share: ['facebook', 'twitter', 'linkedin', 'pinterest', 'download'],
+            spinner: 'rotating-plane'
+        });
+
+    $(document).on('click', '.vbox-close', function() {
+            vb.close();
+        });
+
+    // 監聽 iframe 發送的消息
+    window.addEventListener('message', function(event) {
+        // 檢查消息內容，並且只處理關閉的請求
+        if (event.data === 'closeVenobox') {
+            vb.VBclose(); // 關閉 Venobox 視窗
+        }
+    }, false);
+    });
+        
     function open_window(url,name)
         {
             window.open(url,name,'statusbar=no,scrollbars=yes,status=yes,resizable=yes,width=850,height=400');

@@ -37,7 +37,7 @@ class LinkController extends Controller
         }        
         $link->delete();
 
-        echo "<body onload=\"opener.location.reload();window.close();\">";
+        echo "<body onload=\"window.parent.location.reload();window.parent.postMessage('closeVenobox', '*'); \">";
     }
 
     public function edit(Link $link){
@@ -55,6 +55,6 @@ class LinkController extends Controller
         $att = $request->all();                
         $link->update($att);
 
-        echo "<body onload=\"opener.location.reload();window.close();\">";
+        echo "<body onload=\"window.parent.location.reload();window.parent.postMessage('closeVenobox', '*'); \">";
     }
 }

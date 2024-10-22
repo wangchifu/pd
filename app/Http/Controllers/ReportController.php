@@ -48,7 +48,7 @@ class ReportController extends Controller
         ]);
         $att = $request->all();        
         Upload::create($att);
-        echo "<body onload=\"opener.location.reload();window.close();\">";
+        echo "<body onload=\"window.parent.location.reload();window.parent.postMessage('closeVenobox', '*'); \">";
     }
 
     public function upload_destroy(Upload $upload){
@@ -56,7 +56,7 @@ class ReportController extends Controller
             return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);
         }
         $upload->delete();
-        echo "<body onload=\"opener.location.reload();window.close();\">";
+        echo "<body onload=\"window.parent.location.reload();window.parent.postMessage('closeVenobox', '*'); \">";
     }
 
     public function upload_edit(Upload $upload){
@@ -77,7 +77,7 @@ class ReportController extends Controller
         }
         $att = $request->all();        
         $upload->update($att);
-        echo "<body onload=\"opener.location.reload();window.close();\">";
+        echo "<body onload=\"window.parent.location.reload();window.parent.postMessage('closeVenobox', '*'); \">";
     }
     
     public function upload_copy(Request $request,Report $report){
@@ -124,7 +124,7 @@ class ReportController extends Controller
         $att = $request->all();
         
         $report->update($att);
-        echo "<body onload=\"opener.location.reload();window.close();\">";
+        echo "<body onload=\"window.parent.location.reload();window.parent.postMessage('closeVenobox', '*'); \">";
     }
 
     public function destroy(Report $report){
@@ -144,14 +144,14 @@ class ReportController extends Controller
             del_folder(storage_path('app/public/fills/'.$report->id));
         }
         
-        echo "<body onload=\"opener.location.reload();window.close();\">";
+        echo "<body onload=\"window.parent.location.reload();window.parent.postMessage('closeVenobox', '*'); \">";
     }
 
     public function comment_create(Report $report){        
         $uploads = Upload::where('report_id',$report->id)->orderBy('order_by')->get();
         if(count($uploads)==0){
             //return back()->withErrors(['errors' => ['必須先建立 1.上傳項目']]);
-            echo "<body onload=\"opener.location.reload();window.close();\">";
+            echo "<body onload=\"window.parent.location.reload();window.parent.postMessage('closeVenobox', '*'); \">";
         }
         $data = [
             'report'=>$report,
@@ -171,7 +171,7 @@ class ReportController extends Controller
             $att['refer'] = serialize($att['refer']);
         }        
         Comment::create($att);
-        echo "<body onload=\"opener.location.reload();window.close();\">";
+        echo "<body onload=\"window.parent.location.reload();window.parent.postMessage('closeVenobox', '*'); \">";
     }
 
     public function comment_destroy(Comment $comment){
@@ -179,7 +179,7 @@ class ReportController extends Controller
             return back()->withErrors(['errors' => ['這個項目不是你建立的！']]);
         }
         $comment->delete();
-        echo "<body onload=\"opener.location.reload();window.close();\">";
+        echo "<body onload=\"window.parent.location.reload();window.parent.postMessage('closeVenobox', '*'); \">";
     }
 
     public function comment_edit(Comment $comment){ 
@@ -219,7 +219,7 @@ class ReportController extends Controller
             $att['refer'] = null;
         }    
         $comment->update($att);
-        echo "<body onload=\"opener.location.reload();window.close();\">";
+        echo "<body onload=\"window.parent.location.reload();window.parent.postMessage('closeVenobox', '*'); \">";
     }
     
     public function comment_copy(Request $request,Report $report){

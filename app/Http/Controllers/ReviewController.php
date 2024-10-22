@@ -231,7 +231,7 @@ class ReviewController extends Controller
                 }
             }
             
-            echo "<body onload=\"opener.location.reload();window.close();\">";
+            echo "<body onload=\"window.parent.location.reload();window.parent.postMessage('closeVenobox', '*'); \">";
 
         }
     }

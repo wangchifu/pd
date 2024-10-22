@@ -88,7 +88,7 @@
                                         </table>                                                                                   
                                     </td>
                                     <td>
-                                        <a href="javascript:open_window('{{ route('review.import',$report->id) }}','匯入')" class="btn btn-primary btn-sm">匯入綜合意見</a>                                        
+                                        <a href="{{ route('review.import',$report->id) }}" data-vbtype="iframe" class="btn btn-primary btn-sm venobox-link">匯入綜合意見</a>                                        
                                         <a href="#!" class="btn btn-secondary btn-sm" onclick="sw_confirm1('會花很久的時候喔，請不要中途關掉視窗！','{{ route('review.download',$report->id) }}')">下載全部檔案</a>                                        
                                     </td>
                                 </tr>                                                            
@@ -101,6 +101,18 @@
     </div>
 </section>
 <script>
+    var vb = new VenoBox({
+            selector: '.venobox-link',
+            numeration: true,
+            infinigall: true,
+            //share: ['facebook', 'twitter', 'linkedin', 'pinterest', 'download'],
+            spinner: 'rotating-plane'
+        });
+
+    $(document).on('click', '.vbox-close', function() {
+            vb.close();
+        });
+        
     function go_submit(id){
         $('#'+id).submit();
     }

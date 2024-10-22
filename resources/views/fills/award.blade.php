@@ -57,7 +57,7 @@
                                                             ->first();                                                            
                                                     ?>
                                                     @if(!empty($fill->id))
-                                                        <li class="text-danger"><a href="{{ asset('storage/fills/'.$report->id."/".$school->name."/".$fill->filename) }}" target="_blank" class="text-decoration-none">{{ $upload_data[$v] }}</a></li>
+                                                        <li class="text-danger"><a href="{{ asset('storage/fills/'.$report->id."/".$school->name."/".$fill->filename) }}" data-vbtype="iframe" class="text-decoration-none venobox-link">{{ $upload_data[$v] }}</a></li>
                                                     @else
                                                         <li class="text-danger">{{ $upload_data[$v] }}</li>
                                                     @endif
@@ -95,4 +95,27 @@
         </div>
     </div>
 </section>
+<script>
+    $(document).ready(function(){
+        var vb = new VenoBox({
+            selector: '.venobox-link',
+            numeration: true,
+            infinigall: true,
+            //share: ['facebook', 'twitter', 'linkedin', 'pinterest', 'download'],
+            spinner: 'rotating-plane'
+        });
+
+    $(document).on('click', '.vbox-close', function() {
+            vb.close();
+        });
+
+    // 監聽 iframe 發送的消息
+    window.addEventListener('message', function(event) {
+        // 檢查消息內容，並且只處理關閉的請求
+        if (event.data === 'closeVenobox') {
+            vb.VBclose(); // 關閉 Venobox 視窗
+        }
+    }, false);
+    });
+</script>
 @endsection

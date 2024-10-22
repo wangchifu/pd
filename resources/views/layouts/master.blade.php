@@ -15,9 +15,12 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('theme/css/styles.css') }}" rel="stylesheet" />
+        <!-- venobox-->
+        <link rel="stylesheet" href="{{ asset('venobox/venobox.min.css') }}" type="text/css" media="screen" />
         <link href="{{ asset('css/my.css') }}" rel="stylesheet" />
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="{{ asset('venobox/venobox.min.js') }}"></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
