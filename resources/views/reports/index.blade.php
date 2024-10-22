@@ -76,9 +76,10 @@
                                             <td>
                                                 {{ $report->id }}
                                             </td>
-                                            <td>                                                
-                                                <a href="{{ route('report.edit',$report->id) }}" data-vbtype="iframe" class="text-decoration-none venobox-link">
-                                                    {{ $report->title }}
+                                            <td>           
+                                                {{ $report->title }}                                     
+                                                <a href="{{ route('report.edit',$report->id) }}" data-vbtype="iframe" class="text-decoration-none venobox-link">                                                    
+                                                    <i class="fas fa-edit"></i>
                                                 </a>
                                                 <small>
                                                 <br>起：{{ $report->start_date }}
@@ -91,9 +92,11 @@
                                                 <ul>
                                                     @foreach($report->uploads as $upload)
                                                         <li>
+                                                            {{ $upload->order_by }}.{{ $upload->title }}
                                                             <a href="{{ route('report.upload_edit',$upload->id) }}" data-vbtype="iframe" class="text-decoration-none venobox-link">
-                                                                {{ $upload->order_by }}.{{ $upload->title }}
+                                                                <i class="fas fa-edit"></i>
                                                             </a>
+                                                            <br>
                                                             @if($upload->type=="pdf")
                                                                 <span class="text-info">(傳 PDF 文件)</span>
                                                             @elseif($upload->type=="mp4")
@@ -111,9 +114,11 @@
                                                 <ul>
                                                     @foreach($report->comments as $comment)
                                                         <li>
+                                                            {{ $comment->order_by }}.{{ $comment->title }}
                                                             <a href="{{ route('report.comment_edit',$comment->id) }}" data-vbtype="iframe" class="text-decoration-none venobox-link">
-                                                                {{ $comment->order_by }}.{{ $comment->title }}
+                                                                <i class="fas fa-edit"></i>                                                                
                                                             </a>
+                                                            <br>
                                                             ({{ $comment->score }} 分)                                                       
                                                             <br><small class="text-secondary">({{ $comment->user->name }} 建立)</small>
                                                         </li>

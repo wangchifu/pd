@@ -37,18 +37,15 @@
                                 <th style="width:200px;" nowrap>
                                     填報時間
                                 </th>
+                                <th>
+                                    動作
+                                </th>
                             </tr>
                         </thead>
                         @foreach($reports as $report)
                             <tr>
-                                <td>
-                                    @if(date('Y-m-d') > $report->stop_date)
-                                        <a href="{{ route('result.view',$report->id) }}" class="text-decoration-none">
-                                            {{ $report->title }}
-                                        </a>
-                                    @else
-                                        {{ $report->title }}
-                                    @endif                                
+                                <td>                                    
+                                    {{ $report->title }}                              
                                 </td>
                                 <td>
                                     {{ $upload_count[$report->id] }}
@@ -71,6 +68,13 @@
                                 <td>
                                     起：{{ $report->start_date }}<br>
                                     迄：{{ $report->stop_date }}
+                                </td>
+                                <td>
+                                    @if(date('Y-m-d') > $report->stop_date)
+                                        <a href="{{ route('result.view',$report->id) }}" class="btn btn-primary btn-sm">
+                                            觀看各校成果
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
