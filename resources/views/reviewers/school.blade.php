@@ -60,7 +60,7 @@
                                                                 ->first();                                                                           
                                                         ?>
                                                         @if(!empty($fill->id))
-                                                            <li class="text-danger"><a href="{{ asset('storage/fills/'.$report->id."/".$schools_name[$school_code]."/".$fill->filename) }}" data-vbtype="iframe" class="text-decoration-none venobox-link">{{ $upload_data[$v] }}</a></li>
+                                                            <li class="text-danger"><a href="{{ asset('storage/fills/'.$report->id."/".$schools_name[$school_code]."/".$fill->filename) }}" target="_blank" class="text-decoration-none">{{ $upload_data[$v] }}</a></li>
                                                         @else
                                                             <li class="text-danger">{{ $upload_data[$v] }}</li>
                                                         @endif
