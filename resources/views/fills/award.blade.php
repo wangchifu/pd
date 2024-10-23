@@ -65,7 +65,7 @@
                     </table>
                     <hr>
                     @if(!empty($opinion->id))
-                        @if(!empty($opinion))
+                        @if(!empty($opinion->grade))
                             <h2>審查等級：{{ $opinion->grade }}學校</h2>
                         @endif
                     @endif                    

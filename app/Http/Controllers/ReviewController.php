@@ -264,6 +264,12 @@ class ReviewController extends Controller
                        
     }
 
+    public function destroy(Report $report){
+        Opinion::where('report_id',$report->id)->delete();
+        Score::where('report_id',$report->id)->delete();
+        return back()->withErrors(['error' => ['清除完成！']]);
+    }
+
     public function open(Report $report){
         $att['open'] =1;
         Opinion::where('report_id',$report->id)->update($att);

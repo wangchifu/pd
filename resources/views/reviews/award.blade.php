@@ -53,8 +53,8 @@
                                             @if($grade[$k]=="甲等")
                                                 <span class="badge bg-info"><i class="fas fa-thumbs-up"></i> 甲等</span>                                                
                                             @endif
-                                            @if($grade[$k]=="受訪")
-                                                <span class="badge bg-danger"><i class="fas fa-sad-cry"></i> 受訪</span>                                                
+                                            @if($grade[$k]=="輔導")
+                                                <span class="badge bg-danger"><i class="fas fa-sad-cry"></i> 輔導</span>                                                
                                             @endif
                                         @endif
                                     </td>
