@@ -8,8 +8,10 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function index(){
-        $users = User::orderBy('login_type','DESC')
-            ->orderBy('disable')
+        $users = User::orderBy('disable')
+            ->orderBy('admin','DESC')
+            ->orderBy('review','DESC')
+            ->orderBy('login_type','DESC')            
             ->orderBy('updated_at','DESC') 
             ->paginate(20);        
 
