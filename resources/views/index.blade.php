@@ -44,7 +44,7 @@
                 </div>  
             </div>
             -->
-            <div class="col-lg-10 col-xl-10">
+            <div class="col-lg-10 col-xl-10 my-2">
                 <div class="card">                    
                     <div class="card-body">
                       <h5 class="card-title">最新公告</h5>
@@ -109,7 +109,7 @@
                     </div>
                   </div>
             </div>
-            <div class="col-lg-2 col-xl-2">
+            <div class="col-lg-2 col-xl-2 my-2">
                 <div class="list-group">
                     <a class="list-group-item p-0 disabled">
                         <img src="{{ asset('images/title2.png') }}" alt="Image" class="img-fluid w-100">

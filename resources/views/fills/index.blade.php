@@ -21,7 +21,7 @@
                             <th>
                                 成果項目 
                             </th>
-                            <th style="width:200px;">
+                            <th style="width:150px;">
                                 填報時間
                             </th>
                             <th>
@@ -40,23 +40,23 @@
                                 {{ $report->title }}
                             </td>
                             <td>
-                                起：{{ $report->start_date }}<br>
-                                迄：{{ $report->stop_date }}
+                                <span class="text-nowrap">起：{{ $report->start_date }}</span><br>
+                                <span class="text-nowrap">迄：{{ $report->stop_date }}</span>
                             </td>
                             <td>
                                 @if(date('Y-m-d') >= $report->start_date and date('Y-m-d') <= $report->stop_date)
-                                    <a href="{{ route('fill.create',$report->id) }}" class="btn btn-primary">進入填報</a>
+                                    <a href="{{ route('fill.create',$report->id) }}" class="btn btn-primary text-nowrap">進入填報</a>
                                 @elseif(date('Y-m-d') < $report->start_date)
-                                    非上傳期間
+                                    <span class="text-nowrap">非上傳期間</span>
                                 @else
                                     @if(!empty($opinion->id))                                
                                         @if($opinion->open==1)                                        
-                                            <a href="{{ route('fill.award',$report->id) }}" class="btn btn-warning"><i class="fas fa-award"></i> 評審結果</a>
+                                            <a href="{{ route('fill.award',$report->id) }}" class="btn btn-warning text-nowrap"><i class="fas fa-award"></i> 評審結果</a>
                                         @else
-                                            靜待公佈中
+                                            <span class="text-nowrap">靜待公佈中</span>
                                         @endif                                    
                                     @else
-                                        靜待審查中
+                                        <span class="text-nowrap">靜待審查中</span>
                                     @endif                                    
                                 @endif
 

@@ -161,19 +161,19 @@ class ReviewController extends Controller
             $result .= "尚未指定評審及學校";            
         }else{
             if(!empty($school_assign->user_id)){
-                $result .= "評審：".$school_assign->user->name."<br>";                        
+                $result .= "<span class='text-nowrap'>評審：".$school_assign->user->name."</span><br>";                        
             }else{
-                $result .= "評審：未指定<br>";                        
+                $result .= "<span class='text-nowrap'>評審：未指定</span><br>";                        
             }
             
         };
 
         $n=0;
         foreach($select_schools as $k=>$v){
-           $result .= $schools_name[$v].",";
+           $result .= "<span class='text-nowrap'>".$schools_name[$v]."</span>,";
            $n++;
         }
-        if(!strpos($result,"尚未指定評審及學校")) $result.="(共 ".$n." 校)";
+        if(!strpos($result,"尚未指定評審及學校")) $result.="<br>(共 ".$n." 校)";
         echo json_encode($result);
         return;
     }

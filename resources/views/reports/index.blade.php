@@ -41,7 +41,7 @@
                                             <input type="date" class="form-control" name="stop_date" required>
                                         </td>
                                         <td>                                        
-                                            <a href="#!" class="btn btn-primary btn-sm" onclick="sw_confirm2('確定新增？','report_store')">新增填報</a>
+                                            <a href="#!" class="btn btn-primary btn-sm text-nowrap" onclick="sw_confirm2('確定新增？','report_store')">新增填報</a>
                                         </td>
                                     </tr>
                                 </table>
@@ -133,7 +133,7 @@
                                                                 1.先從填報 id <input type="text" name="id" style="width:50px;" required>複製「上傳項目」到此列                                                                                        
                                                                 @csrf
                                                             </form>
-                                                            <a href="#!" class="btn btn-success btn-sm" onclick="sw_confirm2('確定複製？','upload_copy{{ $report->id }}')">複製1</a>
+                                                            <a href="#!" class="btn btn-success btn-sm text-nowrap" onclick="sw_confirm2('確定複製？','upload_copy{{ $report->id }}')">複製1</a>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -142,7 +142,7 @@
                                                                 2.再從填報 id <input type="text" name="id" style="width:50px;" required>複製「評分項目」到此列                                                                                        
                                                                 @csrf
                                                             </form>
-                                                            <a href="#!" class="btn btn-success btn-sm" onclick="sw_confirm2('確定複製？','comment_copy{{ $report->id }}')">複製2</a>
+                                                            <a href="#!" class="btn btn-success btn-sm text-nowrap" onclick="sw_confirm2('確定複製？','comment_copy{{ $report->id }}')">複製2</a>
                                                         </td>
                                                     </tr>
                                                 </table>                                            

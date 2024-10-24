@@ -20,10 +20,10 @@
                     <table class="table table-bordered table-hover">
                         <thead class="bg-secondary text-light">
                             <tr>
-                                <td style="width:150px;" nowrap>
+                                <th style="width:100px;" nowrap>
                                     等級
-                                </td>
-                                <th nowrap>
+                                </th>
+                                <th nowrap style="width:100px;">
                                     學校名稱 
                                 </th>
                                 @foreach($report->comments as $comment)
@@ -34,12 +34,12 @@
                                 <th style="width:50px;">
                                     總分
                                 </th>
-                                <th>
+                                <th style="min-width:150px;">
                                     綜合意見
                                 </th>
-                                <td style="width:150px;" nowrap>
+                                <th style="min-width:140px;" nowrap>
                                     選擇等級
-                                </td>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>                                                     
@@ -85,10 +85,10 @@
                                     </td>
                                     <td>
                                         @if(empty($grade[$k]))
-                                            <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'特優']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1">特優</a>
-                                            <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'優等']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1">優等</a>
-                                            <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'甲等']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1">甲等</a>
-                                            <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'輔導']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1">輔導</a>
+                                            <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'特優']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1 text-nowrap">特優</a>
+                                            <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'優等']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1 text-nowrap">優等</a>
+                                            <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'甲等']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1 text-nowrap">甲等</a>
+                                            <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'輔導']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1 text-nowrap">輔導</a>
                                         @endif
                                     </td>
                                 </tr>

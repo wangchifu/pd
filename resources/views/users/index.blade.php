@@ -88,29 +88,29 @@
                                     </td>
                                     <td>
                                         @if(auth()->user()->id != $user->id)
-                                            <a class="btn btn-info btn-sm" href="#!" onclick="sw_confirm1('確定模擬他？','{{ route('impersonate',$user->id) }}')">模擬</a>
+                                            <a class="btn btn-info btn-sm text-nowrap" href="#!" onclick="sw_confirm1('確定模擬他？','{{ route('impersonate',$user->id) }}')">模擬</a>
                                         @endif                                    
                                         @if(empty($user->disable))
                                             @if(auth()->user()->id != $user->id)
-                                                <a href="#!" class="btn btn-secondary btn-sm" onclick="sw_confirm1('確定停用？','{{ route('user.change_user',$user->id) }}')">停用</a>
+                                                <a href="#!" class="btn btn-secondary btn-sm text-nowrap" onclick="sw_confirm1('確定停用？','{{ route('user.change_user',$user->id) }}')">停用</a>
                                             @endif
                                         @else
-                                        <a href="#!" class="btn btn-outline-secondary btn-sm" onclick="sw_confirm1('確定再啟用？','{{ route('user.change_user',$user->id) }}')">再啟用</a>
+                                        <a href="#!" class="btn btn-outline-secondary btn-sm text-nowrap" onclick="sw_confirm1('確定再啟用？','{{ route('user.change_user',$user->id) }}')">再啟用</a>
                                         @endif
                                         @if($user->login_type=="local")
-                                            <a href="#!" class="btn btn-outline-dark btn-sm" onclick="sw_confirm1('重設密碼為 demo1234 ？','{{ route('user.password_reset',$user->id) }}')">重設</a>
+                                            <a href="#!" class="btn btn-outline-dark btn-sm text-nowrap" onclick="sw_confirm1('重設密碼為 demo1234 ？','{{ route('user.password_reset',$user->id) }}')">重設</a>
                                         @endif
                                         @if(empty($user->admin))
-                                            <a href="#!" class="btn btn-primary btn-sm" onclick="sw_confirm1('確定他是系統管理者？','{{ route('user.add_user_power',['user'=>$user->id,'power'=>'admin']) }}')">設為系統管理者</a>                                        
+                                            <a href="#!" class="btn btn-primary btn-sm text-nowrap" onclick="sw_confirm1('確定他是系統管理者？','{{ route('user.add_user_power',['user'=>$user->id,'power'=>'admin']) }}')">設為系統管理者</a>                                        
                                         @else
                                             @if(auth()->user()->id != $user->id)
-                                                <a href="#!" class="btn btn-outline-primary btn-sm" onclick="sw_confirm1('取消他的系統管理權？','{{ route('user.remove_user_power',['user'=>$user->id,'power'=>'admin']) }}')">取消系統管理權</a>
+                                                <a href="#!" class="btn btn-outline-primary btn-sm text-nowrap" onclick="sw_confirm1('取消他的系統管理權？','{{ route('user.remove_user_power',['user'=>$user->id,'power'=>'admin']) }}')">取消系統管理權</a>
                                             @endif
                                         @endif
                                         @if(empty($user->review))
-                                            <a href="#!" class="btn btn-warning btn-sm" onclick="sw_confirm1('確定他是評審？','{{ route('user.add_user_power',['user'=>$user->id,'power'=>'review']) }}')">設為評審</a>
+                                            <a href="#!" class="btn btn-warning btn-sm text-nowrap" onclick="sw_confirm1('確定他是評審？','{{ route('user.add_user_power',['user'=>$user->id,'power'=>'review']) }}')">設為評審</a>
                                         @else
-                                            <a href="#!" class="btn btn-outline-warning btn-sm" onclick="sw_confirm1('取消他是評審？','{{ route('user.remove_user_power',['user'=>$user->id,'power'=>'review']) }}')">取消評審權</a>
+                                            <a href="#!" class="btn btn-outline-warning btn-sm text-nowrap" onclick="sw_confirm1('取消他是評審？','{{ route('user.remove_user_power',['user'=>$user->id,'power'=>'review']) }}')">取消評審權</a>
                                         @endif                                                                                
                                     </td>
                                 </tr>

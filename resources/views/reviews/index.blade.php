@@ -70,17 +70,17 @@
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input type="submit" class="btn btn-secondary btn-sm" name="action" value="為評審">
+                                                        <input type="submit" class="btn btn-secondary btn-sm text-nowrap" name="action" value="為評審">
                                                     </td>
                                                 </tr>
                                             </table>                                                                                        
                                         </td>
                                         <td>
-                                            <input type="submit" class="btn btn-primary btn-sm" name="action" value="指定學校">
+                                            <input type="submit" class="btn btn-primary btn-sm text-nowrap" name="action" value="指定學校">
                                         </td>
                                         <td>                                            
                                                 從 id <input type="text" name="old_id" id="old_id{{ $report->id }}" style="width:50px;">                                                                                                                                     
-                                            <a href="#!" class="btn btn-success btn-sm" onclick="send_id({{ $report->id }})">複製至此</a>
+                                            <a href="#!" class="btn btn-success btn-sm text-nowrap" onclick="send_id({{ $report->id }})">複製至此</a>
                                         </td>
                                         <td>
                                             <div id="show_school{{ $report->id }}"></div>

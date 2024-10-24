@@ -71,7 +71,7 @@
                                 </td>
                                 <td>
                                     @if(date('Y-m-d') > $report->stop_date)
-                                        <a href="{{ route('result.view',$report->id) }}" class="btn btn-primary btn-sm">
+                                        <a href="{{ route('result.view',$report->id) }}" class="btn btn-primary btn-sm text-nowrap">
                                             觀看各校成果
                                         </a>
                                     @endif

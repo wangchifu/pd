@@ -34,7 +34,7 @@
                                     </td>
                                     <td>
                                         @if(isset($group_name[$report->id]))   
-                                            <a href="{{ route('reviewer.group',['report'=>$report->id,'name'=>$group_name[$report->id]]) }}" class="btn btn-secondary btn-sm my-2">{{ $group_name[$report->id] }}狀況</a>
+                                            <a href="{{ route('reviewer.group',['report'=>$report->id,'name'=>$group_name[$report->id]]) }}" class="btn btn-secondary btn-sm my-2 text-nowrap">{{ $group_name[$report->id] }}狀況</a>
                                         @endif
                                     </td>
                                     <td>
@@ -44,7 +44,7 @@
                                                 $check = \App\Models\Opinion::where('report_id',$report->id)->where('school_code',$v)->first();
                                             ?>
                                             @if(!empty($check->id))
-                                                <a href="{{ route('reviewer.school',['report'=>$report->id,'school_code'=>$v]) }}" class="btn btn-primary btn-sm position-relative mx-2 my-2">
+                                                <a href="{{ route('reviewer.school',['report'=>$report->id,'school_code'=>$v]) }}" class="btn btn-primary btn-sm position-relative mx-2 my-2 text-nowrap">
                                                     {{ $schools_name[$v] }}                                                                                                        
                                                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                                         ok
@@ -61,7 +61,7 @@
                                                 $check = \App\Models\Opinion::where('report_id',$report->id)->where('school_code',$v)->first();
                                             ?>
                                             @if(empty($check->id))
-                                                <a href="{{ route('reviewer.school',['report'=>$report->id,'school_code'=>$v]) }}" class="btn btn-primary btn-sm position-relative mx-2 my-2">
+                                                <a href="{{ route('reviewer.school',['report'=>$report->id,'school_code'=>$v]) }}" class="btn btn-primary btn-sm position-relative mx-2 my-2 text-nowrap">
                                                     {{ $schools_name[$v] }}                                                                                                                                                          
                                                 </a>
                                                 @endif                                                

@@ -83,7 +83,7 @@
                             </tr>
                         </tbody>
                     </table>        
-                    <a href="#!" class="btn btn-secondary" onclick="history.go(-1);">返回</a>                                    
+                    <a href="#!" class="btn btn-secondary text-nowrap" onclick="history.go(-1);">返回</a>                                    
                 </div>
             </div>
         </div>

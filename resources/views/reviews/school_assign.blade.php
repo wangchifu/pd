@@ -49,7 +49,7 @@
                                             </div>
                                             -->
                                             @foreach($school_array[$v] as $k1=>$v1)                                        
-                                            <div style="float: left;">
+                                            <div class="text-nowrap" style="float: left;">
                                                 <?php
                                                     $checked = in_array($k1,$select_schools)?"checked":null;
                                                     $disabled = (isset($other_select_school_data1[$k1]))?"disabled":null;
@@ -69,8 +69,8 @@
                                         @endforeach
                                     </td>
                                     <td>
-                                        <button class="btn btn-secondary btn-sm" onclick="window.history.go(-1);">返回</button>
-                                        <a href="#!" class="btn btn-primary btn-sm" onclick="sw_confirm2('確定？','do_assign')">儲存</a>
+                                        <button class="btn btn-secondary btn-sm text-nowrap" onclick="window.history.go(-1);">返回</button>
+                                        <a href="#!" class="btn btn-primary btn-sm text-nowrap" onclick="sw_confirm2('確定？','do_assign')">儲存</a>
                                     </td>
                                 </tr>
                                 <input type="hidden" name="report_id" value="{{ $report->id }}">

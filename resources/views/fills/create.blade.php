@@ -70,7 +70,7 @@
                                                     @endif                                                            
                                                 </td>
                                                 <td style="width:50px;">
-                                                    <a class="btn btn-primary btn-sm" onclick="sw_confirm2('確定送出？','upload_file{{ $upload->id }}')">送出</a>
+                                                    <a class="btn btn-primary btn-sm text-nowrap" onclick="sw_confirm2('確定送出？','upload_file{{ $upload->id }}')">送出</a>
                                                 </td>
                                             </tr>
                                         </table>                                                                                  

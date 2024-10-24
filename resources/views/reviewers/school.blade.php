@@ -62,7 +62,7 @@
                                                         @if(!empty($fill->id))
                                                             <li class="text-danger"><a href="{{ asset('storage/fills/'.$report->id."/".$schools_name[$school_code]."/".$fill->filename) }}" target="_blank" class="text-decoration-none">{{ $upload_data[$v] }}</a></li>
                                                         @else
-                                                            <li class="text-danger">{{ $upload_data[$v] }}</li>
+                                                            <li class="text-danger">{{ $upload_data[$v] }}</li><small class="text-secondary">(未傳)</small>
                                                         @endif
                                                     @endforeach
                                                 </ol>
@@ -97,6 +97,7 @@
                         <input type="hidden" name="school_code" value="{{ $school_code }}">
                         <input type="hidden" name="report_id" value="{{ $report->id }}">
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                        <a href="#!" class="btn btn-secondary" onclick="history.go(-1);">返回</a>
                         <a href="#!" class="btn btn-primary" onclick="check_submit()">送出</a>
                     </form>
                 </div>
