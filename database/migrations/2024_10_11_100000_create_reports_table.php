@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->string('title');       
+            $table->text('notice')->nullable();       
             $table->string('start_date');       
             $table->string('stop_date');            
             $table->unsignedInteger('user_id');                      

@@ -9,6 +9,7 @@ use App\Models\School;
 use App\Models\SchoolAssign;
 use App\Models\Opinion;
 use App\Models\Score;
+use App\Models\Comment;
 
 class ReviewerController extends Controller
 {
@@ -169,6 +170,29 @@ class ReviewerController extends Controller
         }        
 
         return redirect()->route('reviewer.index');
+    }
+
+    public function school_store_one(Request $request){
+        $att['comment_id'] = $request->input('value1');
+        $att['school_name'] = $request->input('value2');        
+        $att['score'] = $request->input('value3');
+        $att['user_id'] = auth()->user()->id;
+
+        $school = School::where('name',$att['school_name'])->first();
+        $att['school_code'] = $school->code;
+        $comment = Comment::find($att['comment_id']);
+        $att['report_id'] = $comment->report_id;
+
+        
+        $check = Score::where('comment_id',$att['comment_id'])->where('school_name',$att['school_name'])->first();
+        if(!empty($check->id)){
+            $check->update($att);
+        }else{
+            Score::create($att);
+        }             
+        $result = "已登錄 ".$att['score']." 分";
+        echo json_encode($result);
+        return;
     }
     
 }

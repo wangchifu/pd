@@ -34,7 +34,10 @@
                                     </th>       
                                     <th style="width:100px;" nowrap>
                                         得分
-                                    </th>                         
+                                    </th>    
+                                    <th nowrap>
+                                        動作
+                                    </th>                     
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,19 +79,22 @@
                                             <?php
                                                 $score = (isset($score_data[$comment->id]))?$score_data[$comment->id]:null;
                                             ?>
-                                            <input type="number" name="score_array[{{ $comment->id }}]" class="form-control" id="score{{ $comment->id }}" value="{{ $score }}" required>
+                                            <input type="number" name="score_array[{{ $comment->id }}]" class="form-control" id="score{{ $comment->id }}" value="{{ $score }}">
+                                        </td>
+                                        <td>
+                                            <a href="#!" class="btn btn-outline-secondary btn-sm" onclick="school_store_one({{ $comment->id }},'{{ $schools_name[$school_code] }}')">暫存左項</a>
                                         </td>
                                     </tr>
                                     <?php $n++; ?>
                                 @endforeach
                                 <thead class="bg-secondary text-light">
-                                    <th colspan="4">
+                                    <th colspan="5">
                                         綜合意見(須滿50字)
                                     </th>
                                 </thead>
                                 <tr>
-                                    <td colspan="4">
-                                        <textarea class="form-control" rows="5" name="suggestion" id="suggestion" required>{{ $suggestion }}</textarea>
+                                    <td colspan="5">
+                                        <textarea class="form-control" rows="5" name="suggestion" id="suggestion">{{ $suggestion }}</textarea>
                                     </td>
                                 </tr>
                             </tbody>
@@ -98,7 +104,7 @@
                         <input type="hidden" name="report_id" value="{{ $report->id }}">
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                         <a href="#!" class="btn btn-secondary" onclick="history.go(-1);">返回</a>
-                        <a href="#!" class="btn btn-primary" onclick="check_submit()">送出</a>
+                        <a href="#!" class="btn btn-primary" onclick="check_submit()">一次全送出</a>
                     </form>
                 </div>
             </div>
@@ -106,7 +112,29 @@
     </div>
 </section>
 
-<script>    
+<script>   
+    function school_store_one(comment_id,school_name){
+        var score = $('#score'+comment_id).val();            
+        $.ajax({
+            url: "{{ route('reviewer.school_store_one') }}",      // 替換成你的目標 URL
+            type: 'GET',             // 使用 POST 方法，或換成 GET
+            dataType : 'json',
+            data: {
+                value1: comment_id,  // 第一個值
+                value2: school_name,   // 第二個值
+                value3: score   // 第二個值
+            },
+            success: function(result) {
+                // 成功後處理回傳資料
+                sw_alert(result);  // 將回傳的資料顯示在 #result 元素中
+            },
+            error: function(result) {
+                // 若有錯誤時的處理
+                sw_alert('失敗！');            
+            }
+        });
+    }
+
     function check_submit(){
         var isValid = true;
         $('input[name^="score_array"]').each(function() {
