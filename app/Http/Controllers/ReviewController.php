@@ -312,8 +312,7 @@ class ReviewController extends Controller
             }
         }
         arsort($total_score);
-        
-
+                
         $data = [
             'group_name'=>$att['name'],
             'schools_name'=>config('pd.schools_name'),

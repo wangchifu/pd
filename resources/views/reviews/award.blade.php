@@ -42,8 +42,11 @@
                         <tbody>                                                     
                             @foreach($total_score as $k=>$v)
                                 <tr>
-                                    <td>
+                                    <td>                                        
                                         @if(isset($grade[$k]))
+                                            @if($grade[$k]=="推薦")                                                
+                                                <span class="badge bg-danger"><i class="fas fa-thumbs-up"></i> 推薦演練</span>                                                
+                                            @endif
                                             @if($grade[$k]=="特優")
                                                 <span class="badge bg-warning"><i class="fas fa-crown"></i> 特優</span>                                                
                                             @endif
@@ -54,7 +57,7 @@
                                                 <span class="badge bg-info"><i class="fas fa-thumbs-up"></i> 甲等</span>                                                
                                             @endif
                                             @if($grade[$k]=="輔導")
-                                                <span class="badge bg-danger"><i class="fas fa-sad-cry"></i> 輔導</span>                                                
+                                                <span class="badge bg-dark"><i class="fas fa-sad-cry"></i> 輔導</span>                                                
                                             @endif
                                         @endif
                                     </td>

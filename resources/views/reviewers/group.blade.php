@@ -47,6 +47,10 @@
                                 <tr>                                    
                                     <td>
                                         @if(isset($grade[$k]))
+                                            @if($grade[$k]=="推薦")
+                                                <span class="badge bg-danger"><i class="fas fa-thumbs-up"></i> 推薦演練</span>
+                                                <a href="{{ route('reviewer.reward_remove',['report'=>$report->id,'school_code'=>$k]) }}"><i class="fas fa-times-circle text-danger"></i>
+                                            @endif
                                             @if($grade[$k]=="特優")
                                                 <span class="badge bg-warning"><i class="fas fa-crown"></i> 特優</span>
                                                 <a href="{{ route('reviewer.reward_remove',['report'=>$report->id,'school_code'=>$k]) }}"><i class="fas fa-times-circle text-danger"></i>
@@ -60,7 +64,7 @@
                                                 <a href="{{ route('reviewer.reward_remove',['report'=>$report->id,'school_code'=>$k]) }}"><i class="fas fa-times-circle text-danger"></i>
                                             @endif
                                             @if($grade[$k]=="輔導")
-                                                <span class="badge bg-danger"><i class="fas fa-sad-cry"></i> 輔導</span>
+                                                <span class="badge bg-dark"><i class="fas fa-sad-cry"></i> 輔導</span>
                                                 <a href="{{ route('reviewer.reward_remove',['report'=>$report->id,'school_code'=>$k]) }}"><i class="fas fa-times-circle text-danger"></i>
                                             @endif
                                         @endif                                        
@@ -85,6 +89,7 @@
                                     </td>
                                     <td>
                                         @if(empty($grade[$k]))
+                                            <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'推薦']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1 text-nowrap">推薦</a>
                                             <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'特優']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1 text-nowrap">特優</a>
                                             <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'優等']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1 text-nowrap">優等</a>
                                             <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'甲等']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1 text-nowrap">甲等</a>

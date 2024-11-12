@@ -66,7 +66,22 @@
                     <hr>
                     @if(!empty($opinion->id))
                         @if(!empty($opinion->grade))
-                            <h2>審查等級：{{ $opinion->grade }}學校</h2>
+                            <h2>                                
+                                審查等級：
+                                @if($opinion->grade == "推薦")
+                                    👍推薦演練學校
+                                @elseif($opinion->grade == "特優") 
+                                    😀特優學校
+                                @elseif($opinion->grade == "優等")
+                                    😊優等學校
+                                @elseif($opinion->grade == "甲等")
+                                    🙂甲等學校
+                                @elseif($opinion->grade == "輔導")
+                                    🤕須受輔導學校
+                                @else
+                                    😐一般學校
+                                @endif                                                                
+                            </h2>
                         @endif
                     @endif                    
                     <table class="table table-bordered">
