@@ -104,10 +104,10 @@
                                         @if(!empty($opinion->id))
                                             @if(!$opinion->open)
                                                 @if(empty($grade[$k]))
-                                                    <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'推薦']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1 text-nowrap">推薦</a>
-                                                    <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'特優']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1 text-nowrap">特優</a>
-                                                    <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'優等']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1 text-nowrap">優等</a>
-                                                    <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'甲等']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1 text-nowrap">甲等</a>
+                                                    <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'推薦']) }}" class="btn btn-outline-danger btn-sm mx-1 my-1 text-nowrap">推薦</a>
+                                                    <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'特優']) }}" class="btn btn-outline-warning btn-sm mx-1 my-1 text-nowrap">特優</a>
+                                                    <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'優等']) }}" class="btn btn-outline-success btn-sm mx-1 my-1 text-nowrap">優等</a>
+                                                    <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'甲等']) }}" class="btn btn-outline-info btn-sm mx-1 my-1 text-nowrap">甲等</a>
                                                     <a href="{{ route('reviewer.reward',['report'=>$report->id,'school_code'=>$k,'grade'=>'輔導']) }}" class="btn btn-outline-dark btn-sm mx-1 my-1 text-nowrap">輔導</a>
                                                 @endif
                                             @else

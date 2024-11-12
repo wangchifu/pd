@@ -11,29 +11,32 @@
                 @include('layouts.errors')
                 <div class="table-responsive">
                     <table class="table table-bordered">
-                        <thead class="bg-secondary text-light">
+                        <thead>
                             <tr>
                                 <th>
                                     id
                                 </th>
-                                <th style="width:200px" nowrap>
+                                <th style="width:200px" nowrap class="bg-primary text-light">
                                     成果項目 
                                 </th>
-                                <th style="width:100px" nowrap>
+                                <th nowrap class="bg-primary text-light">
+                                    給評審的話
+                                </th>  
+                                <th style="width:100px" nowrap class="bg-secondary text-light">
                                     更換分組
                                 </th>
-                                <th style="width:200px" nowrap>
+                                <th style="width:200px" nowrap class="bg-secondary text-light">
                                     動作1
                                 </th>
-                                <th style="width:100px" nowrap>
+                                <th style="width:100px" nowrap class="bg-secondary text-light">
                                     動作2
                                 </th>
-                                <th style="width:200px" nowrap>
+                                <th style="width:200px" nowrap class="bg-secondary text-light">
                                     也可以複製(小心使用)
-                                </th>
-                                <th nowrap>
-                                    結果
                                 </th>                                
+                                <th nowrap class="bg-secondary text-light">
+                                    結果
+                                </th>                                                              
                             </tr>
                         </thead>
                         <tbody>                                                     
@@ -43,9 +46,18 @@
                                     <tr>
                                         <td>
                                             {{ $report->id }}
-                                        </td>
+                                        </td>                                          
                                         <td>
                                             {{ $report->title }}
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('report.notice',$report->id) }}" data-vbtype="iframe" class="btn btn-info btn-sm venobox-link">編輯</a>
+                                            <br>
+                                            @if(empty($report->notice))
+                                                <small class="text-danger">無內容</small>
+                                            @else
+                                                <small class="text-primary">有內容</small>
+                                            @endif
                                         </td>                                        
                                         <td>
                                             <select name="name" class="form-control" required id="select_group{{ $report->id }}" onchange="change_group('select_group{{ $report->id }}',{{ $report->id }})">
@@ -84,7 +96,7 @@
                                         </td>
                                         <td>
                                             <div id="show_school{{ $report->id }}"></div>
-                                        </td>                                        
+                                        </td>                                                                              
                                     </tr>
                                     <input type="hidden" name="report_id" value="{{ $report->id }}">
                                 </form>
@@ -136,5 +148,28 @@
                     }
                 });
             }
+
+            
+    $(document).ready(function(){
+        var vb = new VenoBox({
+            selector: '.venobox-link',
+            numeration: true,
+            infinigall: true,
+            //share: ['facebook', 'twitter', 'linkedin', 'pinterest', 'download'],
+            spinner: 'rotating-plane'
+        });
+
+    $(document).on('click', '.vbox-close', function() {
+            vb.close();
+        });
+
+    // 監聽 iframe 發送的消息
+    window.addEventListener('message', function(event) {
+        // 檢查消息內容，並且只處理關閉的請求
+        if (event.data === 'closeVenobox') {
+            vb.VBclose(); // 關閉 Venobox 視窗
+        }
+    }, false);
+    });
 </script>
 @endsection

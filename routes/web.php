@@ -90,7 +90,7 @@ Route::group(['middleware' => 'admin'],function(){
     Route::post('report/upload_store', [ReportController::class,'upload_store'])->name('report.upload_store');
     Route::get('report/upload_destroy/{upload}', [ReportController::class,'upload_destroy'])->name('report.upload_destroy');
     Route::get('report/upload_edit/{upload}', [ReportController::class,'upload_edit'])->name('report.upload_edit');
-    Route::post('report/upload_update/{upload}', [ReportController::class,'upload_update'])->name('report.upload_update');    
+    Route::post('report/upload_update/{upload}', [ReportController::class,'upload_update'])->name('report.upload_update');        
     Route::post('report/comment_copy/{report}', [ReportController::class,'comment_copy'])->name('report.comment_copy');
     Route::get('report/comment_create/{report}', [ReportController::class,'comment_create'])->name('report.comment_create');
     Route::post('report/comment_store', [ReportController::class,'comment_store'])->name('report.comment_store');
@@ -124,6 +124,8 @@ Route::group(['middleware' => 'admin'],function(){
     Route::get('review/destroy/{report}', [ReviewController::class,'destroy'])->name('review.destroy');
     Route::get('review/open/{report}', [ReviewController::class,'open'])->name('review.open');
     Route::get('review/close/{report}', [ReviewController::class,'close'])->name('review.close');    
+    Route::get('report/notice/{report}', [ReviewController::class,'notice'])->name('report.notice');
+    Route::post('report/notice_update/{report}', [ReviewController::class,'notice_update'])->name('report.notice_update');
 });
 
 //評審可用

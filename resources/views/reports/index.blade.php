@@ -62,9 +62,9 @@
                                         <th style="width:400px;" nowrap>
                                             先 1.上傳項目
                                         </th>
-                                        <th style="width:400px;" nowrap>
+                                        <th style="width:250px;" nowrap>
                                             後 2.評分項目
-                                        </th>
+                                        </th>                                        
                                         <th nowrap>
                                             動作
                                         </th>
@@ -124,7 +124,7 @@
                                                         </li>
                                                     @endforeach
                                                 </ul>
-                                            </td>
+                                            </td>                                            
                                             <td>
                                                 <table>
                                                     <tr>

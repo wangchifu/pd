@@ -326,5 +326,19 @@ class ReviewController extends Controller
 
         return view('reviews.award',$data);
     }
+
+    function notice(Report $report){
+        $data = [
+            'report'=>$report,
+        ];
+        return view('reports.notice',$data);
+    }
+
+    function notice_update(Request $request,Report $report){
+        $att['notice'] = $request->input('notice');
+        $report->update($att);
+
+        echo "<body onload=\"window.parent.location.reload();window.parent.postMessage('closeVenobox', '*'); \">";
+    }
 }
 

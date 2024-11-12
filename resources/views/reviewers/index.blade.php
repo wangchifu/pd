@@ -12,8 +12,11 @@
                     <table class="table table-bordered">
                         <thead class="bg-secondary text-light">
                             <tr>
-                                <th style="width:200px" nowrap>
+                                <th style="width:150px" nowrap>
                                     成果項目 
+                                </th>
+                                <th style="width:200px" nowrap>
+                                    注意事項
                                 </th>
                                 <th style="width:150px" nowrap>
                                     組內排名與得獎
@@ -31,6 +34,9 @@
                                 <tr>
                                     <td>
                                         {{ $report->title }}
+                                    </td>
+                                    <td>
+                                        {!! nl2br($report->notice) !!}
                                     </td>
                                     <td>
                                         @if(isset($group_name[$report->id]))   
