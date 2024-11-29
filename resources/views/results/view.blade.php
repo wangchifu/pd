@@ -31,8 +31,25 @@
                                 $disabled = "";
                                 $onclick = "window.location.href = '".route('result.show',['report'=>$report->id,'code'=>$k1])."'";
                             }
-                        ?>
+                            $award = \App\Models\Opinion::where('report_id',$report->id)->where('school_code','like','%'.$k1.'%')->first();
+                        ?>                        
                         <button type="button" class="btn btn-{{ $color }} position-relative mx-2 my-2 {{ $disabled }}" onclick="{{ $onclick }}">
+                            @if(!empty($award->id))
+                                @if($award->open==1)
+                                    @if($award->grade=="推薦")
+                                        <span class="badge bg-danger"><i class="fas fa-thumbs-up"></i> 推薦演練</span>
+                                    @endif
+                                    @if($award->grade=="特優")
+                                        <span class="badge bg-warning"><i class="fas fa-crown"></i> 特優</span>
+                                    @endif
+                                    @if($award->grade=="優等")
+                                        <span class="badge bg-success"><i class="fas fa-star"></i> 優等</span>
+                                    @endif
+                                    @if($award->grade=="甲等")
+                                        <span class="badge bg-info"><i class="fas fa-thumbs-up"></i> 甲等</span>
+                                    @endif
+                                @endif
+                            @endif
                             {{ $v1 }}
                             @if($school_fill[$k1]>0)
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">

@@ -82,13 +82,13 @@
                                 @if(!empty($check_fill))
                                     已上傳 <small>(by{{ $check_fill->user->name }})</small><br>
                                     @if($upload->type=="pdf")
-                                        <a href="{{ asset('storage/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename) }}" data-vbtype="iframe" class="btn btn-success btn-sm venobox-link"><i class="fas fa-file-alt"></i> {{ $check_fill->filename }}</a>
-                                        @if(!file_exists(storage_path('app/public/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename)))
+                                        <a href="{{ route('fill.open_file',['report'=>$report->id,'file_name'=>$check_fill->filename]) }}" data-vbtype="iframe" class="btn btn-success btn-sm venobox-link"><i class="fas fa-file-alt"></i> {{ $check_fill->filename }}</a>
+                                        @if(!file_exists(storage_path('app/privacy/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename)))
                                             <br><span class="text-danger">(檔案遺失)</span>
                                         @endif
                                     @elseif($upload->type=="mp4")
-                                        <a href="{{ asset('storage/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename) }}" data-vbtype="iframe" class="btn btn-success btn-sm venobox-link"><i class="fas fa-film"></i> {{ $check_fill->filename }}</a>
-                                        @if(!file_exists(storage_path('app/public/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename)))
+                                        <a href="{{ route('fill.open_file',['report'=>$report->id,'file_name'=>$check_fill->filename]) }}" data-vbtype="iframe" class="btn btn-success btn-sm venobox-link"><i class="fas fa-film"></i> {{ $check_fill->filename }}</a>
+                                        @if(!file_exists(storage_path('app/privacy/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename)))
                                             <br><span class="text-danger">(檔案遺失)</span>
                                         @endif
                                     @elseif($upload->type=="link")       

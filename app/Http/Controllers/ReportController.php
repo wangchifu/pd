@@ -140,8 +140,8 @@ class ReportController extends Controller
         Opinion::where('report_id',$report->id)->delete();
         
         $report->delete();
-        if(file_exists(storage_path('app/public/fills/'.$report->id))){
-            del_folder(storage_path('app/public/fills/'.$report->id));
+        if(file_exists(storage_path('app/privacy/fills/'.$report->id))){
+            del_folder(storage_path('app/privacy/fills/'.$report->id));
         }
         
         echo "<body onload=\"window.parent.location.reload();window.parent.postMessage('closeVenobox', '*'); \">";

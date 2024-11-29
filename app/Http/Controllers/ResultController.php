@@ -127,7 +127,20 @@ class ResultController extends Controller
             'code'=>$code,
             'fill_data'=>$fill_data,
             'school_name'=>$schools_name[$code],
+            'code'=>$code,
         ];
         return view('results.show',$data);
     }
+
+    public function open_file(Report $report,$school_name,$file_name){
+        $schools_name = config('pd.schools_name');
+        if(auth()->user()->admin != 1){
+            if($schools_name[auth()->user()->school_code] != $school_name){
+                return back();
+            }
+        }
+        $file = storage_path('app/privacy/fills/'.$report->id.'/'. $school_name .'/'. $file_name);
+        return response()->file($file);
+    }
+    
 }

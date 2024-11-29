@@ -44,14 +44,38 @@
                                 </td>
                                 <td>
                                     @if(isset($fill_data[$upload->id]))                                 
-                                        @if($upload->type=="pdf")                                    
+                                        @if($upload->type=="pdf")
+                                        <!--                                    
                                             <a href="{{ asset('storage/fills/'.$upload->report_id.'/'.$school_name.'/'.$fill_data[$upload->id]) }}" data-vbtype="iframe" class="btn btn-success btn-sm venobox-link"><i class="fas fa-file-alt"></i> {{ $fill_data[$upload->id] }}</a>
-                                            @if(!file_exists(storage_path('app/public/fills/'.$upload->report_id.'/'.$school_name.'/'.$fill_data[$upload->id])))
+                                        -->
+                                            @auth
+                                                @if(auth()->user()->admin==1 or strpos($code,auth()->user()->school_code) !== false)
+                                                    <a href="{{ route('result.open_file',['report'=>$upload->report_id,'school_name'=>$school_name,'file_name'=>$fill_data[$upload->id]]) }}" data-vbtype="iframe" class="btn btn-success btn-sm venobox-link"><i class="fas fa-file-alt"></i> {{ $fill_data[$upload->id] }}</a>                                                
+                                                @else
+                                                    {{ $fill_data[$upload->id] }}
+                                                @endif
+                                            @endauth
+                                            @guest
+                                                {{ $fill_data[$upload->id] }}
+                                            @endguest                                            
+                                            @if(!file_exists(storage_path('app/privacy/fills/'.$upload->report_id.'/'.$school_name.'/'.$fill_data[$upload->id])))
                                                 <br><span class="text-danger">(檔案遺失)</span>
                                             @endif
                                         @elseif($upload->type=="mp4")
+                                        <!--
                                             <a href="{{ asset('storage/fills/'.$upload->report_id.'/'.$school_name.'/'.$fill_data[$upload->id]) }}" data-vbtype="iframe" class="btn btn-success btn-sm venobox-link"><i class="fas fa-film"></i> {{ $fill_data[$upload->id] }}</a>
-                                            @if(!file_exists(storage_path('app/public/fills/'.$upload->report_id.'/'.$school_name.'/'.$fill_data[$upload->id])))
+                                        -->
+                                            @auth
+                                                @if(auth()->user()->admin==1 or strpos($code,auth()->user()->school_code) !== false)
+                                                    <a href="{{ route('result.open_file',['report'=>$upload->report_id,'school_name'=>$school_name,'file_name'=>$fill_data[$upload->id]]) }}" data-vbtype="iframe" class="btn btn-success btn-sm venobox-link"><i class="fas fa-file-alt"></i> {{ $fill_data[$upload->id] }}</a>                                                
+                                                @else
+                                                    {{ $fill_data[$upload->id] }}
+                                                @endif
+                                            @endauth
+                                            @guest
+                                                {{ $fill_data[$upload->id] }}
+                                            @endguest  
+                                            @if(!file_exists(storage_path('app/privacy/fills/'.$upload->report_id.'/'.$school_name.'/'.$fill_data[$upload->id])))
                                                 <br><span class="text-danger">(檔案遺失)</span>
                                             @endif
                                         @elseif($upload->type=="link")            

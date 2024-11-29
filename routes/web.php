@@ -62,7 +62,10 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('fill/index', [FillController::class,'index'])->name('fill.index');
     Route::get('fill/award/{report}', [FillController::class,'award'])->name('fill.award');
     Route::get('fill/create/{report}', [FillController::class,'create'])->name('fill.create');
-    Route::post('fill/store/{upload}', [FillController::class,'store'])->name('fill.store');    
+    Route::post('fill/store/{upload}', [FillController::class,'store'])->name('fill.store');  
+    Route::get('fill/{report}/{file_name}/open_file', [FillController::class,'open_file'])->name('fill.open_file');  
+
+    Route::get('result/{report}/{school_name}/{file_name}/open_file', [ResultController::class,'open_file'])->name('result.open_file');
 });
 
 //管理者可用
@@ -125,7 +128,7 @@ Route::group(['middleware' => 'admin'],function(){
     Route::get('review/open/{report}', [ReviewController::class,'open'])->name('review.open');
     Route::get('review/close/{report}', [ReviewController::class,'close'])->name('review.close');    
     Route::get('report/notice/{report}', [ReviewController::class,'notice'])->name('report.notice');
-    Route::post('report/notice_update/{report}', [ReviewController::class,'notice_update'])->name('report.notice_update');
+    Route::post('report/notice_update/{report}', [ReviewController::class,'notice_update'])->name('report.notice_update');    
 });
 
 //評審可用
@@ -133,6 +136,7 @@ Route::group(['middleware' => 'review'],function(){
     Route::get('reviewer/index', [ReviewerController::class,'index'])->name('reviewer.index');
     Route::get('reviewer/group/{report}/{name}', [ReviewerController::class,'group'])->name('reviewer.group');
     Route::get('reviewer/school/{report}/{school_code}', [ReviewerController::class,'school'])->name('reviewer.school');
+    Route::get('reviewer/school/{report}/{school_name}/{file_name}/open_file', [ReviewerController::class,'open_file'])->name('reviewer.open_file');
     Route::post('reviewer/school_store', [ReviewerController::class,'school_store'])->name('reviewer.school_store');
     Route::get('reviewer/school_store_one', [ReviewerController::class,'school_store_one'])->name('reviewer.school_store_one');
     Route::get('reviewer/reward/{report}/{school_code}/{grade}', [ReviewerController::class,'reward'])->name('reviewer.reward');

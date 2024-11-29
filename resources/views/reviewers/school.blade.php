@@ -63,7 +63,10 @@
                                                                 ->first();                                                                           
                                                         ?>
                                                         @if(!empty($fill->id))
+                                                            <!--
                                                             <li class="text-danger"><a href="{{ asset('storage/fills/'.$report->id."/".$schools_name[$school_code]."/".$fill->filename) }}" target="_blank" class="text-decoration-none">{{ $upload_data[$v] }}</a></li>
+                                                            -->
+                                                            <li class="text-danger"><a href="{{ route('reviewer.open_file',['report'=>$report->id,'school_name'=>$schools_name[$school_code],'file_name'=>$fill->filename]) }}" target="_blank" class="text-decoration-none">{{ $upload_data[$v] }}</a></li>
                                                         @else
                                                             <li class="text-danger">{{ $upload_data[$v] }}</li><small class="text-secondary">(未傳)</small>
                                                         @endif

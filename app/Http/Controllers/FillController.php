@@ -108,7 +108,7 @@ class FillController extends Controller
                 ];            
             }
             
-            $file->storeAs('public/fills/'.$upload->report_id.'/'.$school_name, $info['original_filename']);
+            $file->storeAs('privacy/fills/'.$upload->report_id.'/'.$school_name, $info['original_filename']);
 
             $att['filename'] = $info['original_filename'];        
         }elseif($upload->type=="url"){
@@ -129,14 +129,23 @@ class FillController extends Controller
         if(empty($check_fill)){
             Fill::create($att);            
         }else{
-            if(file_exists(storage_path('app/public/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename))){
-                unlink(storage_path('app/public/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename));
+            if(file_exists(storage_path('app/privacy/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename))){
+                unlink(storage_path('app/privacy/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename));
             };
             $check_fill->update($att);
         }
             
 
         return back();
+    }
+
+    public function open_file(Report $report,$file_name){
+        $school_code = get_schoool_code(auth()->user()->school_code);            
+        $school_name_array = config('pd.schools_name');        
+        $school_name = $school_name_array[$school_code];
+
+        $file = storage_path('app/privacy/fills/'.$report->id.'/'. $school_name .'/'. $file_name);
+        return response()->file($file);
     }
 }
 
