@@ -27,16 +27,25 @@ class HomeController extends Controller
     }
 
     public function glogin(){
+        $key = rand(10000, 99999);
+        session(['chaptcha' => $key]);
+
         return view('auth.glogin');
     }
 
     public function login(){
+        $key = rand(10000, 99999);
+        session(['chaptcha' => $key]);
+        
         return view('auth.login');
     }
 
     public function pic()
     {
-        $key = rand(10000, 99999);
+        //$key = rand(10000, 99999);
+        //session(['chaptcha' => $key]);
+        $key = session('chaptcha');
+
         $back = rand(0, 9);
         /*
         $r = rand(0,255);
@@ -45,9 +54,7 @@ class HomeController extends Controller
         */
         $r = 0;
         $g = 0;
-        $b = 0;
-
-        session(['chaptcha' => $key]);
+        $b = 0;        
 
         //$cht = array(0=>"零",1=>"壹",2=>"貳",3=>"參",4=>"肆",5=>"伍",6=>"陸",7=>"柒",8=>"捌",9=>"玖");
         $cht = array(0 => "0", 1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9");
