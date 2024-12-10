@@ -48,8 +48,7 @@
                                 $text = session('chaptcha');                                
                                 $html = file_get_contents('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q='.$text.'&tl=zh-TW');                                  
                         ?>
-                        <audio controls id="myAudio"><source src="data:audio/mepg;base64,{{ base64_encode($html) }}"></audio><br>
-                        <audio controls id="myAudio"><source src="https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q={{ $text }}&tl=zh-TW"></audio><br>
+                        <audio controls id="myAudio"><source src="data:audio/mpeg;base64,{{ base64_encode($html) }}"></audio><br>                        
                         <span id="playButton"><a href="#!"><i class="fas fa-volume-up"></i> [語音播放]</a></span>
                     </div>                                                          
                     <!-- Submit error message-->
