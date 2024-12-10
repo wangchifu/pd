@@ -66,4 +66,14 @@
         </div>
     </div>
 </section>
+<script>
+    // 取得音頻和按鈕元素
+    const audio = document.getElementById('myAudio');
+    const playButton = document.getElementById('playButton');
+
+    // 點擊按鈕時播放音樂
+    playButton.addEventListener('click', () => {
+        audio.play(); // 播放音頻
+    });
+</script>
 @endsection
