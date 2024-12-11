@@ -52,6 +52,7 @@
                                 $d = substr($text,3,1);
                                 $e = substr($text,4,1);
                                 $string = $a." ".$b." ".$c." ".$d." ".$e;
+                                $string = urlencode($string);
                                 $html = file_get_contents('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q='.$string.'&tl=zh-TW');                                  
                         ?>
                         <audio id="myAudio"><source src="data:audio/mpeg;base64,{{ base64_encode($html) }}"></audio><br>                        
