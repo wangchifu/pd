@@ -45,8 +45,14 @@
                     <div class="form-floating mb-3">                        
                         <a href="{{ route('glogin') }}"><img src="{{ route('pic') }}" class="img-fluid"></a><small class="text-secondary"> (按一下更換)</small>
                         <?php
-                                $text = session('chaptcha');                                
-                                $html = file_get_contents('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q='.$text.'&tl=zh-TW');                                  
+                                $text = session('chaptcha');      
+                                $a = substr($text,0,1);
+                                $b = substr($text,1,1);
+                                $c = substr($text,2,1);
+                                $d = substr($text,3,1);
+                                $e = substr($text,4,1);
+                                $string = $a." ".$b." ".$c." ".$d." ".$e;
+                                $html = file_get_contents('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q='.$string.'&tl=zh-TW');                                  
                         ?>
                         <audio id="myAudio"><source src="data:audio/mpeg;base64,{{ base64_encode($html) }}"></audio><br>                        
                         <span id="playButton"><a href="#!"><i class="fas fa-volume-up"></i> [語音播放]</a></span>
