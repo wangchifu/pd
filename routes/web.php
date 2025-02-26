@@ -10,6 +10,7 @@ use App\Http\Controllers\FillController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ReviewerController;
+use App\Http\Controllers\OpenIDController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,10 @@ Route::get('login', [HomeController::class,'login'])->name('login');
 Route::post('auth', [HomeController::class,'auth'])->name('auth');
 Route::get('logout', [HomeController::class,'logout'])->name('logout');
 Route::get('pic', [HomeController::class,'pic'])->name('pic');
+
+//openid登入
+Route::get('sso', [OpenIDController::class,'sso'])->name('sso');
+Route::get('auth/callback', [OpenIDController::class,'callback'])->name('callback');
 
 Route::get('/', [HomeController::class,'index'])->name('index');
 
