@@ -118,14 +118,17 @@ class OpenIDController extends Controller
       $user_obj['code'] = $edufile['schoolid'];
         $schools_name = config('pd.schools_name');
       $user_obj['school'] = $schools_name[$user_obj['code']];
-      $user_obj['kind'] = $edufile['titles'][0]['titles'][0];      
+      $user_obj['kind'] = $edufile['titles'][0]['titles'][0];   
+      if ($user_obj['kind'] == "學生") {
+        return redirect()->route('glogin')->withErrors(['errors' => ['學生禁止進入']]);
+      }               
       $user_obj['title'] = $edufile['titles'][0]['titles'][1];
 
         //學生禁止訪問
         if ($user_obj['success']) {
 
             if ($user_obj['kind'] == "學生") {
-                return back()->withErrors(['errors' => ['學生禁止進入錯誤']]);
+                return redirect()->route('glogin')->withErrors(['errors' => ['學生禁止進入']]);
             }            
 
             // 找出隸屬於哪一所學校 id 代號
