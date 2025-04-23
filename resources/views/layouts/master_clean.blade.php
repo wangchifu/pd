@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <meta http-equiv="Content-Security-Policy" content="default-src 'none';img-src 'self' data:;style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline';font-src 'self';connect-src 'self';">
+        <meta http-equiv="Content-Security-Policy" content="script-src * 'unsafe-inline' 'unsafe-eval';">
         <title>@yield('title')-彰化縣學校防災教育網</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
