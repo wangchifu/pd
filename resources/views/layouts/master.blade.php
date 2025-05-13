@@ -1,3 +1,6 @@
+<?php
+setcookie('cross-site-cookie', 'name', ['samesite' => 'Strict', 'secure' => true, 'httponly' =>true]);
+?>
 <!DOCTYPE html>
 <html lang="zh-TW">
     <head>
