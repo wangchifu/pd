@@ -137,7 +137,8 @@ class OpenIDController extends Controller
             $school_id = !isset($schools_id[$user_obj['code']]) ? 0 : $schools_id[$user_obj['code']];
 
             //是否已有此帳號
-            $user = User::where('edu_key', $user_obj['personid'])                
+            $user = User::where('edu_key', $user_obj['personid'])    
+                ->where('school_code', $user_obj['code'])            
                 ->first();
 
             if (empty($user)) {
