@@ -24,7 +24,7 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">                        
                                 <div class="text-center">
-                                    <a href="{{ route('sso') }}" class="image-button">
+                                    <a href="{{ route('sso') }}" class="image-button2">
                                         <img src="{{ asset('images/chc.jpg') }}" alt="彰化chc的logo" width="120">
                                     </a>
                                     <br>OpenID登入

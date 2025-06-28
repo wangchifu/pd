@@ -64,7 +64,7 @@
                     <!-- an error submitting the form-->
                     @include('layouts.errors')          
                     <div class="text-end">
-                        <a href="{{ route('sso') }}" class="image-button"><img src="{{ asset('images/chc.jpg') }}" alt="彰化chc的logo" width="80"></a>
+                        <a href="{{ route('sso') }}" class="image-button2"><img src="{{ asset('images/chc.jpg') }}" alt="彰化chc的logo" width="80"></a>
                         <br>OpenID登入
                     </div>          
                     <!-- Submit Button-->

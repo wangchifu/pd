@@ -5,7 +5,7 @@
     border-radius: 0.2rem;    /* 調整圓角 */
 }
 
-.image-button {
+.image-button2 {
 	border: 2px solid #ccc;       /* 邊框 */
 	border-radius: 10px;          /* 圓角 */
 	padding: 4px;                 /* 內距讓圖片不貼邊 */
@@ -13,13 +13,13 @@
 	display: inline-block;
 }
 
-.image-button:hover {
+.image-button2:hover {
 	border-color: #007bff;        /* hover 邊框顏色 */
 	box-shadow: 0 0 10px rgba(0,123,255,0.4); /* hover 陰影 */
 	transform: scale(1.03);       /* 微微放大 */
 }
 
-.image-button img {
+.image-button2 img {
 	border-radius: 10px; /* 圖片本身也圓角 */
 	display: block;
 }
