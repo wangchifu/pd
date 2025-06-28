@@ -38,9 +38,10 @@ Route::middleware([
 });
  */
 Route::get('/', [HomeController::class,'index'])->name('index');
-Route::get('glogin', [HomeController::class,'glogin'])->name('glogin');
-Route::post('gauth', [HomeController::class,'gauth'])->name('gauth');
+//Route::get('glogin', [HomeController::class,'glogin'])->name('glogin');
+//Route::post('gauth', [HomeController::class,'gauth'])->name('gauth');
 Route::get('login', [HomeController::class,'login'])->name('login');
+Route::get('logins', [HomeController::class,'logins'])->name('logins');
 Route::post('auth', [HomeController::class,'auth'])->name('auth');
 Route::get('logout', [HomeController::class,'logout'])->name('logout');
 Route::get('pic', [HomeController::class,'pic'])->name('pic');

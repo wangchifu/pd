@@ -40,6 +40,10 @@ class HomeController extends Controller
         return view('auth.login');
     }
 
+    public function logins(){        
+        return view('auth.logins');
+    }
+
     public function pic()
     {
         //$key = rand(10000, 99999);

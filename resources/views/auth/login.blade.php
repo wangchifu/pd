@@ -63,8 +63,9 @@
                     <!-- This is what your users will see when there is-->
                     <!-- an error submitting the form-->
                     @include('layouts.errors')          
-                    <div class="d-flex">
-                        <a href="{{ route('glogin')}}" class="ms-auto text-decoration-none"><i class="fas fa-user"></i> GSuite 登入</a>
+                    <div class="text-end">
+                        <a href="{{ route('sso') }}" class="image-button"><img src="{{ asset('images/chc.jpg') }}" alt="彰化chc的logo" width="80"></a>
+                        <br>OpenID登入
                     </div>          
                     <!-- Submit Button-->
                     <button class="btn btn-primary btn-xl" id="submitButton" type="submit">送出</button>
