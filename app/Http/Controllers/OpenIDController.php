@@ -118,18 +118,22 @@ class OpenIDController extends Controller
       $user_obj['code'] = $edufile['schoolid'];
         $schools_name = config('pd.schools_name');
       $user_obj['school'] = $schools_name[$user_obj['code']];
-      $user_obj['kind'] = $edufile['titles'][0]['titles'][1];   
-      if ($user_obj['kind'] == "學生") {
-        return redirect()->route('glogin')->withErrors(['errors' => ['學生禁止進入']]);
-      }               
       $user_obj['title'] = $edufile['titles'][0]['titles'][0];
+      $user_obj['kind'] = "";   
+      if ($user_obj['title'] == "學生") {
+        $message = "學生禁止訪問";
+        $url = "https://chc.sso.edu.tw/oidc/v1/logout-to-go";
+        $post_logout_redirect_uri = url('logins');        
+        $id_token_hint = session('id_token');
+        $link = $url . "?post_logout_redirect_uri=".$post_logout_redirect_uri."&id_token_hint=" . $id_token_hint;
+        return redirect($link)->withErrors(['gsuite_error' => [$message]]);                
+      }else{
+        $user_obj['kind'] = $edufile['titles'][0]['titles'][1]; 
+      }               
+      
 
         //學生禁止訪問
-        if ($user_obj['success']) {
-
-            if ($user_obj['kind'] == "學生") {
-                return redirect()->route('glogin')->withErrors(['errors' => ['學生禁止進入']]);
-            }            
+        if ($user_obj['success']) {                 
 
             // 找出隸屬於哪一所學校 id 代號
             //$school = School::where('code_no', 'like', $obj['code'] . '%')->first();
@@ -157,7 +161,12 @@ class OpenIDController extends Controller
             } else {
 
                 if($user->disable==1){
-                    return back()->withErrors(['errors' => ['此帳號被停用，無法登入！']]);
+                  $message = "此帳號被停用，無法登入！";
+                  $url = "https://chc.sso.edu.tw/oidc/v1/logout-to-go";
+                  $post_logout_redirect_uri = url('logins');        
+                  $id_token_hint = session('id_token');
+                  $link = $url . "?post_logout_redirect_uri=".$post_logout_redirect_uri."&id_token_hint=" . $id_token_hint;
+                  return redirect($link)->withErrors(['gsuite_error' => [$message]]);                                      
                 }
 
                 //有此使用者，即更新使用者資料
