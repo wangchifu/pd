@@ -204,10 +204,10 @@ class HomeController extends Controller
         $post_logout_redirect_uri = env('APP_URL');
         $id_token_hint = session('id_token');
         $link = $url . "?post_logout_redirect_uri=".$post_logout_redirect_uri."&id_token_hint=" . $id_token_hint;
-        return redirect($link);
-
         Session::flush();
-        return redirect()->route('index');
+        return redirect($link);
+        
+        //return redirect()->route('index');
     }
 
     public function impersonate(User $user)
