@@ -110,7 +110,7 @@ class FillController extends Controller
             
             if($file->storeAs('privacy/fills/'.$upload->report_id.'/'.$school_name, $info['original_filename'])){
                 //上傳成功
-                return back()->withErrors(['error' => ['檔案上傳成功！']]);
+                //return back()->withErrors(['error' => ['檔案上傳成功！']]);
             }else{
                 return back()->withErrors(['error' => ['檔案上傳失敗！; 請重新上傳']]);
             }
