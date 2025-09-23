@@ -141,7 +141,7 @@ class FillController extends Controller
         }
             
 
-        return back();
+        return back()->withErrors(['error' => ['檔案上傳成功！']]);
     }
 
     public function open_file(Report $report,$file_name){
