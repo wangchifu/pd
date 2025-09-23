@@ -74,6 +74,14 @@
                                         <a href="{{ route('result.view',$report->id) }}" class="btn btn-primary btn-sm text-nowrap">
                                             觀看各校成果
                                         </a>
+                                    @else
+                                        @auth
+                                            @if(auth()->user()->admin==1)
+                                                <a href="{{ route('result.view',$report->id) }}" class="btn btn-success btn-sm text-nowrap">
+                                                    管理員觀看
+                                                </a>
+                                            @endif
+                                        @endauth
                                     @endif
                                 </td>
                             </tr>
