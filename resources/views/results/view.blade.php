@@ -17,8 +17,10 @@
                 <h3 class="card-title">填報「{{ $report->title }}」成果</h3>
                 @foreach($township_ids as $k=>$v)
                     <h4><i class="fab fa-fort-awesome"></i> {{ $k }}</h4>
-                    @foreach($school_array[$v] as $k1=>$v1)
+                    @foreach($school_array[$v] as $k1=>$v1)                        
                         <?php
+                            if($report->id >1 and $v1=='民靖國小') continue; //114年起 民靖滅校
+                            
                             $color = "secondary";                            
                             if(str_contains($v1,'國小')) $color = "primary";
                             if(str_contains($v1,'國中')) $color = "success";
