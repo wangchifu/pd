@@ -17,7 +17,10 @@
                 <h3 class="card-title">未送完成果</h3>
                 @foreach($schools as $school)
                   @if($upload_count != $school_fill[$school->code])  
-                    {{ $school->name }},
+                    @if($report->id >1 and $school->name == '民靖國小')  <!-- 114年起 民靖滅校 -->                      
+                    @else
+                      {{ $school->name }},
+                    @endif
                   @endif
                 @endforeach
             </div>

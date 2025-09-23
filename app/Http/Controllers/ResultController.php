@@ -104,6 +104,7 @@ class ResultController extends Controller
 
             
         $data = [
+            'report'=>$report,
             'upload_count'=>$upload_count,
             'school_fill'=>$school_fill,
             'schools'=>$schools,

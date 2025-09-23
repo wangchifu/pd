@@ -51,7 +51,14 @@
                                     {{ $upload_count[$report->id] }}
                                 </td>
                                 <td>
-                                    {{ $schools_num }}
+                                    <?php
+                                        if($report->id >1){
+                                            $s = $schools_num-1; //114年起 民靖滅校
+                                        }else{
+                                            $s = $schools_num;
+                                        }
+                                    ?>
+                                    {{ $s }}
                                 </td>
                                 <td>
                                     {{ $school_has_finish[$report->id] }}
@@ -59,10 +66,10 @@
                                 <th>
                                     @if($schools_num - $school_has_finish[$report->id] > 0)
                                     <a href="{{ route('result.nonesent',$report->id) }}" class="btn btn-danger btn-sm">
-                                        {{ $schools_num - $school_has_finish[$report->id] }}
+                                        {{ $s - $school_has_finish[$report->id] }}
                                     </a>
                                     @else
-                                        {{ $schools_num - $school_has_finish[$report->id] }}
+                                        {{ $s - $school_has_finish[$report->id] }}
                                     @endif
                                 </th>
                                 <td>
