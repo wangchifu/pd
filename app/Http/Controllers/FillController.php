@@ -107,8 +107,11 @@ class FillController extends Controller
                     'extension' => $file->getClientOriginalExtension(),
                 ];            
             }
+
+            //$FileName = safeFileName($info['original_filename']);
+            $FileName = mb_convert_encoding($info['original_filename'], 'UTF-8', 'auto');
             
-            if($file->storeAs('privacy/fills/'.$upload->report_id.'/'.$school_name, $info['original_filename'])){
+            if($file->storeAs('privacy/fills/'.$upload->report_id.'/'.$school_name, $FileName)){
                 //上傳成功
                 //return back()->withErrors(['error' => ['檔案上傳成功！']]);
             }else{
