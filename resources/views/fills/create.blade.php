@@ -17,7 +17,7 @@
                 <h3 class="card-title">填報「{{ $report->title }}」</h3>
                 @include('layouts.errors')
                 註：
-                <br>1.PDF 文件檔不得超過 5 MB。[<a href="https://www.ilovepdf.com/zh-tw/compress_pdf" class="text-decoration-none" target="_blank">線上壓縮</a>]
+                <br>1.PDF 文件檔不得超過 20 MB。[<a href="https://www.ilovepdf.com/zh-tw/compress_pdf" class="text-decoration-none" target="_blank">線上壓縮</a>]
                 <br>2.MP4 影片檔不得超過 300 MB。[<a href="https://www.adobe.com/tw/express/feature/video/convert/mp4" class="text-decoration-none" target="_blank">線上轉檔</a>]                
                 <br>3.重覆上傳將覆蓋舊的檔案。
                 <br><br>

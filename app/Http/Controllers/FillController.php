@@ -90,7 +90,7 @@ class FillController extends Controller
         if($upload->type=="pdf" or $upload->type=="mp4"){
             if($upload->type=="pdf"){
                 $request->validate([
-                    'file' => 'required|file|max:5120', // 5120 KB = 5 MB     
+                    'file' => 'required|file|max:20480', // 20480 KB = 20 MB     
                 ]);                
             }
             if($upload->type=="mp4"){
