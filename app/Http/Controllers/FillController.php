@@ -100,7 +100,7 @@ class FillController extends Controller
             }
             
             //處理檔案上傳        
-            if ($request->hasFile('file')) {
+            if ($request->hasFile('file')) {                
                 $file = $request->file('file');
                 $info = [
                     'original_filename' => $file->getClientOriginalName(),
@@ -108,8 +108,13 @@ class FillController extends Controller
                 ];            
             }
             
-            $file->storeAs('privacy/fills/'.$upload->report_id.'/'.$school_name, $info['original_filename']);
-
+            if($file->storeAs('privacy/fills/'.$upload->report_id.'/'.$school_name, $info['original_filename'])){
+                //上傳成功
+                return back()->withErrors(['error' => ['檔案上傳成功！']]);
+            }else{
+                return back()->withErrors(['error' => ['檔案上傳失敗！; 請重新上傳']]);
+            }
+            
             $att['filename'] = $info['original_filename'];        
         }elseif($upload->type=="url"){
             $request->validate([
