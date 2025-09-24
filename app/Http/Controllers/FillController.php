@@ -109,7 +109,7 @@ class FillController extends Controller
                 ];            
             }
 
-            $FileName = safeFileName($info['original_filename'],$upload->title);            
+            $FileName = safeFileName($info['original_filename'],$upload->id);            
 
             if($file->storeAs('privacy/fills/'.$upload->report_id.'/'.$school_name, $FileName)){
                 //上傳成功
