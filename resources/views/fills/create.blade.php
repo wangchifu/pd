@@ -80,7 +80,7 @@
                                     $check_fill = \App\Models\Fill::where('upload_id',$upload->id)->where('school_code','like','%'.auth()->user()->school_code.'%')->first();
                                 ?>
                                 @if(!empty($check_fill))
-                                    已上傳 <small>(by{{ $check_fill->user->name }})</small><br>
+                                    已上傳 <small>(by{{ $check_fill->user->name }})<br>(請按綠按鈕測試是否正常)</small><br>
                                     @if($upload->type=="pdf")
                                         <a href="{{ route('fill.open_file',['report'=>$report->id,'file_name'=>$check_fill->filename]) }}" data-vbtype="iframe" class="btn btn-success btn-sm venobox-link"><i class="fas fa-file-alt"></i> {{ $check_fill->filename }}</a>
                                         @if(!file_exists(storage_path('app/privacy/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename)))
