@@ -145,18 +145,21 @@ if (!function_exists('get_schoool_code')) {
     }
 }
 
-function safeFileName(string $filename,$id)
+function safeFileName(string $filename,$title)
 {
     $ext = pathinfo($filename, PATHINFO_EXTENSION);
     //$name = pathinfo($filename, PATHINFO_FILENAME);
 
     // 全形空白轉半形
-    //$name = str_replace('　', ' ', $name);
+    $name = str_replace('　', '', $title);
 
-    // 移除特殊符號
-    //$name = preg_replace('/[\\\\\/\?\%\*\:\|\"\<\>\(\)]/u', '_', $name);
+    // 空白取代
+    $name = str_replace(' ', '', $name);
+
+    // 移除特殊符號    
+    $name = preg_replace('/[\\\\\/\?\%\*\:\|\"\<\>\(\),。，．~]/u', '_', $name);
     
 
     // 回傳檔名
-    return $ext ? ($id . '.' . $ext) : $name;
+    return $ext ? ($name . '.' . $ext) : $name;
 }
