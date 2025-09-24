@@ -82,7 +82,7 @@
                                             <a href="{{ transfer_url_http($fill_data[$upload->id]) }}" data-vbtype="iframe" class="btn btn-success btn-sm venobox-link"><i class="fas fa-film"></i> 影片連結</a>
                                         @endif                           
                                     @else
-                                        <span class="text-danger">尚未上傳</span>
+                                        <span class="text-danger">尚未上傳正確檔案</span>
                                     @endif                                                
                                 </td>
                             </tr>

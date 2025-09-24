@@ -20,7 +20,10 @@ class ResultController extends Controller
             //題目數            
             $upload_count[$report->id] = Upload::where('report_id',$report->id)->count();            
 
-            $fills = Fill::where('report_id',$report->id)->get();
+            $fills = Fill::where('report_id', $report->id)
+                ->where(function ($q) {
+                    $q->whereNull('disable')->orWhere('disable', 2);
+                })->get();
             $school_fill = [];            
             foreach($fills as $fill){                
                 if(!isset($school_fill[$report->id][$fill->school_code])) $school_fill[$report->id][$fill->school_code] = 0;
@@ -66,7 +69,10 @@ class ResultController extends Controller
         $township_ids = config('pd.township_ids');
         $schools = School::all();
 
-        $fills = Fill::where('report_id',$report->id)->get();
+        $fills = Fill::where('report_id', $report->id)
+                ->where(function ($q) {
+                    $q->whereNull('disable')->orWhere('disable', 2);
+                })->get();
         $school_fill = [];
         foreach($fills as $fill){
             if(!isset($school_fill[$fill->school_code])) $school_fill[$fill->school_code] = 0;
@@ -90,7 +96,10 @@ class ResultController extends Controller
             
             $upload_count = Upload::where('report_id',$report->id)->count();
 
-            $fills = Fill::where('report_id',$report->id)->get();
+            $fills = Fill::where('report_id', $report->id)
+                ->where(function ($q) {
+                    $q->whereNull('disable')->orWhere('disable', 2);
+                })->get();
             $school_fill = [];            
             foreach($fills as $fill){                
                 if(!isset($school_fill[$fill->school_code])) $school_fill[$fill->school_code] = 0;
@@ -124,7 +133,9 @@ class ResultController extends Controller
         }
             $fills = Fill::where('report_id',$report->id)
                 ->where('school_code',$code)
-                ->get();
+                ->where(function ($q) {
+                    $q->whereNull('disable')->orWhere('disable', 2);
+                })->get();
                 
             $fill_data = [];
             if(empty($fills->first())){
