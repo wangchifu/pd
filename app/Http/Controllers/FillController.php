@@ -91,12 +91,12 @@ class FillController extends Controller
         if($upload->type=="pdf" or $upload->type=="mp4"){
             if($upload->type=="pdf"){
                 $request->validate([
-                    'file' => 'required|file|max:20480', // 20480 KB = 20 MB     
+                    'file' => 'required|file|mimetypes:application/pdf|max:20480',
                 ]);                
             }
             if($upload->type=="mp4"){
                 $request->validate([
-                    'file' => 'required|file|max:307200', // 307200 KB = 300 MB     
+                    'file' => 'required|file|mimetypes:video/mp4|max:307200', 
                 ]);                
             }
             
