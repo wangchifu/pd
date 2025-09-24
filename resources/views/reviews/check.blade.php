@@ -18,6 +18,10 @@
                             </option>
                         @endforeach 
                     </select>
+                    <br>
+                    <a href="{{ route('result.nonesent',$report_id) }}" class="btn btn-secondary btn-sm" target="_blank">
+                        尚未完成上傳名單
+                    </a>
                     <table class="table table-bordered mt-3">
                         <thead class="bg-secondary text-light">
                             <tr>
