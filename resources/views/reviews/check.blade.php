@@ -40,11 +40,15 @@
                                     @foreach($uploads as $upload)                                      
                                         <td>
                                             @if(isset($school_fill[$school->code][$upload->id]))
-                                                <a class="btn btn-success btn-sm text-nowrap" href="{{ route('review.open_file',['report'=>$report_id,'school_name'=>$school->name,'file_name'=>$school_fill[$school->code][$upload->id]['filename']]) }}" target="_blank" class="text-decoration-none">打開</a>
+                                                <a href="{{ route('review.open_file',['report'=>$report_id,'school_name'=>$school->name,'file_name'=>$school_fill[$school->code][$upload->id]['filename']]) }}" target="_blank" class="text-decoration-none"><i class="fa-solid fa-folder-open text-warning"></i> 打開</a>
                                                 @if($school_fill[$school->code][$upload->id]['disable'] == 1)
                                                     <span class="text-danger">已退回</span>
+                                                @elseif($school_fill[$school->code][$upload->id]['disable'] == 2)
+                                                    <span class="text-success">已通過</span>
                                                 @else
-                                                    <a href="#!" class="btn btn-danger btn-sm text-nowrap" onclick="sw_confirm1('確定退回{{ $school->name }} {{ $upload->title }}？','{{ route('review.back',$school_fill[$school->code][$upload->id]['id']) }}')">退回</a>
+                                                    <br>
+                                                    <a href="#!" class="btn btn-success btn-sm text-nowrap" onclick="sw_confirm1('確認通過 {{ $school->name }} {{ $upload->title }}？','{{ route('review.ok',$school_fill[$school->code][$upload->id]['id']) }}')">通過</a>
+                                                    <a href="#!" class="btn btn-danger btn-sm text-nowrap" onclick="sw_confirm1('確定退回 {{ $school->name }} {{ $upload->title }}？','{{ route('review.back',$school_fill[$school->code][$upload->id]['id']) }}')">退回</a>
                                                 @endif                                                
                                                 @if(file_exists(storage_path('app/privacy/fills/'.$report_id.'/'. $school->name .'/'. $school_fill[$school->code][$upload->id]['filename'])))
                                                     <br><small>({{ filesizemb(storage_path('app/privacy/fills/'.$report_id.'/'. $school->name .'/'. $school_fill[$school->code][$upload->id]['filename'])) }})</small>

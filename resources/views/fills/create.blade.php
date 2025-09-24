@@ -83,6 +83,8 @@
                                     已上傳 <small>(by{{ $check_fill->user->name }})
                                     @if($check_fill->disable == 1)
                                         <span class="text-danger">已退回，請重新上傳</span>
+                                    @elseif($check_fill->disable == 2)
+                                        <span class="text-success">已通過</span>
                                     @endif
                                     <br>(請按綠按鈕測試是否正常)</small><br>
                                     @if($upload->type=="pdf")
