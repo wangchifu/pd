@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedInteger('upload_id');
             $table->unsignedInteger('report_id');
             $table->unsignedInteger('user_id');                      
+            $table->tinyInteger('disable')->nullable();//停用
             $table->timestamps();                        
         });
     }

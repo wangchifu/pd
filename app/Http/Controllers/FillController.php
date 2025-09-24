@@ -140,6 +140,11 @@ class FillController extends Controller
             if(file_exists(storage_path('app/privacy/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename))){
                 unlink(storage_path('app/privacy/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename));
             };
+            if($file->storeAs('privacy/fills/'.$upload->report_id.'/'.$school_name, $FileName)){
+                //上傳成功
+                //return back()->withErrors(['error' => ['檔案上傳成功！']]);
+            }
+            $att['disable'] = null;
             $check_fill->update($att);
         }
             

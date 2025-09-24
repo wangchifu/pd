@@ -89,6 +89,14 @@ if (!function_exists('filesizekb')) {
     }
 }
 
+function filesizemb($file)
+{    
+    $sizeInBytes = filesize($file);
+    $sizeInMB = $sizeInBytes / 1024 / 1024;
+
+    return round($sizeInMB, 2) . ' MB';
+}
+
 
 
 function get_ip()

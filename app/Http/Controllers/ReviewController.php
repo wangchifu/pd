@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\School;
 use App\Models\SchoolAssign;
 use App\Models\Opinion;
+use App\Models\Upload;
+use App\Models\Fill;
 use App\Models\Score;
 use Rap2hpoutre\FastExcel\FastExcel;
 use Rap2hpoutre\FastExcel\SheetCollection;
@@ -176,6 +178,39 @@ class ReviewController extends Controller
         if(!strpos($result,"尚未指定評審及學校")) $result.="<br>(共 ".$n." 校)";
         echo json_encode($result);
         return;
+    }
+
+    public function check($report_id=null){
+        $reports = Report::orderBy('id','DESC')->paginate(4);
+        if(empty($report_id)){
+            if(!empty($reports[0]->id)){
+                $report_id = $reports[0]->id;
+            }else{
+                $report_id = 0;
+            }            
+        }
+        $schools = School::all();
+        $uploads = Upload::where('report_id',$report_id)->get();
+
+        $data = [
+            'report_id'=>$report_id,
+            'reports'=>$reports,
+            'schools'=>$schools,      
+            'uploads'=>$uploads,
+        ];
+
+        return view('reviews.check',$data);
+    }
+
+    public function open_file(Report $report,$school_name,$file_name){
+        $file = storage_path('app/privacy/fills/'.$report->id.'/'. $school_name .'/'. $file_name);
+        return response()->file($file);
+    }
+
+    public function back(Fill $fill){
+        $att['disable'] = 1;
+        $fill->update($att);
+        return back();
     }
 
     public function score(){

@@ -14,7 +14,8 @@ class Fill extends Model
         'filename',
         'upload_id',      
         'report_id',
-        'user_id',             
+        'user_id',    
+        'disable',
     ];    
 
     public function upload()
