@@ -144,6 +144,7 @@ if (!function_exists('get_schoool_code')) {
         return $code;
     }
 }
+
 use Illuminate\Support\Str;
 function safeFileName(string $filename): string
 {
@@ -159,6 +160,11 @@ function safeFileName(string $filename): string
 
     // 3. 如果太長就截斷（避免檔名超過 255 字元）
     $name = Str::limit($name, 100, '');
+
+    //$name = str_replace(['(', ')'], '', $name);
+
+    $name = mb_convert_encoding($name, 'UTF-8', 'auto');            
+            
 
     // 4. 如果副檔名存在就加回去
     return $ext ? ($name . '.' . $ext) : $name;

@@ -9,6 +9,7 @@ use App\Models\Upload;
 use App\Models\School;
 use App\Models\Opinion;
 use App\Models\Score;
+use Illuminate\Support\Str;
 
 class FillController extends Controller
 {
@@ -108,9 +109,8 @@ class FillController extends Controller
                 ];            
             }
 
-            //$FileName = safeFileName($info['original_filename']);
-            $FileName = mb_convert_encoding($info['original_filename'], 'UTF-8', 'auto');
-            
+            $FileName = safeFileName($info['original_filename']);            
+
             if($file->storeAs('privacy/fills/'.$upload->report_id.'/'.$school_name, $FileName)){
                 //上傳成功
                 //return back()->withErrors(['error' => ['檔案上傳成功！']]);
@@ -118,7 +118,7 @@ class FillController extends Controller
                 return back()->withErrors(['error' => ['檔案上傳失敗！; 請重新上傳']]);
             }
             
-            $att['filename'] = $info['original_filename'];        
+            $att['filename'] = $FileName;        
         }elseif($upload->type=="url"){
             $request->validate([
                 'url' => 'required',
