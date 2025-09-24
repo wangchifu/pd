@@ -145,27 +145,18 @@ if (!function_exists('get_schoool_code')) {
     }
 }
 
-use Illuminate\Support\Str;
 function safeFileName(string $filename): string
 {
-    // 拆出副檔名
     $ext = pathinfo($filename, PATHINFO_EXTENSION);
     $name = pathinfo($filename, PATHINFO_FILENAME);
 
-    // 1. 去掉全形空白，統一成半形空白
+    // 全形空白轉半形
     $name = str_replace('　', ' ', $name);
 
-    // 2. 將危險或特殊符號換成底線
-    $name = preg_replace('/[\\\\\/\?\%\*\:\|\"\<\>]/u', '_', $name);
+    // 移除特殊符號
+    $name = preg_replace('/[\\\\\/\?\%\*\:\|\"\<\>\(\)]/u', '_', $name);
+    
 
-    // 3. 如果太長就截斷（避免檔名超過 255 字元）
-    $name = Str::limit($name, 100, '');
-
-    //$name = str_replace(['(', ')'], '', $name);
-
-    $name = mb_convert_encoding($name, 'UTF-8', 'auto');            
-            
-
-    // 4. 如果副檔名存在就加回去
+    // 回傳檔名
     return $ext ? ($name . '.' . $ext) : $name;
 }
