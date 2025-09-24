@@ -37,23 +37,17 @@
                                     <td>                                        
                                         {{ $school->name }}                                        
                                     </td>                                    
-                                    @foreach($uploads as $upload)
-                                        <?php
-                                            $check_fill = \App\Models\Fill::where('report_id',$report_id)
-                                                ->where('upload_id',$upload->id)
-                                                ->where('school_code',$school->code)                                                
-                                                ->first();
-                                        ?>
+                                    @foreach($uploads as $upload)                                      
                                         <td>
-                                            @if(!empty($check_fill->id))
-                                                <a class="btn btn-success btn-sm text-nowrap" href="{{ route('review.open_file',['report'=>$report_id,'school_name'=>$school->name,'file_name'=>$check_fill->filename]) }}" target="_blank" class="text-decoration-none">打開</a>
-                                                @if($check_fill->disable == 1)
+                                            @if(isset($school_fill[$school->code][$upload->id]))
+                                                <a class="btn btn-success btn-sm text-nowrap" href="{{ route('review.open_file',['report'=>$report_id,'school_name'=>$school->name,'file_name'=>$school_fill[$school->code][$upload->id]['filename']]) }}" target="_blank" class="text-decoration-none">打開</a>
+                                                @if($school_fill[$school->code][$upload->id]['disable'] == 1)
                                                     <span class="text-danger">已退回</span>
                                                 @else
-                                                    <a href="#!" class="btn btn-danger btn-sm text-nowrap" onclick="sw_confirm1('確定退回{{ $school->name }} {{ $upload->title }}？','{{ route('review.back',$check_fill->id) }}')">退回</a>
+                                                    <a href="#!" class="btn btn-danger btn-sm text-nowrap" onclick="sw_confirm1('確定退回{{ $school->name }} {{ $upload->title }}？','{{ route('review.back',$school_fill[$school->code][$upload->id]['id']) }}')">退回</a>
                                                 @endif                                                
-                                                @if(file_exists(storage_path('app/privacy/fills/'.$report_id.'/'. $school->name .'/'. $check_fill->filename)))
-                                                    <br><small>({{ filesizemb(storage_path('app/privacy/fills/'.$report_id.'/'. $school->name .'/'. $check_fill->filename)) }})</small>
+                                                @if(file_exists(storage_path('app/privacy/fills/'.$report_id.'/'. $school->name .'/'. $school_fill[$school->code][$upload->id]['filename'])))
+                                                    <br><small>({{ filesizemb(storage_path('app/privacy/fills/'.$report_id.'/'. $school->name .'/'. $school_fill[$school->code][$upload->id]['filename'])) }})</small>
                                                 @else
                                                     <br><small class="text-danger">(檔案遺失)</small>
                                                 @endif

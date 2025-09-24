@@ -192,11 +192,24 @@ class ReviewController extends Controller
         $schools = School::all();
         $uploads = Upload::where('report_id',$report_id)->get();
 
+        if($report_id==0){
+            $fills = [];
+        }else{
+            $fills = Fill::where('report_id', $report_id)->get();
+        }                
+        $school_fill = [];            
+        foreach($fills as $fill){                
+            $school_fill[$fill->school_code][$fill->upload_id]['id'] = $fill->id;
+            $school_fill[$fill->school_code][$fill->upload_id]['filename'] = $fill->filename;
+            $school_fill[$fill->school_code][$fill->upload_id]['disable'] = $fill->disable;                
+        }
+
         $data = [
             'report_id'=>$report_id,
             'reports'=>$reports,
             'schools'=>$schools,      
             'uploads'=>$uploads,
+            'school_fill'=>$school_fill,
         ];
 
         return view('reviews.check',$data);
@@ -209,6 +222,12 @@ class ReviewController extends Controller
 
     public function back(Fill $fill){
         $att['disable'] = 1;
+        $fill->update($att);
+        return back();
+    }
+
+    public function ok(Fill $fill){
+        $att['disable'] = 2;
         $fill->update($att);
         return back();
     }

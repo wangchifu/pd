@@ -124,6 +124,7 @@ Route::group(['middleware' => 'admin'],function(){
     Route::get('review/check/{report_id?}', [ReviewController::class,'check'])->name('review.check');
     Route::get('review/{report}/{school_name}/{file_name}/open_file', [ReviewController::class,'open_file'])->name('review.open_file');
     Route::get('review/back/{fill}', [ReviewController::class,'back'])->name('review.back');
+    Route::get('review/ok/{fill}', [ReviewController::class,'ok'])->name('review.ok');
     Route::get('review/school_assign/{report}', [ReviewController::class,'school_assign'])->name('review.school_assign');
     Route::get('review/school_assign_copy/{old_id}/{new_id}', [ReviewController::class,'school_assign_copy'])->name('review.school_assign_copy');
     Route::post('review/do_school_assign', [ReviewController::class,'do_school_assign'])->name('review.do_school_assign');
