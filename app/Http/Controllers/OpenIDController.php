@@ -177,7 +177,8 @@ class OpenIDController extends Controller
                 $att['kind'] = $user_obj['kind'];
                 $att['title'] = $user_obj['title'];
                 $att['edu_key'] = $user_obj['personid'];
-                $att['uid'] = "openID";                                                
+                $att['uid'] = "openID";        
+                $att['login_type'] = "openID";                                                        
                 $user->update($att);
             }   
 
