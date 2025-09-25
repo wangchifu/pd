@@ -82,7 +82,7 @@
                                 @if(!empty($check_fill))
                                     已上傳 <small>(by{{ $check_fill->user->name }})
                                     @if($check_fill->disable == 1)
-                                        <span class="text-danger">已退回，請重新上傳</span>
+                                        <span class="text-danger">已被退回，請重新上傳</span>
                                     @elseif($check_fill->disable == 2)
                                         <span class="text-success">已通過</span>
                                     @endif
@@ -91,11 +91,15 @@
                                         <a href="{{ route('fill.open_file',['report'=>$report->id,'file_name'=>$check_fill->filename]) }}" data-vbtype="iframe" class="btn btn-success btn-sm venobox-link"><i class="fas fa-file-alt"></i> {{ $check_fill->filename }}</a>
                                         @if(!file_exists(storage_path('app/privacy/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename)))
                                             <br><span class="text-danger">(檔案遺失)</span>
+                                        @else
+                                            <br><small>({{ filesizemb(storage_path('app/privacy/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename)) }})</small>
                                         @endif
                                     @elseif($upload->type=="mp4")
                                         <a href="{{ route('fill.open_file',['report'=>$report->id,'file_name'=>$check_fill->filename]) }}" data-vbtype="iframe" class="btn btn-success btn-sm venobox-link"><i class="fas fa-film"></i> {{ $check_fill->filename }}</a>
                                         @if(!file_exists(storage_path('app/privacy/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename)))
                                             <br><span class="text-danger">(檔案遺失)</span>
+                                        @else
+                                            <br><small>({{ filesizemb(storage_path('app/privacy/fills/'.$upload->report_id.'/'.$check_fill->school_name.'/'.$check_fill->filename)) }})</small>                                            
                                         @endif
                                     @elseif($upload->type=="link")       
                                         <a href="{{ transfer_url_http($check_fill->filename) }}" data-vbtype="iframe" class="btn btn-success btn-sm venobox-link"><i class="fas fa-film"></i> 影片連結</a>
