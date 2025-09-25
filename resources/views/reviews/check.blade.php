@@ -3,6 +3,13 @@
 @section('title','檢查各校上傳')
 
 @section('content')
+<style>
+    .extra-small {
+    padding: 0.1rem 0.25rem;  /* 上下、左右內距 */
+    font-size: 0.75rem;       /* 字體再小一點 */
+    line-height: 1;           /* 行高壓縮 */
+}
+</style>
 <section class="page-section" id="contact">
     <div class="container">
         <div class="card" >
@@ -51,8 +58,8 @@
                                                     <span class="text-success">已通過</span>
                                                 @else
                                                     <br>
-                                                    <a href="#!" class="btn btn-success btn-sm text-nowrap" onclick="sw_confirm1('確認通過 {{ $school->name }} {{ $upload->title }}？','{{ route('review.ok',$school_fill[$school->code][$upload->id]['id']) }}')">通過</a>
-                                                    <a href="#!" class="btn btn-danger btn-sm text-nowrap" onclick="sw_confirm1('確定退回 {{ $school->name }} {{ $upload->title }}？','{{ route('review.back',$school_fill[$school->code][$upload->id]['id']) }}')">退回</a>
+                                                    <a href="#!" class="btn btn-success btn-sm text-nowrap extra-small" onclick="sw_confirm1('確認通過 {{ $school->name }} {{ $upload->title }}？','{{ route('review.ok',$school_fill[$school->code][$upload->id]['id']) }}')">通過</a>
+                                                    <a href="#!" class="btn btn-danger btn-sm text-nowrap extra-small" onclick="sw_confirm1('確定退回 {{ $school->name }} {{ $upload->title }}？','{{ route('review.back',$school_fill[$school->code][$upload->id]['id']) }}')">退回</a>
                                                 @endif                                                
                                                 @if(file_exists(storage_path('app/privacy/fills/'.$report_id.'/'. $school->name .'/'. $school_fill[$school->code][$upload->id]['filename'])))
                                                     <br><small>({{ filesizemb(storage_path('app/privacy/fills/'.$report_id.'/'. $school->name .'/'. $school_fill[$school->code][$upload->id]['filename'])) }})</small>
