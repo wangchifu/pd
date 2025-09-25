@@ -48,7 +48,8 @@
                                                 <a href="#!" class="btn btn-outline-secondary btn-sm" onclick="nonselectAll{{ $v }}()">取消勾選全部{{ $k }}</a>
                                             </div>
                                             -->
-                                            @foreach($school_array[$v] as $k1=>$v1)                                        
+                                            @foreach($school_array[$v] as $k1=>$v1)       
+                                            <?php if($v1=="民靖國小") continue; ?>
                                             <div class="text-nowrap" style="float: left;">
                                                 <?php
                                                     $checked = in_array($k1,$select_schools)?"checked":null;
