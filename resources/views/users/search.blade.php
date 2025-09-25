@@ -65,6 +65,9 @@
                                     @if($user->login_type=="gsuite")
                                         GSuite 認證
                                     @endif
+                                    @if($user->login_type=="openID")
+                                            OpenID 認證
+                                        @endif
                                     @if($user->login_type=="local")
                                         本機帳號
                                     @endif
