@@ -14,7 +14,8 @@ use App\Models\Comment;
 class ReviewerController extends Controller
 {
     public function index(){  
-        $reports = Report::orderBy('id','DESC')->paginate(4);
+        //$reports = Report::orderBy('id','DESC')->paginate(4);
+        $report = Report::orderBy('id','DESC')->first();
         $school_assigns = SchoolAssign::where('user_id',auth()->user()->id)->get();
         $assign_schools = [];
         $group_name = [];
@@ -24,7 +25,8 @@ class ReviewerController extends Controller
         }        
         $schools_name = config('pd.schools_name');
         $data = [           
-            'reports' =>$reports,
+            //'reports' =>$reports,
+            'report' =>$report,
             'group_name'=>$group_name,
             'assign_schools'=>$assign_schools,
             'schools_name'=>$schools_name,
