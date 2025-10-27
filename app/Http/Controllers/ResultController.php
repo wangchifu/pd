@@ -7,6 +7,7 @@ use App\Models\Report;
 use App\Models\School;
 use App\Models\Fill;
 use App\Models\Upload;
+use App\Models\Opinion;
 
 class ResultController extends Controller
 {
@@ -146,12 +147,14 @@ class ResultController extends Controller
                 }
             }
             $schools_name = config('pd.schools_name');
+            $opinion = Opinion::where('report_id',$report->id)->where('school_code','like','%'.$code.'%')->first();
         $data = [
             'report'=>$report,
             'code'=>$code,
             'fill_data'=>$fill_data,
             'school_name'=>$schools_name[$code],
             'code'=>$code,
+            'opinion'=>$opinion,
         ];
         return view('results.show',$data);
     }

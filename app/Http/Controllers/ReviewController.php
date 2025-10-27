@@ -346,6 +346,7 @@ class ReviewController extends Controller
         $score_data = [];
         $suggestion = [];
         $grade = [];
+        $recommend = [];
         if(!empty($school_assign->id)){
             $schools_array = unserialize($school_assign->schools_array);
             foreach($schools_array as $k=>$v){
@@ -356,6 +357,7 @@ class ReviewController extends Controller
                 $opinion = Opinion::where('school_code',$v)->where('report_id',$report->id)->first();
                 $suggestion[$v] = (!empty($opinion->suggestion))?$opinion->suggestion:"";
                 $grade[$v] = (!empty($opinion->grade))?$opinion->grade:"";
+                $recommend[$v] = (!empty($opinion->recommend))?$opinion->recommend:"";
             }
         }
         $total_score = [];
@@ -375,6 +377,7 @@ class ReviewController extends Controller
             'score_data'=>$score_data,
             'suggestion'=>$suggestion,
             'grade'=>$grade,
+            'recommend'=>$recommend,
             'total_score'=>$total_score,
         ];
 

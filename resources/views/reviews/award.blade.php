@@ -44,8 +44,8 @@
                                 <tr>
                                     <td>                                        
                                         @if(isset($grade[$k]))
-                                            @if($grade[$k]=="推薦")                                                
-                                                <span class="badge bg-danger"><i class="fas fa-thumbs-up"></i> 推薦演練</span>                                                
+                                            @if(!empty($recommend[$k]))
+                                                👍推薦<br>
                                             @endif
                                             @if($grade[$k]=="特優")
                                                 <span class="badge bg-warning"><i class="fas fa-crown"></i> 特優</span>                                                

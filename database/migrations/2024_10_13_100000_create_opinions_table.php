@@ -20,8 +20,9 @@ return new class extends Migration
             $table->text('suggestion')->nullable();                                                
             $table->unsignedInteger('report_id');
             $table->unsignedInteger('user_id');
-            $table->string('grade')->nullable();             
-            $table->unsignedInteger('open')->nullable();         
+            $table->string('grade')->nullable();      
+            $table->tinyInteger('disable')->nullable();//停用       
+            $table->unsignedInteger('recommend')->nullable();//推薦  
             $table->timestamps();                        
         });
     }

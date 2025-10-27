@@ -151,4 +151,6 @@ Route::group(['middleware' => 'review'],function(){
     Route::get('reviewer/school_store_one', [ReviewerController::class,'school_store_one'])->name('reviewer.school_store_one');
     Route::get('reviewer/reward/{report}/{school_code}/{grade}', [ReviewerController::class,'reward'])->name('reviewer.reward');
     Route::get('reviewer/reward_remove/{report}/{school_code}', [ReviewerController::class,'reward_remove'])->name('reviewer.reward_remove');
+    Route::get('reviewer/recommend/{report}/{school_code}', [ReviewerController::class,'recommend'])->name('reviewer.recommend');
+    Route::get('reviewer/recommend_remove/{report}/{school_code}', [ReviewerController::class,'recommend_remove'])->name('reviewer.recommend_remove');
 });

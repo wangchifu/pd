@@ -37,10 +37,7 @@
                         ?>                        
                         <button type="button" class="btn btn-{{ $color }} position-relative mx-2 my-2 {{ $disabled }}" onclick="{{ $onclick }}">
                             @if(!empty($award->id))
-                                @if($award->open==1)
-                                    @if($award->grade=="推薦")
-                                        <span class="badge bg-danger"><i class="fas fa-thumbs-up"></i> 推薦演練</span>
-                                    @endif
+                                @if($award->open==1)                                    
                                     @if($award->grade=="特優")
                                         <span class="badge bg-warning"><i class="fas fa-crown"></i> 特優</span>
                                     @endif
@@ -54,8 +51,11 @@
                             @endif
                             {{ $v1 }}
                             @if($school_fill[$k1]>0)
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    {{ $school_fill[$k1] }}                                                        
+                                <span class="badge bg-light text-dark">{{ $school_fill[$k1] }}</span>
+                            @endif                            
+                            @if(!empty($award->recommend))
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">                                    
+                                    👍推薦               
                                 </span>
                             @endif
                         </button>

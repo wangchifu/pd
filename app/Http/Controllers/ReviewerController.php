@@ -117,6 +117,36 @@ class ReviewerController extends Controller
         
     }
 
+    public function recommend(Report $report,$school_code){     
+        $schools_name = config('pd.schools_name');         
+        $att['recommend'] = 1;
+        $opinion = Opinion::where('report_id',$report->id)
+            ->where('school_code',$school_code)->first();
+        if(!empty($opinion->id)){
+            $opinion->update($att);
+        }else{
+            $att['school_name'] = $schools_name[$school_code];
+            $att['school_code'] = $school_code;
+            $att['report_id'] = $report->id;
+            $att['user_id'] = auth()->user()->id;            
+            Opinion::create($att);
+        }
+    
+        return back();
+        
+    }
+
+    public function recommend_remove(Report $report,$school_code){     
+        $schools_name = config('pd.schools_name');         
+        $att['recommend'] = null;
+        $opinion = Opinion::where('report_id',$report->id)
+            ->where('school_code',$school_code)->first();
+        $opinion->update($att);
+    
+        return back();
+        
+    }
+
     public function school(Report $report,$school_code){
         $schools_name = config('pd.schools_name');
         $upload_data = [];
