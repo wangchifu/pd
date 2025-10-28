@@ -52,11 +52,13 @@
                             {{ $v1 }}
                             @if($school_fill[$k1]>0)
                                 <span class="badge bg-light text-dark">{{ $school_fill[$k1] }}</span>
-                            @endif                            
-                            @if(!empty($award->recommend))
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">                                    
-                                    👍推薦               
-                                </span>
+                            @endif           
+                            @if($award->open==1)                 
+                                @if(!empty($award->recommend))
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">                                    
+                                        👍推薦               
+                                    </span>
+                                @endif
                             @endif
                         </button>
                     @endforeach

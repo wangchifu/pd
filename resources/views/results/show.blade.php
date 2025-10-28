@@ -18,17 +18,19 @@
             <div class="card-body">
                 <h2>{{ $report->title }}</h2>
                 <h3 class="card-title">
-                    @if(!empty($opinion->recommend))        
-                        👍<span class="text-danger">推薦</span>
-                    @endif
-                    @if($opinion->grade=="特優")
-                        <span class="badge bg-warning"><i class="fas fa-crown"></i> 特優</span>
-                    @endif
-                    @if($opinion->grade=="優等")
-                        <span class="badge bg-success"><i class="fas fa-star"></i> 優等</span>
-                    @endif
-                    @if($opinion->grade=="甲等")
-                        <span class="badge bg-info"><i class="fas fa-thumbs-up"></i> 甲等</span>
+                    @if($opinion->open==1)
+                        @if(!empty($opinion->recommend))        
+                            👍<span class="text-danger">推薦</span>
+                        @endif
+                        @if($opinion->grade=="特優")
+                            <span class="badge bg-warning"><i class="fas fa-crown"></i> 特優</span>
+                        @endif
+                        @if($opinion->grade=="優等")
+                            <span class="badge bg-success"><i class="fas fa-star"></i> 優等</span>
+                        @endif
+                        @if($opinion->grade=="甲等")
+                            <span class="badge bg-info"><i class="fas fa-thumbs-up"></i> 甲等</span>
+                        @endif
                     @endif
                     「{{ $school_name }}」成果
                 </h3>
