@@ -104,9 +104,12 @@
                                             {!! nl2br($suggestion[$k]) !!}
                                         @endif 
                                     </td>
-                                    <td>
-                                        @if(empty($opinion->recommend))
-                                            <a href="{{ route('reviewer.recommend',['report'=>$report->id,'school_code'=>$k]) }}" class="btn btn-outline-danger btn-sm mx-1 my-1 text-nowrap">推薦</a>
+                                    <td>@if(!empty($opinion->id))
+                                            @if(!$opinion->open)
+                                                @if(empty($opinion->recommend))
+                                                    <a href="{{ route('reviewer.recommend',['report'=>$report->id,'school_code'=>$k]) }}" class="btn btn-outline-danger btn-sm mx-1 my-1 text-nowrap">推薦</a>
+                                                @endif
+                                            @endif
                                         @endif
                                     </td>
                                     <td>                                        
