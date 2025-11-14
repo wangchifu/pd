@@ -64,7 +64,7 @@
                                     {{ $school_has_finish[$report->id] }}
                                 </td>
                                 <th>
-                                    @if($schools_num - $school_has_finish[$report->id] > 0)
+                                    @if($s - $school_has_finish[$report->id] > 0)
                                     <a href="{{ route('result.nonesent',$report->id) }}" class="btn btn-danger btn-sm">
                                         {{ $s - $school_has_finish[$report->id] }}
                                     </a>
