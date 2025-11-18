@@ -318,6 +318,56 @@ class ReviewController extends Controller
                        
     }
 
+    public function print(Report $report){
+
+        $year = substr($report->created_at,0,4)-1911;
+
+        $schools = config('pd.schools_name');
+
+        $school_assigns = SchoolAssign::where('report_id',$report->id)->get();
+        foreach($school_assigns as $school_assign){
+            if(!empty($school_assign->schools_array)){
+                $select_schools = unserialize($school_assign->schools_array);
+                foreach($select_schools as $k=>$v){
+                    $assigned_schools[$v] = $school_assign->name;
+                }
+            }            
+        }        
+        $opinions = Opinion::where('report_id',$report->id)->get();
+
+        foreach($opinions as $opinion){
+            if($opinion->grade == "特優"){
+                $opinion1[$assigned_schools[$opinion->school_code]][$opinion->school_code] = $schools[$opinion->school_code];
+            }
+            if($opinion->grade == "優等"){
+                $opinion2[$assigned_schools[$opinion->school_code]][$opinion->school_code] = $schools[$opinion->school_code];
+            }
+            if($opinion->grade == "甲等"){
+                $opinion3[$assigned_schools[$opinion->school_code]][$opinion->school_code] = $schools[$opinion->school_code];
+            }
+            if($opinion->grade == "輔導"){
+                $opinion4[$assigned_schools[$opinion->school_code]][$opinion->school_code] = $schools[$opinion->school_code];
+            }
+            if($opinion->recommend == "1"){
+                $opinion_recommend[$opinion->school_code] = $schools[$opinion->school_code];
+            }
+            
+        }
+        //dd($opinion1);
+
+        $data = [
+            'report'=>$report,
+            'year'=>$year,
+            'opinion1'=>isset($opinion1)?$opinion1:[],
+            'opinion2'=>isset($opinion2)?$opinion2:[],
+            'opinion3'=>isset($opinion3)?$opinion3:[],      
+            'opinion4'=>isset($opinion4)?$opinion4:[],
+            'opinion_recommend'=>isset($opinion_recommend)?$opinion_recommend:[],
+        ];
+
+        return view('reviews.print',$data);                       
+    }
+
     public function destroy(Report $report){
         Opinion::where('report_id',$report->id)->delete();
         Score::where('report_id',$report->id)->delete();

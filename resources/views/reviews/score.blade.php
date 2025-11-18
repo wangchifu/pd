@@ -107,6 +107,7 @@
                                         @endif        
                                         <a href="#!" class="btn btn-danger btn-sm text-nowrap" onclick="sw_confirm1('會清掉全部的評分與意見喔！','{{ route('review.destroy',$report->id) }}')">清掉評分與意見</a>                                                                        
                                         <a href="#!" class="btn btn-secondary btn-sm text-nowrap" onclick="sw_confirm1('會花很久的時候喔，請不要中途關掉視窗！','{{ route('review.download',$report->id) }}')">下載全部檔案</a>                                        
+                                        <a href="{{ route('review.print',$report->id) }}" class="btn btn-outline-info btn-sm text-nowrap" target="_blank">列印所有組別的結果</a>                                        
                                     </td>
                                 </tr>                                                            
                             @endforeach                            
