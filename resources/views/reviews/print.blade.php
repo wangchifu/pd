@@ -318,7 +318,7 @@
 <?php $n=1; ?>
 <span style="font-size:18px;">
     @foreach($opinion_recommend as $k=>$v)
-        @if($n>1) <br> @endif
+        @if($n>1) 、 @endif
         {{ $v }}
         <?php $n++; ?> 
     @endforeach
