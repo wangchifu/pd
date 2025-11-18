@@ -293,11 +293,11 @@ class ReviewController extends Controller
 
     public function download(Report $report){
 
-        if(is_dir(storage_path('app/public/fills/'.$report->id))){
-            $exec = "cd ".storage_path('app/public/fills')." && zip -r ./{$report->title}.zip ./".$report->id;        
+        if(is_dir(storage_path('app/privacy/fills/'.$report->id))){
+            $exec = "cd ".storage_path('app/privacy/fills')." && zip -r ./{$report->title}.zip ./".$report->id;        
             shell_exec($exec);
                 
-            $zipFileName = storage_path('app/public/fills/'.$report->title.'.zip');
+            $zipFileName = storage_path('app/privacy/fills/'.$report->title.'.zip');
             //dd($zipFileName);
             // 設置 HTTP 標頭以便下載 ZIP 檔案
             header('Content-Type: application/zip');
