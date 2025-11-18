@@ -1,6 +1,6 @@
 @extends('layouts.master_print')
 
-@section('title','列印所有組別的結果')
+@section('title','列印各組優良學校')
 
 @section('content')
 <style>

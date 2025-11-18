@@ -368,6 +368,59 @@ class ReviewController extends Controller
         return view('reviews.print',$data);                       
     }
 
+    public function print_all(Report $report){      
+        $year = substr($report->created_at,0,4)-1911;  
+        $school_assigns = SchoolAssign::where('report_id',$report->id)->get();
+        $schools_array = [];
+        $score_data = [];
+        $suggestion = [];
+        $grade = [];
+        $recommend = [];
+        $total_score = [];
+
+        foreach($school_assigns as $school_assign){
+            if(!empty($school_assign->id)){
+                $schools_array[$school_assign->name] = unserialize($school_assign->schools_array);
+                foreach($schools_array[$school_assign->name] as $k=>$v){
+                    $scores = Score::where('report_id',$report->id)->where('school_code',$v)->get();
+                    foreach($scores as $score){
+                        $score_data[$school_assign->name][$v][$score->comment_id] = $score->score;                    
+                    }
+                    $opinion = Opinion::where('school_code',$v)->where('report_id',$report->id)->first();
+                    $suggestion[$school_assign->name][$v] = (!empty($opinion->suggestion))?$opinion->suggestion:"";
+                    $grade[$school_assign->name][$v] = (!empty($opinion->grade))?$opinion->grade:"";
+                    $recommend[$school_assign->name][$v] = (!empty($opinion->recommend))?$opinion->recommend:"";
+                }
+            } 
+            foreach($schools_array[$school_assign->name] as $k=>$v){
+                $total_score[$school_assign->name][$v] = 0;
+                foreach($report->comments as $comment){
+                    if(isset($score_data[$school_assign->name][$v][$comment->id])) $total_score[$school_assign->name][$v] += $score_data[$school_assign->name][$v][$comment->id];
+                }
+            }
+            arsort($total_score[$school_assign->name]);
+
+        }        
+        $groups = ['第一組','第二組','第三組','第四組','第五組'];
+        
+                
+        $data = [            
+            'schools_name'=>config('pd.schools_name'),
+            'report'=>$report,
+            'schools_array'=>$schools_array,
+            'score_data'=>$score_data,
+            'suggestion'=>$suggestion,
+            'grade'=>$grade,
+            'recommend'=>$recommend,
+            'total_score'=>$total_score,
+            'groups'=>$groups,
+            'year'=>$year,
+        ];
+        
+
+        return view('reviews.print_all',$data);                       
+    }
+
     public function destroy(Report $report){
         Opinion::where('report_id',$report->id)->delete();
         Score::where('report_id',$report->id)->delete();

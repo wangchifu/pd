@@ -135,6 +135,7 @@ Route::group(['middleware' => 'admin'],function(){
     Route::post('review/award', [ReviewController::class,'award'])->name('review.award');
     Route::get('review/download/{report}', [ReviewController::class,'download'])->name('review.download');
     Route::get('review/print/{report}', [ReviewController::class,'print'])->name('review.print');
+    Route::get('review/print_all/{report}', [ReviewController::class,'print_all'])->name('review.print_all');
     Route::get('review/destroy/{report}', [ReviewController::class,'destroy'])->name('review.destroy');
     Route::get('review/open/{report}', [ReviewController::class,'open'])->name('review.open');
     Route::get('review/close/{report}', [ReviewController::class,'close'])->name('review.close');    
