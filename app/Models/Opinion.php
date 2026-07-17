@@ -12,6 +12,7 @@ class Opinion extends Model
         'school_code',
         'school_name',        
         'suggestion',         
+        'suggestion2',         
         'report_id',
         'user_id',        
         'grade',  

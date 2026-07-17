@@ -215,6 +215,74 @@ class ReviewController extends Controller
         return view('reviews.check',$data);
     }
 
+    public function suggestion2($report_id=null){
+        $reports = Report::orderBy('id','DESC')->paginate(4);
+        if(empty($report_id)){
+            if(!empty($reports[0]->id)){
+                $report_id = $reports[0]->id;
+            }else{
+                $report_id = 0;
+            }            
+        }
+        $schools = School::all();  
+        foreach($schools as $school){
+            $schools_array[$school->code] = $school->name;
+        }        
+        $options = Opinion::where('report_id',$report_id)->get();
+        $school_option  = [];
+        foreach($options as $option){ 
+            $school_option[$option->school_code]['grade'] = $option->grade;
+            $school_option[$option->school_code]['suggestion'] = $option->suggestion;
+            $school_option[$option->school_code]['suggestion2'] = $option->suggestion2;
+        }                 
+        
+        // 1. 定義您期待的順序權重 (分數越小越靠前)
+        $order_weights = [
+            '輔導' => 1,
+            ''     => 2, // 用於處理 null 或空值
+            '甲等' => 3,
+            '優等' => 4,
+            '特優' => 5
+        ];
+
+        // 2. 使用 uasort 進行自訂排序 (保留原本的 Key)
+        uasort($school_option, function($a, $b) use ($order_weights) {
+            // 取得 a 和 b 的等第，若為 null 則轉為空字串對應權重
+            $gradeA = $a['grade'] ?? '';
+            $gradeB = $b['grade'] ?? '';
+            
+            // 如果不在定義的權重內，給予一個極大值放最後
+            $weightA = $order_weights[$gradeA] ?? 99;
+            $weightB = $order_weights[$gradeB] ?? 99;
+            
+            // 比較權重
+            return $weightA <=> $weightB;
+        });        
+
+        $data = [
+            'report_id'=>$report_id,
+            'reports'=>$reports,
+            'schools_array'=>$schools_array,   
+            'school_option'=>$school_option,               
+        ];
+
+        return view('reviews.suggestion2',$data);
+    }
+
+    public function suggestion2_store(Request $request){
+        $report_id = $request->input('report_id');
+        $suggestion2 = $request->input('suggestion2');        
+        foreach($suggestion2 as $k=>$v){
+            $opinion = Opinion::where('report_id',$report_id)->where('school_code',$k)->first();     
+            $att['suggestion2'] = $v;     
+            if(!empty($opinion->id) and !empty($v)){                                
+                $opinion->update($att);
+            }
+        }
+
+        return back()->withErrors(['error' => '評語已經儲存好了！']);
+    }
+
     public function open_file(Report $report,$school_name,$file_name){
         $file = storage_path('app/privacy/fills/'.$report->id.'/'. $school_name .'/'. $file_name);
         return response()->file($file);

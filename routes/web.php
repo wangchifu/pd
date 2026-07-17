@@ -141,6 +141,8 @@ Route::group(['middleware' => 'admin'],function(){
     Route::get('review/close/{report}', [ReviewController::class,'close'])->name('review.close');    
     Route::get('report/notice/{report}', [ReviewController::class,'notice'])->name('report.notice');
     Route::post('report/notice_update/{report}', [ReviewController::class,'notice_update'])->name('report.notice_update');    
+    Route::get('review/suggestion2/{report_id?}', [ReviewController::class,'suggestion2'])->name('review.suggestion2');
+    Route::post('review/suggestion2_store', [ReviewController::class,'suggestion2_store'])->name('review.suggestion2_store');
 });
 
 //評審可用

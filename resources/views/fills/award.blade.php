@@ -98,6 +98,22 @@
                             </tr>
                         </tbody>
                     </table>        
+                    @if(!empty($opinion->suggestion2))
+                        <table class="table table-bordered">
+                            <thead class="bg-danger text-light">
+                                <th colspan="4">
+                                    視察後第二次評語
+                                </th>
+                            </thead>
+                            <tbody>                                                        
+                                <tr>
+                                    <td colspan="4">
+                                        {!! nl2br($opinion->suggestion2) !!}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    @endif
                     <a href="#!" class="btn btn-secondary text-nowrap" onclick="history.go(-1);">返回</a>                                    
                 </div>
             </div>
