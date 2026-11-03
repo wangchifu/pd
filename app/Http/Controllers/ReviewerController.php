@@ -180,6 +180,11 @@ class ReviewerController extends Controller
         $file = storage_path('app/privacy/fills/'.$report->id.'/'. $school_name .'/'. $file_name);
         return response()->file($file);
     }
+    
+    public function open_file(Report $report,$school_name,$file_name){
+        $file = storage_path('app/privacy/fills/'.$report->id.'/'. $school_name .'/'. $file_name);
+        return response()->download($file);
+    }
 
     public function school_store(Request $request){
         $request->validate([

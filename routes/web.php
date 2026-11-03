@@ -151,6 +151,7 @@ Route::group(['middleware' => 'review'],function(){
     Route::get('reviewer/group/{report}/{name}', [ReviewerController::class,'group'])->name('reviewer.group');
     Route::get('reviewer/school/{report}/{school_code}', [ReviewerController::class,'school'])->name('reviewer.school');
     Route::get('reviewer/school/{report}/{school_name}/{file_name}/open_file', [ReviewerController::class,'open_file'])->name('reviewer.open_file');
+    Route::get('reviewer/school/{report}/{school_name}/{file_name}/download_file', [ReviewerController::class,'download_file'])->name('reviewer.download_file');
     Route::post('reviewer/school_store', [ReviewerController::class,'school_store'])->name('reviewer.school_store');
     Route::get('reviewer/school_store_one', [ReviewerController::class,'school_store_one'])->name('reviewer.school_store_one');
     Route::get('reviewer/reward/{report}/{school_code}/{grade}', [ReviewerController::class,'reward'])->name('reviewer.reward');
